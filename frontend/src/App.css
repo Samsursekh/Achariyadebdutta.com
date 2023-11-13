@@ -16,3 +16,39 @@
     display: none;
   }
 } */
+
+.flipper {
+  transition: transform 0.7s;
+  transform-style: preserve-3d;
+  position: relative;
+}
+
+.front {
+  backface-visibility: hidden;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.back {
+  backface-visibility: hidden;
+  position: absolute;
+  top: 25%;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.front {
+  z-index: 2;
+}
+
+.back {
+  transform: rotateY(180deg);
+  z-index: 1;
+}
+
+.flipped .flipper {
+  transform: rotateY(180deg);
+}
