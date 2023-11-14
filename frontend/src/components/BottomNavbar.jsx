@@ -2,12 +2,14 @@ import React, { useEffect, useState } from "react";
 import { FiMenu } from "react-icons/fi";
 import { AiOutlineClose, AiOutlineHome } from "react-icons/ai";
 import { GiHamburgerMenu } from "react-icons/gi";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const BottomNavbar = () => {
   const [navbar, setNavbar] = useState(false);
   const [sticky, setSticky] = useState(false);
+
   const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -35,9 +37,7 @@ const BottomNavbar = () => {
             : "absolute top-0 transition-all duration-700"
         }`}
       >
-        <div className="cursor-pointer"
-         onClick={() => navigate('/')}
-        >
+        <div className="cursor-pointer" onClick={() => navigate("/")}>
           <img src="http://jaimadaan.com/images/logo/logo-white.png" alt="" />
         </div>
         <button
@@ -57,25 +57,45 @@ const BottomNavbar = () => {
 
         {/* Conditional navbar for large screens */}
         <div className="hidden md:flex">
-          <h3
-            onClick={() => navigate("/")}
-            className="cursor-pointer mt-2 text-white  mx-2 text-xl transition duration-300"
-          >
-            Home
-          </h3>
-          <h3
-            onClick={() => navigate("/about-page")}
-            className="cursor-pointer mt-2 text-white  mx-2 text-xl transition duration-300"
-          >
-            About
-          </h3>
-          <h3
-            onClick={() => navigate("/awards")}
-            className="cursor-pointer mt-2 text-white  mx-2 text-xl transition duration-300"
-          >
-            Awards
-          </h3>
-          <h3
+
+        <h3
+          onClick={() => navigate("/")}
+          className={`cursor-pointer mt-2 mx-2 text-xl transition duration-300 ${
+            location.pathname === "/"
+              ? "font-bold text-white"
+              : "text-white"
+          }`}
+        >
+          Home
+          {location.pathname === "/" && <hr className="border-b-2 border-white mt-[1px]" />}
+        </h3>
+         
+        <h3
+          onClick={() => navigate("/about-page")}
+          className={`cursor-pointer mt-2 mx-2 text-xl transition duration-300 ${
+            location.pathname === "/about-page"
+              ? "font-bold text-white"
+              : "text-white"
+          }`}
+        >
+          About
+          {location.pathname === "/about-page" && (
+            <hr className="border-b-2 border-white mt-[1px]" />
+          )}
+        </h3>
+
+        <h3
+          onClick={() => navigate("/awards")}
+          className={`cursor-pointer mt-2 mx-2 text-xl transition duration-300 ${
+            location.pathname === "/awards"
+              ? "font-bold text-white"
+              : "text-white"
+          }`}
+        >
+          Awards
+          {location.pathname === "/awards" && <hr className="border-b-2 border-white mt-[1px]" />}
+        </h3>
+          {/* <h3
             onClick={() => navigate("/services")}
             className="cursor-pointer mt-2 text-white mx-2 text-xl transition duration-300"
           >
@@ -86,13 +106,44 @@ const BottomNavbar = () => {
             className="cursor-pointer mt-2 text-white  mx-2 text-xl transition duration-300"
           >
             Events
-          </h3>
-          <h3
-            onClick={() => navigate("/contact")}
-            className="cursor-pointer mt-2 text-white  mx-2 text-xl transition duration-300"
-          >
-            Contact
-          </h3>
+          </h3> */}
+
+<h3
+          onClick={() => navigate("/services")}
+          className={`cursor-pointer mt-2 mx-2 text-xl transition duration-300 ${
+            location.pathname === "/services"
+              ? "font-bold text-white"
+              : "text-white"
+          }`}
+        >
+          Services
+          {location.pathname === "/services" && (
+            <hr className="border-b-2 border-white mt-[1px]" />
+          )}
+        </h3>
+
+        <h3
+          onClick={() => navigate("/events")}
+          className={`cursor-pointer mt-2 mx-2 text-xl transition duration-300 ${
+            location.pathname === "/events"
+              ? "font-bold text-white"
+              : "text-white"
+          }`}
+        >
+          Events
+          {location.pathname === "/events" && <hr className="border-b-2 border-white mt-[1px]" />}
+        </h3>
+        <h3
+          onClick={() => navigate("/contact")}
+          className={`cursor-pointer mt-2 mx-2 text-xl transition duration-300 ${
+            location.pathname === "/contact"
+              ? "font-bold text-white"
+              : "text-white"
+          }`}
+        >
+          Contact
+          {location.pathname === "/contact" && <hr className="border-b-2 border-white mt-[1px]" />}
+        </h3>
         </div>
 
         {/* Mobile responsive navbar for medium and small screens */}

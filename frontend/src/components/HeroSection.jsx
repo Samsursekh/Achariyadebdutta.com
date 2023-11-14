@@ -40,8 +40,8 @@ const HeroSection = () => {
         <BottomNavbar />
         {/* <About /> */}
         <div className=" flex justify-center items-center w-full absolute m-auto h-screen">
-          <div className="absolute text-center top-48 p-4">
-            <h1 className="text-5xl font-philosopher text-white">
+          <div className="absolute text-center top-48 lg:left-32 md:left-14 p-4">
+            <h1 className="text-5xl font-philosopher text-white font-semibold">
               Dr Pablo bhaya
             </h1>
             <div className="mt-3 mb-3 ">
