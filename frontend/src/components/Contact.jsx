@@ -22,13 +22,10 @@ const Contact = () => {
         form.current,
         import.meta.env.VITE_APP_EMAIL_JS_PUBLIC_KEY
       );
-
-      console.log(result.text);
       alert("Message sent successfully!");
 
       form.current.reset();
     } catch (error) {
-      console.log(error.text);
       alert("Failed to send message. Please try again.");
     } finally {
       setLoading(false);
