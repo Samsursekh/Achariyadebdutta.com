@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import slide1 from "../images/sliderImages/slide1.jpg";
 import slide2 from "../images/sliderImages/slide2.jpg";
 import slide3 from "../images/sliderImages/slide3.jpg";
@@ -43,8 +43,18 @@ const ImageSlider = () => {
     },
   ];
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const newIndex =
+        currentIndex === slides.length - 1 ? 0 : currentIndex + 1;
+      setCurrentIndex(newIndex);
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, [currentIndex, slides.length]);
+
   return (
-    <div className="max-w-[1400px] h-[580px] w-full m-auto py-16 px-4 relative group">
+    <div className="max-w-[1400px] h-[380px] w-full m-auto py-3 px-4 relative group">
       <div
         style={{ backgroundImage: `url(${slides[currentIndex].url})` }}
         className="w-full h-full rounded-2xl bg-center bg-cover duration-500"
@@ -59,7 +69,11 @@ const ImageSlider = () => {
 
       <div className="flex top-4 justify-center py-2">
         {slides.map((slide, slideIndex) => (
-          <div className="text-2xl cursor-pointer" key={slideIndex} onClick={() => goToSlides(slideIndex)}>
+          <div
+            className="text-2xl cursor-pointer"
+            key={slideIndex}
+            onClick={() => goToSlides(slideIndex)}
+          >
             <RxDotFilled />
           </div>
         ))}

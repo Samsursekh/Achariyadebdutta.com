@@ -1,7 +1,7 @@
 import React from "react";
 import TopNavbar from "../components/TopNavbar";
 import BottomNavbar from "../components/BottomNavbar";
-import mbanner2 from "../images/mbanner2.jpg";
+import mbanner2 from "../images/alldebdatta-images/mbanner2.jpg";
 import Footer from "../components/Footer";
 
 const Awards = () => {

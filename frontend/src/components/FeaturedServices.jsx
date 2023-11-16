@@ -4,14 +4,22 @@ import FeaturedVideoEmbed from "./FeaturedVideoEmbed";
 import About from "../Pages/About";
 import Footer from "./Footer";
 import "../App.css";
+import feature1 from "../images/alldebdatta-images/feature1.jpg";
+import feature2 from "../images/alldebdatta-images/feature2.jpg";
+import feature3 from "../images/alldebdatta-images/feature3.jpg";
+import feature4 from "../images/alldebdatta-images/feature4.jpg";
+import feature5 from "../images/alldebdatta-images/feature5.jpg";
+import feature6 from "../images/alldebdatta-images/feature6.jpg";
 
 const FeaturedServices = () => {
-
-  // const [isFlipped, setIsFlipped] = useState(false);
-
-  // const handleFlip = () => {
-  //   setIsFlipped(!isFlipped);
-  // };
+  const imageArray = [
+    feature1,
+    feature2,
+    feature5,
+    feature4,
+    feature6,
+    feature3,
+  ];
 
   const [isFlippedArray, setIsFlippedArray] = useState(Array(6).fill(false));
 
@@ -31,208 +39,38 @@ const FeaturedServices = () => {
           </h1>
         </div>
 
-
         <div className="grid gap-3 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 text-center w-[90%] m-auto">
-      {isFlippedArray.map((isFlipped, index) => (
-        <div
-          key={index}
-          className={`border px-3 py-3 ${isFlipped ? 'flipped' : ''}`}
-          onMouseEnter={() => handleFlip(index)}
-          onMouseLeave={() => handleFlip(index)}
-        >
-          <div className={`flipper ${isFlipped ? 'flipped' : ''}`}>
-            <div className="front">
-              <img
-                src="https://images.pexels.com/photos/23547/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=600"
-                alt=""
-                className="m-auto object-cover"
-              />
-            </div>
-            <div className="back">
-              <p className="text-center m-auto">Birth Journal (Kundli)</p>
-              <div className="w-[90%]">
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit, similique?
-                </p>
+          {isFlippedArray.map((isFlipped, index) => (
+            <div
+              key={index}
+              className={`border px-3 py-3 ${isFlipped ? "flipped" : ""}`}
+              onMouseEnter={() => handleFlip(index)}
+              onMouseLeave={() => handleFlip(index)}
+            >
+              <div className={`flipper ${isFlipped ? "flipped" : ""}`}>
+                <div className="front">
+                  <img
+                    src={imageArray[index]}
+                    alt=""
+                    className="m-auto object-cover"
+                  />
+                </div>
+                <div className="back">
+                  <p className="text-center m-auto">Birth Journal (Kundli)</p>
+                  <div className="w-[90%]">
+                    <p>
+                      Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                      Odit, similique?
+                    </p>
+                  </div>
+                  <button className="text-white mt-2 bg-black hover:bg-transparent border border-black rounded-sm px-3 py-2 hover:border hover:border-black transition duration-700 ease-in-out hover:text-black">
+                    Get Started Here
+                  </button>
+                </div>
               </div>
-              <button className="text-white mt-2 bg-black hover:bg-transparent border border-black rounded-sm px-3 py-2 hover:border hover:border-black transition duration-700 ease-in-out hover:text-black">
-                Get Started Here
-              </button>
             </div>
-          </div>
+          ))}
         </div>
-      ))}
-    </div>
-        {/* <div className="grid gap-3 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 text-center w-[90%] m-auto border-2 border-red-500 relative">
-          <div
-            className={` px-3 py-3 border-2 ${isFlipped ? 'flipped' : ''}`}
-            onMouseEnter={handleFlip}
-            onMouseLeave={handleFlip}
-          >
-            <div className={`flipper ${isFlipped ? 'flipped' : ''}`}>
-              <div className="front">
-                <img
-                  src="https://images.pexels.com/photos/23547/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=600"
-                  alt=""
-                  className="m-auto object-cover"
-                />
-
-              </div>
-              <div className="back">
-                <p className="text-center m-auto">Birth Journal (Kundli)</p>
-                <div className="w-[90%]">
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit, similique?
-                  </p>
-                </div>
-                <button className="text-white mt-2 bg-black hover:bg-transparent border border-black rounded-sm px-3 py-2 hover:border hover:border-black transition duration-700 ease-in-out hover:text-black">
-                  Get Started Here
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <div
-            className={` px-3 py-3 border-2 ${isFlipped ? 'flipped' : ''}`}
-            onMouseEnter={handleFlip}
-            onMouseLeave={handleFlip}
-          >
-            <div className={`flipper ${isFlipped ? 'flipped' : ''}`}>
-              <div className="front">
-                <img
-                  src="https://images.pexels.com/photos/23547/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=600"
-                  alt=""
-                  className="m-auto object-cover"
-                />
-
-              </div>
-              <div className="back">
-                <p className="text-center m-auto">Birth Journal (Kundli)</p>
-                <div className="w-[90%]">
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit, similique?
-                  </p>
-                </div>
-                <button className="text-white mt-2 bg-black hover:bg-transparent border border-black rounded-sm px-3 py-2 hover:border hover:border-black transition duration-700 ease-in-out hover:text-black">
-                  Get Started Here
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <div
-            className={` px-3 py-3 border-2 ${isFlipped ? 'flipped' : ''}`}
-            onMouseEnter={handleFlip}
-            onMouseLeave={handleFlip}
-          >
-            <div className={`flipper ${isFlipped ? 'flipped' : ''}`}>
-              <div className="front">
-                <img
-                  src="https://images.pexels.com/photos/23547/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=600"
-                  alt=""
-                  className="m-auto object-cover"
-                />
-
-              </div>
-              <div className="back">
-                <p className="text-center m-auto">Birth Journal (Kundli)</p>
-                <div className="w-[90%]">
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit, similique?
-                  </p>
-                </div>
-                <button className="text-white mt-2 bg-black hover:bg-transparent border border-black rounded-sm px-3 py-2 hover:border hover:border-black transition duration-700 ease-in-out hover:text-black">
-                  Get Started Here
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <div
-            className={` px-3 py-3 border-2 ${isFlipped ? 'flipped' : ''}`}
-            onMouseEnter={handleFlip}
-            onMouseLeave={handleFlip}
-          >
-            <div className={`flipper ${isFlipped ? 'flipped' : ''}`}>
-              <div className="front">
-                <img
-                  src="https://images.pexels.com/photos/23547/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=600"
-                  alt=""
-                  className="m-auto object-cover"
-                />
-
-              </div>
-              <div className="back">
-                <p className="text-center m-auto">Birth Journal (Kundli)</p>
-                <div className="w-[90%]">
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit, similique?
-                  </p>
-                </div>
-                <button className="text-white mt-2 bg-black hover:bg-transparent border border-black rounded-sm px-3 py-2 hover:border hover:border-black transition duration-700 ease-in-out hover:text-black">
-                  Get Started Here
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <div
-            className={` px-3 py-3 border-2 ${isFlipped ? 'flipped' : ''}`}
-            onMouseEnter={handleFlip}
-            onMouseLeave={handleFlip}
-          >
-            <div className={`flipper ${isFlipped ? 'flipped' : ''}`}>
-              <div className="front">
-                <img
-                  src="https://images.pexels.com/photos/23547/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=600"
-                  alt=""
-                  className="m-auto object-cover"
-                />
-
-              </div>
-              <div className="back">
-                <p className="text-center m-auto">Birth Journal (Kundli)</p>
-                <div className="w-[90%]">
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit, similique?
-                  </p>
-                </div>
-                <button className="text-white mt-2 bg-black hover:bg-transparent border border-black rounded-sm px-3 py-2 hover:border hover:border-black transition duration-700 ease-in-out hover:text-black">
-                  Get Started Here
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <div
-            className={` px-3 py-3 border-2 ${isFlipped ? 'flipped' : ''}`}
-            onMouseEnter={handleFlip}
-            onMouseLeave={handleFlip}
-          >
-            <div className={`flipper ${isFlipped ? 'flipped' : ''}`}>
-              <div className="front">
-                <img
-                  src="https://images.pexels.com/photos/23547/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=600"
-                  alt=""
-                  className="m-auto object-cover"
-                />
-
-              </div>
-              <div className="back">
-                <p className="text-center m-auto">Birth Journal (Kundli)</p>
-                <div className="w-[90%]">
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit, similique?
-                  </p>
-                </div>
-                <button className="text-white mt-2 bg-black hover:bg-transparent border border-black rounded-sm px-3 py-2 hover:border hover:border-black transition duration-700 ease-in-out hover:text-black">
-                  Get Started Here
-                </button>
-              </div>
-            </div>
-          </div>
-        </div> */}
-
         <div>
           <Achievement />
         </div>
