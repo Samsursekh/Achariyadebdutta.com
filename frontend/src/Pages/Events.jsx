@@ -31,6 +31,8 @@ const Events = () => {
         <EventsTextSlider />
         {/* image slider started here */}
         <ImageSlider />
+        {/* image slider ended here */}
+
       </div>
       <div className="text-center bg-fuchsia-700 mt-6 py-5 text-white w-full px-3">
         <p className="font-poppins">
