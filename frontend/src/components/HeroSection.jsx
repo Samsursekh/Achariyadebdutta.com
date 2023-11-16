@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import banner from "../images/banner.jpg";
-import mbanner from "../images/mbanner.jpg";
+import mbanner from "../images/alldebdatta-images/mbanner.jpg";
 import banner1 from "../images/banner1.jpg";
 import BottomNavbar from "./BottomNavbar";
 import TopNavbar from "./TopNavbar";

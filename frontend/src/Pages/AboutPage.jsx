@@ -2,6 +2,7 @@ import React from "react";
 import TopNavbar from "../components/TopNavbar";
 import BottomNavbar from "../components/BottomNavbar";
 import Footer from "../components/Footer";
+import feature3 from "../images/alldebdatta-images/feature3.jpg";
 
 const AboutPage = () => {
   return (
@@ -46,15 +47,15 @@ const AboutPage = () => {
             <div className="w-full md:w-[40%] flex items-center mt-16 sm:mt-8 md:mt-[-50px]">
               <div className="border-2 border-green-200 rounded-3xl w-[300px] relative overflow-hidden">
                 <img
-                  src="http://jaimadaan.com/images/promo-2.png"
-                  className="w-full h-auto rounded-3xl"
+                  src={feature3}
+                  className="w-full h-full rounded-3xl"
                   alt=""
                 />
               </div>
               <div className="border-2 border-green-200 rounded-3xl w-[300px] relative overflow-hidden -ml-[220px] -mt-28">
                 <img
-                  src="http://jaimadaan.com/images/promo-2.png"
-                  className="w-full h-auto rounded-3xl"
+                  src={feature3}
+                  className="w-full h-full rounded-3xl"
                   alt=""
                 />
               </div>
