@@ -32,7 +32,7 @@ const Events = () => {
         {/* image slider started here */}
         <ImageSlider />
       </div>
-      <div className="text-center bg-fuchsia-700 mt-5 py-5 text-white w-full px-3">
+      <div className="text-center bg-fuchsia-700 mt-6 py-5 text-white w-full px-3">
         <p className="font-poppins">
           To discuss how Dr. Pablo can bring inspiration and enlightenment to
           your gathering.
