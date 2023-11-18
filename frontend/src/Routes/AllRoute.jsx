@@ -7,6 +7,7 @@ import About from "../Pages/About";
 import Contact from "../components/Contact";
 import Events from "../Pages/Events";
 import AboutPage from "../Pages/AboutPage";
+import Appointment from "../Pages/Appointment";
 
 const AllRoute = () => {
   return (
@@ -18,6 +19,7 @@ const AllRoute = () => {
       <Route path="/about-page" element={<AboutPage />} />
       <Route path="/events" element={<Events />} />
       <Route path="/contact" element={<Contact />} />
+      <Route path="/appointment" element={<Appointment />} />
     </Routes>
   );
 };
