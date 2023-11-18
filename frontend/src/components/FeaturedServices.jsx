@@ -10,6 +10,7 @@ import feature3 from "../images/alldebdatta-images/feature3.jpg";
 import feature4 from "../images/alldebdatta-images/feature4.jpg";
 import feature5 from "../images/alldebdatta-images/feature5.jpg";
 import feature6 from "../images/alldebdatta-images/feature6.jpg";
+import ClientStories from "./ClientStories";
 
 const FeaturedServices = () => {
   const imageArray = [
@@ -76,6 +77,19 @@ const FeaturedServices = () => {
         </div>
         <div>
           <FeaturedVideoEmbed embedID="LK6oYTQ3-6M" />
+        </div>
+        <div className=" m-auto w-[50%] mb-4">
+          <h1 className=" text-2xl text-center md:text-3xl lg:text-4xl m-3 font-philosopher">
+            Client Stories
+          </h1>
+          <p className="text-center">
+            Explore the inspiring success stories of individuals whose lives
+            have been positively impacted by Dr. Jai Madaan's guidance and
+            expertise.
+          </p>
+        </div>
+        <div>
+          <ClientStories />
         </div>
         <div>
           <Footer />
