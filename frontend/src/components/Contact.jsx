@@ -10,6 +10,7 @@ import doodle from "../images/doodle.svg";
 import { SiGooglemaps } from "react-icons/si";
 import { BiLogoGmail, BiSupport } from "react-icons/bi";
 import { FaPhone } from "react-icons/fa6";
+import GoogleMaps from "./GoogleMaps";
 
 const Contact = () => {
   const form = useRef();
@@ -47,13 +48,10 @@ const Contact = () => {
       <div className=" bg-gray-100 py-6 flex flex-col sm:py-12 ">
         <div className="  m-auto sm:flex sm:items-center sm:justify-between w-[97%] md:w-[90%] lg:w-[70%] sm:m-auto">
           <div className="mb-[50px] border-2 md:w-[46%]">
-            {/* <div>
-              <h3 className="">Let's Talk</h3>
-            </div> */}
             <div>
-              <div className="flex p-3 gap-4 ">
+              <div className="flex p-3 gap-4">
                 <div className="">
-                  <SiGooglemaps size={35} />
+                  <SiGooglemaps size={35} className="cursor-pointer" />
                 </div>
                 <div className="">
                   <h3 className="text-xl font-bold">Address : </h3>
@@ -65,7 +63,7 @@ const Contact = () => {
               </div>
               <div className="flex p-3 gap-4 ">
                 <div className="">
-                  <BiLogoGmail size={35} />
+                  <BiLogoGmail size={35} className="cursor-pointer" />
                 </div>
                 <div className="">
                   <h3 className="text-xl font-bold">Email Address : </h3>
@@ -74,7 +72,7 @@ const Contact = () => {
               </div>
               <div className="flex p-3 gap-4 ">
                 <div className="">
-                  <BiSupport size={35} />
+                  <BiSupport size={35} className="cursor-pointer" />
                 </div>
                 <div className="">
                   <h3 className="text-xl font-bold">Customer Support : </h3>
@@ -84,7 +82,7 @@ const Contact = () => {
 
               <div className="flex p-3 gap-4 ">
                 <div className="">
-                  <FaPhone size={35} />
+                  <FaPhone size={35} className="cursor-pointer" />
                 </div>
                 <div className="">
                   <h3 className="text-xl font-bold">Phone : </h3>
@@ -162,6 +160,10 @@ const Contact = () => {
             {/* </div> */}
           </div>
         </div>
+      </div>
+
+      <div>
+        <GoogleMaps />
       </div>
       <Footer />
     </>
