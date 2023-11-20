@@ -34,7 +34,7 @@ const ClientStories = () => {
     setClient(slides[currentIndex].clientName);
   }, [currentIndex, slides]);
   return (
-    <div className=" h-[300px] w-[80%] m-auto py-3 px-4 relative group rounded-2xl flex justify-center bg-gradient-to-b to-blue-300 from-blue-700 text-center items-center text-white font-bold font-poppins mb-4">
+    <div className=" h-[30%] w-[80%] m-auto py-3 px-4 relative group rounded-2xl flex justify-center bg-gradient-to-b to-blue-300 from-blue-700 text-center items-center text-white font-bold font-poppins mb-4">
       <div>
         <p className="italic">{currentText}</p>
         <br />

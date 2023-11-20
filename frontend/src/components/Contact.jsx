@@ -6,6 +6,10 @@ import { RiLoader4Line } from "react-icons/ri";
 import TopNavbar from "./TopNavbar";
 import BottomNavbar from "./BottomNavbar";
 import Footer from "./Footer";
+import doodle from "../images/doodle.svg";
+import { SiGooglemaps } from "react-icons/si";
+import { BiLogoGmail, BiSupport } from "react-icons/bi";
+import { FaPhone } from "react-icons/fa6";
 
 const Contact = () => {
   const form = useRef();
@@ -40,62 +44,124 @@ const Contact = () => {
       <div className="bg-black/30 h-[70px]">
         <BottomNavbar className="text-black" />
       </div>
-      <h2 className="text-2xl md:text-3xl lg:text-4xl mt-7 font-semibold mb-4 font-philosopher text-center">
-        Get in Touch
-      </h2>
-      <div className="max-w-lg mx-auto p-6 bg-white rounded-md shadow-md mb-4">
-        <form ref={form} onSubmit={sendEmail}>
-          <div className="mb-4">
-            <label htmlFor="from_name" className="block text-gray-600">
-              Full Name
-            </label>
-            <input
-              type="text"
-              placeholder="Enter Your Full Name..."
-              name="from_name"
-              id="from_name"
-              required
-              className="w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-400"
-            />
+      <div className=" bg-gray-100 py-6 flex flex-col sm:py-12 ">
+        <div className="  m-auto sm:flex sm:items-center sm:justify-between w-[97%] md:w-[90%] lg:w-[70%] sm:m-auto">
+          <div className="mb-[50px] border-2 md:w-[46%]">
+            {/* <div>
+              <h3 className="">Let's Talk</h3>
+            </div> */}
+            <div>
+              <div className="flex p-3 gap-4 ">
+                <div className="">
+                  <SiGooglemaps size={35} />
+                </div>
+                <div className="">
+                  <h3 className="text-xl font-bold">Address : </h3>
+                  <p>
+                    Flat No.713, Devika Tower 6, Nehru Place, New Delhi-110019,
+                    India
+                  </p>
+                </div>
+              </div>
+              <div className="flex p-3 gap-4 ">
+                <div className="">
+                  <BiLogoGmail size={35} />
+                </div>
+                <div className="">
+                  <h3 className="text-xl font-bold">Email Address : </h3>
+                  <p>contact@pablotalk.com</p>
+                </div>
+              </div>
+              <div className="flex p-3 gap-4 ">
+                <div className="">
+                  <BiSupport size={35} />
+                </div>
+                <div className="">
+                  <h3 className="text-xl font-bold">Customer Support : </h3>
+                  <p>We are available 24x7, click to start chat</p>
+                </div>
+              </div>
+
+              <div className="flex p-3 gap-4 ">
+                <div className="">
+                  <FaPhone size={35} />
+                </div>
+                <div className="">
+                  <h3 className="text-xl font-bold">Phone : </h3>
+                  <p>+91 XXXXXXXXXX</p>
+                  <p>+91 XXXXXXXXXX</p>
+                </div>
+              </div>
+            </div>
           </div>
-          <div className="mb-4">
-            <label htmlFor="from_email" className="block text-gray-600">
-              Email
-            </label>
-            <input
-              type="email"
-              name="from_email"
-              placeholder="Enter Your Email..."
-              id="from_email"
-              required
-              className="w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-400"
-            />
+          <div className="m-auto relative py-3 sm:max-w-xl sm:mx-auto mb-[50px]">
+            <div className="absolute inset-0 bg-gradient-to-r from-blue-300 to-blue-600 shadow-lg transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 sm:rounded-3xl"></div>
+            <div className="relative py-10 bg-white border-2 shadow-lg sm:rounded-3xl sm:p-10 px-5">
+              <div className="max-w-md mx-auto">
+                <div>
+                  <h1 className="text-2xl md:text-3xl lg:text-4xl font-semibold mb-4 font-philosopher text-center">
+                    Get in Touch
+                  </h1>
+                </div>
+                <div className="">
+                  <form ref={form} onSubmit={sendEmail}>
+                    <div className="mb-2 relative">
+                      <input
+                        type="text"
+                        placeholder="Enter Your Full Name..."
+                        name="from_name"
+                        id="from_name"
+                        required
+                        autoComplete="off"
+                        className="peer placeholder-transparent h-10 w-full px-7 pl-2 border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600"
+                      />
+                      <label className="absolute left-0 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm">
+                        Full Name
+                      </label>
+                    </div>
+                    <div className="my-3 relative">
+                      <input
+                        type="email"
+                        name="from_email"
+                        placeholder=" Email Address"
+                        id="from_email"
+                        autoComplete="off"
+                        required
+                        className="peer placeholder-transparent h-10 w-full px-7 pl-2 border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600"
+                      />
+                      <label className="absolute left-0 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm">
+                        Email Address
+                      </label>
+                    </div>
+                    <div className="my-3 relative">
+                      <textarea
+                        name="message"
+                        id="message"
+                        rows=""
+                        required
+                        placeholder=" Type a message"
+                        autoComplete="off"
+                        className="w-full py-2 border-b-2 border-gray-300 rounded-none focus:outline-none placeholder-gray-600"
+                      ></textarea>
+                    </div>
+                    <button
+                      type="submit"
+                      className="bg-blue-500 text-white w-full rounded-sm px-2 py-1"
+                      disabled={loading}
+                    >
+                      {loading ? (
+                        <span className=" animate-spin">Loading...</span>
+                      ) : (
+                        "Send Message"
+                      )}
+                    </button>
+                  </form>
+                </div>
+              </div>
+            </div>
+            {/* </div> */}
           </div>
-          <div className="mb-4">
-            <label htmlFor="message" className="block text-gray-600">
-              Message
-            </label>
-            <textarea
-              name="message"
-              id="message"
-              placeholder="Enter Your Message..."
-              rows="4"
-              required
-              className="w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-400"
-            ></textarea>
-          </div>
-          <button
-            type="submit"
-            className="text-white mt-2 w-full bg-black hover:bg-transparent border border-black rounded-sm px-3 py-2 hover:border hover:border-black transition duration-700 ease-in-out hover:text-black"
-            disabled={loading}
-          >
-            {loading ? (
-              <span className=" animate-spin">Loading...</span>
-            ) : (
-              "Send Message"
-            )}
-          </button>
-        </form>
+        </div>
       </div>
       <Footer />
     </>
