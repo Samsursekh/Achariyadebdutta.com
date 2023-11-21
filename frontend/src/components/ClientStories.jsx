@@ -21,7 +21,7 @@ const ClientStories = () => {
       const newIndex =
         currentIndex === slides.length - 1 ? 0 : currentIndex + 1;
       setCurrentIndex(newIndex);
-    }, 2000);
+    }, 5000);
 
     return () => clearInterval(interval);
   }, [currentIndex, slides.length]);
