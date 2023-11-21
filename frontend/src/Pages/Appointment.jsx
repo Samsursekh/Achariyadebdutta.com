@@ -2,16 +2,24 @@ import React, { useState } from "react";
 import axios from "axios";
 import TopNavbar from "../components/TopNavbar";
 import BottomNavbar from "../components/BottomNavbar";
-
+import Footer from "../components/Footer";
+import banner3 from "../images/sliderImages/slide2.jpg";
 const Appointment = () => {
+  const getCurrentTime = () => {
+    const now = new Date();
+    const hours = now.getHours().toString().padStart(2, "0");
+    const minutes = now.getMinutes().toString().padStart(2, "0");
+    return `${hours}:${minutes}`;
+  };
+
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
     mobileNumber: "",
     email: "",
     address: "",
-    date: "",
-    time: "",
+    date: new Date().toISOString().substr(0, 10),
+    time: getCurrentTime(),
     preferredSlot: "morning",
     modeOfConsultation: "online",
     priceOfAppointment: 3000,
@@ -65,7 +73,7 @@ const Appointment = () => {
           contact: `${formData.mobileNumber}`,
         },
         notes: {
-          address: "Razorpay Corporate Office",
+          address: "Saggifo Infrastructure pvt. ltd.",
         },
         theme: {
           color: "#003CF0",
@@ -88,63 +96,77 @@ const Appointment = () => {
         <div className="bg-black/30 h-[70px]">
           <BottomNavbar className="text-black" />
         </div>
-        <div className="px-4 md:px-0 py-8 max-w-xl mx-auto">
+        <div className="w-full">
+          <img
+            src={banner3}
+            alt="banner image"
+            className="h-[50vh] object-cover w-full"
+          />
+        </div>
+        <div className="px-4 md:px-0 py-8 max-w-lg mx-auto">
+          <h1 className="text-2xl md:text-3xl lg:text-4xl mt-7 font-semibold mb-4 font-philosopher text-center">
+            Appointment Form
+          </h1>
           <form
             action=""
             onSubmit={(e) => checkoutHandler(e, formData)}
-            className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 space-y-4 border border-blue-300"
+            className="bg-white font-poppins shadow-md rounded px-8 pt-6 pb-8 mb-4 space-y-4 border border-blue-300"
           >
             <input
               type="text"
-              placeholder="First Name"
+              placeholder="First Name*"
               name="firstName"
               required
               value={formData.firstName}
               onChange={handleInputChange}
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              autoComplete="off"
+              className="shadow appearance-none border border-blue-200 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none"
             />
             <input
               type="text"
-              placeholder="Last Name"
+              placeholder="Last Name*"
               name="lastName"
               required
               value={formData.lastName}
               onChange={handleInputChange}
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              autoComplete="off"
+              className="shadow appearance-none border border-blue-200 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             />
             <input
               type="text"
-              placeholder="Mobile Number"
+              placeholder="Mobile Number*"
               name="mobileNumber"
               required
               value={formData.mobileNumber}
               onChange={handleInputChange}
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              autoComplete="off"
+              className="shadow appearance-none border rounded border-blue-200 w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             />
             <input
               type="email"
               placeholder="Email"
               name="email"
-              required
               value={formData.email}
               onChange={handleInputChange}
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              autoComplete="off"
+              className="shadow appearance-none border rounded border-blue-200 w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             />
             <textarea
               type="text"
-              placeholder="Address"
+              placeholder="Address*"
               name="address"
               required
               rows={4}
               value={formData.address}
               onChange={handleInputChange}
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              autoComplete="off"
+              className="shadow appearance-none border rounded border-blue-200 w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             />
             {/* Date & Time selection */}
             <div className="grid grid-cols-2 gap-4">
               <input
                 type="date"
-                placeholder="Select Date here"
+                placeholder="Select Date here*"
                 name="date"
                 required
                 value={formData.date}
@@ -153,7 +175,7 @@ const Appointment = () => {
               />
               <input
                 type="time"
-                placeholder="Select Time here"
+                placeholder="Select Time here*"
                 name="time"
                 required
                 value={formData.time}
@@ -169,7 +191,7 @@ const Appointment = () => {
                 value={formData.preferredSlot}
                 onChange={handleInputChange}
                 id=""
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                className="shadow appearance-none border border-blue-200 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               >
                 <option value="morning">Morning</option>
                 <option value="afternoon">Afternoon</option>
@@ -180,7 +202,7 @@ const Appointment = () => {
                 value={formData.modeOfConsultation}
                 onChange={handleInputChange}
                 id=""
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                className="shadow appearance-none border border-blue-200 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               >
                 <option value="online">Online</option>
                 <option value="offline">Offline</option>
@@ -196,6 +218,7 @@ const Appointment = () => {
             </div>
           </form>
         </div>
+        <Footer />
       </section>
     </>
   );

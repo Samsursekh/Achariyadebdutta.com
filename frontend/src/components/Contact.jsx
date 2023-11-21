@@ -8,9 +8,17 @@ import BottomNavbar from "./BottomNavbar";
 import Footer from "./Footer";
 import doodle from "../images/doodle.svg";
 import { SiGooglemaps } from "react-icons/si";
-import { BiLogoGmail, BiSupport } from "react-icons/bi";
+import {
+  BiLogoFacebook,
+  BiLogoGmail,
+  BiLogoInstagram,
+  BiLogoLinkedin,
+  BiSupport,
+} from "react-icons/bi";
 import { FaPhone } from "react-icons/fa6";
 import GoogleMaps from "./GoogleMaps";
+import { TfiYoutube } from "react-icons/tfi";
+import { AiOutlineTwitter } from "react-icons/ai";
 
 const Contact = () => {
   const form = useRef();
@@ -91,6 +99,23 @@ const Contact = () => {
                 </div>
               </div>
             </div>
+            <div className="flex justify-evenly ml-1 my-4 w-1/2  ">
+              <div className="bg-indigo-700 rounded-full p-1 cursor-pointer">
+                <BiLogoFacebook className="text-2xl text-white" />
+              </div>
+              <div className="bg-[#d63384] rounded-full p-1 cursor-pointer">
+                <BiLogoInstagram className="text-2xl text-white" />
+              </div>
+              <div className="bg-[#dc3545] rounded-full p-1 cursor-pointer">
+                <TfiYoutube className="leading-3 text-[22px] text-white" />
+              </div>
+              <div className="bg-indigo-700 rounded-full p-1 cursor-pointer">
+                <BiLogoLinkedin className="leading-3 text-[22px] text-white" />
+              </div>
+              <div className="bg-[#0dcaf0] rounded-full p-1 cursor-pointer">
+                <AiOutlineTwitter className="text-2xl text-white" />
+              </div>
+            </div>
           </div>
           <div className="m-auto relative py-3 sm:max-w-xl sm:mx-auto mb-[50px]">
             <div className="absolute inset-0 bg-gradient-to-r from-blue-300 to-blue-600 shadow-lg transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 sm:rounded-3xl"></div>
@@ -106,7 +131,7 @@ const Contact = () => {
                     <div className="mb-2 relative">
                       <input
                         type="text"
-                        placeholder="Enter Your Full Name..."
+                        placeholder="Full Name*"
                         name="from_name"
                         id="from_name"
                         required
@@ -114,21 +139,21 @@ const Contact = () => {
                         className="peer placeholder-transparent h-10 w-full px-7 pl-2 border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600"
                       />
                       <label className="absolute left-0 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm">
-                        Full Name
+                        Full Name*
                       </label>
                     </div>
                     <div className="my-3 relative">
                       <input
                         type="email"
                         name="from_email"
-                        placeholder=" Email Address"
+                        placeholder=" Email Address*"
                         id="from_email"
                         autoComplete="off"
                         required
                         className="peer placeholder-transparent h-10 w-full px-7 pl-2 border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600"
                       />
                       <label className="absolute left-0 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm">
-                        Email Address
+                        Email Address*
                       </label>
                     </div>
                     <div className="my-3 relative">
@@ -137,7 +162,7 @@ const Contact = () => {
                         id="message"
                         rows=""
                         required
-                        placeholder=" Type a message"
+                        placeholder=" Type a message*"
                         autoComplete="off"
                         className="w-full py-2 border-b-2 border-gray-300 rounded-none focus:outline-none placeholder-gray-600"
                       ></textarea>
@@ -160,10 +185,6 @@ const Contact = () => {
             {/* </div> */}
           </div>
         </div>
-      </div>
-
-      <div>
-        <GoogleMaps />
       </div>
       <Footer />
     </>
