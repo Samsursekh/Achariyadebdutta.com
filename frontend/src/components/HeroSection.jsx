@@ -7,6 +7,7 @@ import TopNavbar from "./TopNavbar";
 import FeaturedServices from "./FeaturedServices";
 import About from "../Pages/About";
 import Achievement from "./Achievement";
+import { Link } from "react-router-dom";
 
 const HeroSection = () => {
   const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth <= 768);
@@ -42,23 +43,27 @@ const HeroSection = () => {
         <div className=" flex justify-center items-center w-full absolute m-auto h-screen">
           <div className="absolute text-center top-48 lg:left-32 md:left-14 p-4">
             <h1 className="text-5xl font-philosopher text-white font-semibold">
-              Dr Pablo bhaya
+              Astro Achariya Debdutta
             </h1>
             <div className="mt-3 mb-3 ">
               <p className="text-white">
-                <strong>Astrologer</strong> of Global Acknowledgement
+                <strong>Globally Acclaimed </strong>Astrologer
               </p>
               <p className="text-white">
-                Authority in <strong>Vastu</strong>{" "}
+                <strong>Vastu</strong> Influencer
               </p>
               <p className="text-white">
-                {" "}
-                <strong>Motivational Orator</strong>{" "}
+                Author, <strong>Success Guru</strong>
+              </p>
+              <p className="text-white">
+                <strong>Life Coach</strong>
               </p>
             </div>
-            <button className="text-white bg-black hover:bg-transparent border border-black rounded-sm px-3 py-2 hover:border hover:border-black transition duration-700 ease-in-out">
-              Your Journey Begins Here
-            </button>
+            <Link to={"/appointment"}>
+              <button className="text-white bg-black hover:bg-transparent border border-black rounded-sm px-3 py-2 hover:border hover:border-black transition duration-700 ease-in-out">
+                Your Journey Begins Here
+              </button>
+            </Link>
           </div>
         </div>
         {/* <About /> */}

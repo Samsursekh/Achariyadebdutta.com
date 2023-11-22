@@ -9,7 +9,7 @@ import { AiOutlineTwitter } from "react-icons/ai";
 
 const Footer = () => {
   return (
-    <div className="m-auto w-full bg-black pt-4">
+    <div className="m-auto w-full bg-[#0047AB] pt-4">
       <div className="flex justify-between w-[250px] m-auto mb-8 mt-3">
         <div className="bg-indigo-700 rounded-full p-1 cursor-pointer">
           <BiLogoFacebook className="text-2xl text-white" />
@@ -27,9 +27,9 @@ const Footer = () => {
           <AiOutlineTwitter className="text-2xl text-white" />
         </div>
       </div>
-      <div className="text-[#777777] bg-black grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div className="text-[#777777] bg-[#0047AB] grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         <div>
-          <h2 className="text-xl font-bold mb-3 ml-2 font-philosopher">
+          <h2 className="text-xl font-bold mb-3 ml-2 font-poppins">
             Services
           </h2>
           <ul className="ml-2">
@@ -52,7 +52,7 @@ const Footer = () => {
           </ul>
         </div>
         <div>
-          <h2 className="text-xl font-bold mb-3 ml-2 font-philosopher">
+          <h2 className="text-xl font-bold mb-3 ml-2 font-poppins">
             Quick Links
           </h2>
           <ul className="ml-2">
@@ -72,7 +72,7 @@ const Footer = () => {
           </ul>
         </div>
         <div>
-          <h2 className="text-xl font-bold mb-3 font-philosopher">
+          <h2 className="text-xl font-bold mb-3 font-poppins">
             Get In Touch
           </h2>
           <p>New Delhi, India</p>

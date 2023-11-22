@@ -3,6 +3,7 @@ import { FiMenu } from "react-icons/fi";
 import { AiOutlineClose, AiOutlineHome } from "react-icons/ai";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { useLocation, useNavigate } from "react-router-dom";
+import logo from "../images/logo/astro achariya logo-01.png";
 
 const BottomNavbar = () => {
   const [navbar, setNavbar] = useState(false);
@@ -28,17 +29,18 @@ const BottomNavbar = () => {
   }, []);
 
   return (
-    <div className="relative">
+    <div className="relative font-poppins">
       {/* navbar for mobile and tab sizes */}
       <div
         className={`flex text-2xl justify-between z-10 m-auto w-full h-[65px] items-center px-10 ${
           sticky
-            ? "fixed top-0 bg-black/80 transition-all duration-700"
+            ? "fixed top-0 bg-[#0047AB] transition-all duration-700"
             : "absolute top-0 transition-all duration-700"
         }`}
       >
+        {/* some color code of navbar  #1AA7EC  #1E2F97  #00468B #00588b*/}
         <div className="cursor-pointer" onClick={() => navigate("/")}>
-          <img src="http://jaimadaan.com/images/logo/logo-white.png" alt="" />
+          <img src={logo} className="w-[200px] mt-14" alt="" />
         </div>
         <button
           className="md:hidden cursor-pointer px-1 py-1"
