@@ -1,4 +1,6 @@
 import React from "react";
+import { GiAchievement } from "react-icons/gi";
+import { MdEmojiEvents } from "react-icons/md";
 
 const Achievement = () => {
   return (
@@ -11,17 +13,16 @@ const Achievement = () => {
           ...what you seek, seeks you
         </h3>
         <div className="m-auto px-3 text-slate-400 font-sans w-[90%] md:w-[70%] lg:w-[50%] mt-3">
-          <p>My Spiritual journey began in the early years of Childhood.</p>
+          <p>Embarking on a spiritual odyssey in childhood, </p>
           <p>
-            An innate interest in astrology and tarot card reading had me
-            meditate rigorously, post which I started practicing astrology,
-            Numerology and Vastu professionally.
+            I cultivated a deep passion for astrology and palm reading. Rigorous
+            meditation birthed my professional journey in astrology, palmistry,
+            numerology, and Vastu.
           </p>
           <p>
-            As you reach for me and resort to the services pertaining to my
-            knowledge and skill, more than assisting you about comfort, I feel
-            having done justice to my life. May Everybody need Somebody only
-            over Good Times.
+            Beyond providing comfort, my services reflect a life well-lived. In
+            times of joy, may we all find support. Welcome to a journey where
+            spirituality meets practical wisdom.
           </p>
         </div>
       </div>
@@ -29,12 +30,8 @@ const Achievement = () => {
       <div className="grid md:flex lg:flex mt-10 m-auto mb-7 font-sans w-[90%] gap-4">
         <div className="border w-[90%] px-3 py-4 m-auto">
           <hr className="border border-s-violet-400 w-[95%] border-gray-300 my-4 m-auto" />
-          <div className="flex justify-between items-center px-2">
-            <img
-              src="http://jaimadaan.com/images/content/jicon.png"
-              className="w-8 "
-              alt=""
-            />
+          <div className="flex justify-evenly items-center px-2 ">
+            <GiAchievement size={36} />
             <div className=" pl-5">
               <h3>
                 <strong>Sign01 January, 2017 </strong>
@@ -49,12 +46,8 @@ const Achievement = () => {
           </div>
 
           <hr className="border border-s-violet-400 w-[95%] border-gray-300 my-4 m-auto" />
-          <div className="flex justify-between items-center px-4">
-            <img
-              src="http://jaimadaan.com/images/content/jicon.png"
-              className="w-8"
-              alt=""
-            />
+          <div className="flex justify-evenly items-center px-2 ">
+            <GiAchievement size={36} />
             <div className=" pl-5">
               <h3>
                 <strong>Sign01 January, 2017 </strong>
@@ -69,12 +62,8 @@ const Achievement = () => {
           </div>
 
           <hr className="border border-s-violet-400 w-[95%] border-gray-300 my-4 m-auto" />
-          <div className="flex justify-between items-center px-4">
-            <img
-              src="http://jaimadaan.com/images/content/jicon.png"
-              className="w-8"
-              alt=""
-            />
+          <div className="flex justify-evenly items-center px-2 ">
+            <GiAchievement size={36} />
             <div className=" pl-5">
               <h3>
                 <strong>Sign01 January, 2017 </strong>
@@ -91,12 +80,8 @@ const Achievement = () => {
 
         <div className="border w-[90%] px-3 py-4 m-auto">
           <hr className="border border-s-violet-400 w-[95%] border-gray-300 my-4 m-auto" />
-          <div className="flex justify-between items-center px-4">
-            <img
-              src="http://jaimadaan.com/images/content/jicon.png"
-              className="w-8"
-              alt=""
-            />
+          <div className="flex justify-evenly items-center px-2 ">
+            <MdEmojiEvents size={36} />
             <div className=" pl-5">
               <h3>
                 <strong>Sign01 January, 2017 </strong>
@@ -111,12 +96,8 @@ const Achievement = () => {
           </div>
 
           <hr className="border border-s-violet-400 w-[95%] border-gray-300 my-4 m-auto" />
-          <div className="flex justify-between items-center px-4">
-            <img
-              src="http://jaimadaan.com/images/content/jicon.png"
-              className="w-8"
-              alt=""
-            />
+          <div className="flex justify-evenly items-center px-2 ">
+            <MdEmojiEvents  size={36} />
             <div className=" pl-5">
               <h3>
                 <strong>Sign01 January, 2017 </strong>
@@ -131,12 +112,8 @@ const Achievement = () => {
           </div>
 
           <hr className="border border-s-violet-400 w-[95%] border-gray-300 my-4 m-auto" />
-          <div className="flex justify-between items-center px-4">
-            <img
-              src="http://jaimadaan.com/images/content/jicon.png"
-              className="w-8"
-              alt=""
-            />
+          <div className="flex justify-evenly items-center px-2 ">
+            <MdEmojiEvents  size={36} />
             <div className=" pl-5">
               <h3>
                 <strong>Sign01 January, 2017 </strong>

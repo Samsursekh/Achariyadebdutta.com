@@ -2,8 +2,10 @@ import React, { useEffect, useState } from "react";
 import { FiMenu } from "react-icons/fi";
 import { AiOutlineClose, AiOutlineHome } from "react-icons/ai";
 import { GiHamburgerMenu } from "react-icons/gi";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import logo from "../images/logo/astro achariya logo-01.png";
+import mobilelogo from "../images/logo/mobile-logo1.png";
+import mobilelogo2 from "../images/logo/mobile-logo2.png";
 
 const BottomNavbar = () => {
   const [navbar, setNavbar] = useState(false);
@@ -40,7 +42,11 @@ const BottomNavbar = () => {
       >
         {/* some color code of navbar  #1AA7EC  #1E2F97  #00468B #00588b*/}
         <div className="cursor-pointer" onClick={() => navigate("/")}>
-          <img src={logo} className="w-[200px] mt-14" alt="" />
+          <div className=" w-[200px] text-center mt-10 md:flex lg:flex lg:w-full">
+            <img src={mobilelogo} className="w-[70px] ml-16 -mb-6 md:w-[120px] lg:w-[120px]" alt="" />
+            <img src={mobilelogo2} className="w-[200px]" alt="" />
+          </div>
+          {/* <img src={logo} className="w-[200px] " alt="" /> */}
         </div>
         <button
           className="md:hidden cursor-pointer px-1 py-1"
@@ -70,7 +76,6 @@ const BottomNavbar = () => {
               <hr className="border-b-2 border-white mt-[1px]" />
             )}
           </h3>
-
           <h3
             onClick={() => navigate("/about-page")}
             className={`cursor-pointer mt-2 mx-2 text-xl transition duration-300 ${
@@ -84,7 +89,6 @@ const BottomNavbar = () => {
               <hr className="border-b-2 border-white mt-[1px]" />
             )}
           </h3>
-
           <h3
             onClick={() => navigate("/awards")}
             className={`cursor-pointer mt-2 mx-2 text-xl transition duration-300 ${
@@ -110,7 +114,6 @@ const BottomNavbar = () => {
           >
             Events
           </h3> */}
-
           <h3
             onClick={() => navigate("/services")}
             className={`cursor-pointer mt-2 mx-2 text-xl transition duration-300 ${
@@ -124,7 +127,6 @@ const BottomNavbar = () => {
               <hr className="border-b-2 border-white mt-[1px]" />
             )}
           </h3>
-
           <h3
             onClick={() => navigate("/events")}
             className={`cursor-pointer mt-2 mx-2 text-xl transition duration-300 ${
@@ -164,6 +166,21 @@ const BottomNavbar = () => {
               <hr className="border-b-2 border-white mt-[1px]" />
             )}
           </h3>
+
+          <Link to={"https://blogs.achariyadebdutta.com"}>
+            <h3
+              className={`cursor-pointer mt-2 mx-2 text-xl transition duration-300 ${
+                location.pathname === "/blogs"
+                  ? "font-bold text-white"
+                  : "text-white"
+              }`}
+            >
+              Blogs
+              {location.pathname === "/blogs" && (
+                <hr className="border-b-2 border-white mt-[1px]" />
+              )}
+            </h3>
+          </Link>
         </div>
 
         {/* Mobile responsive navbar for medium and small screens */}
@@ -234,6 +251,14 @@ const BottomNavbar = () => {
             >
               Contact
             </h3>
+            <Link to={`https://blogs.achariyadebdutta.com/`}>
+              <h3
+                // onClick={() => navigate("/blogs")}
+                className="cursor-pointer hover:bg-blue-500 mt-2 hover:text-white transition duration-300"
+              >
+                Blogs
+              </h3>
+            </Link>
           </div>
         </div>
       </div>
