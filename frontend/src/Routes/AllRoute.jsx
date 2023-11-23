@@ -3,11 +3,12 @@ import { Route, Routes } from "react-router-dom";
 import Home from "../components/Home";
 import Awards from "../Pages/Awards";
 import Services from "../Pages/Services";
-import About from "../Pages/About";
+// import About from "../Pages/About";
 import Contact from "../components/Contact";
 import Events from "../Pages/Events";
 import AboutPage from "../Pages/AboutPage";
 import Appointment from "../Pages/Appointment";
+import Blogs from "../Pages/Blogs";
 
 const AllRoute = () => {
   return (
@@ -20,6 +21,7 @@ const AllRoute = () => {
       <Route path="/events" element={<Events />} />
       <Route path="/contact" element={<Contact />} />
       <Route path="/appointment" element={<Appointment />} />
+      <Route path="/blogs" element={<Blogs />} />
     </Routes>
   );
 };

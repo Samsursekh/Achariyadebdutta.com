@@ -3,6 +3,8 @@ import TopNavbar from "../components/TopNavbar";
 import BottomNavbar from "../components/BottomNavbar";
 import mbanner2 from "../images/alldebdatta-images/mbanner2.jpg";
 import Footer from "../components/Footer";
+import { MdEmojiEvents } from "react-icons/md";
+import { GiAchievement } from "react-icons/gi";
 
 const Awards = () => {
   return (
@@ -25,12 +27,8 @@ const Awards = () => {
         <div className="grid md:flex lg:flex m-auto font-sans w-[90%] md:w-[85%] lg:w-[80%] gap-4 px-4 ">
           <div className="border w-full px-3 py-4 m-auto hover:shadow-xl  transition duration-700 ease-in-out">
             <hr className="border border-s-violet-400 w-[95%] border-gray-300 my-4 m-auto" />
-            <div className="flex justify-between items-center px-2">
-              <img
-                src="http://jaimadaan.com/images/content/jicon.png"
-                className="w-8 "
-                alt=""
-              />
+            <div className="flex justify-evenly items-center px-2 ">
+              <MdEmojiEvents size={36} />
               <div className=" pl-5">
                 <h3>
                   <strong>Sign01 January, 2017 </strong>
@@ -45,12 +43,8 @@ const Awards = () => {
             </div>
 
             <hr className="border border-s-violet-400 w-[95%] border-gray-300 my-4 m-auto" />
-            <div className="flex justify-between items-center px-4">
-              <img
-                src="http://jaimadaan.com/images/content/jicon.png"
-                className="w-8"
-                alt=""
-              />
+            <div className="flex justify-evenly items-center px-2 ">
+              <MdEmojiEvents size={36} />
               <div className=" pl-5">
                 <h3>
                   <strong>Sign01 January, 2017 </strong>
@@ -65,12 +59,8 @@ const Awards = () => {
             </div>
 
             <hr className="border border-s-violet-400 w-[95%] border-gray-300 my-4 m-auto" />
-            <div className="flex justify-between items-center px-4">
-              <img
-                src="http://jaimadaan.com/images/content/jicon.png"
-                className="w-8"
-                alt=""
-              />
+            <div className="flex justify-evenly items-center px-2 ">
+              <MdEmojiEvents size={36} />
               <div className=" pl-5">
                 <h3>
                   <strong>Sign01 January, 2017 </strong>
@@ -84,32 +74,8 @@ const Awards = () => {
               </div>
             </div>
             <hr className="border border-s-violet-400 w-[95%] border-gray-300 my-4 m-auto" />
-            <div className="flex justify-between items-center px-4">
-              <img
-                src="http://jaimadaan.com/images/content/jicon.png"
-                className="w-8"
-                alt=""
-              />
-              <div className=" pl-5">
-                <h3>
-                  <strong>Sign01 January, 2017 </strong>
-                </h3>{" "}
-                <p>
-                  <span className="font-bold">
-                    Most Prominent Wedding Astrologer
-                  </span>{" "}
-                  by Ravishing (2014){" "}
-                </p>
-              </div>
-            </div>
-
-            <hr className="border border-s-violet-400 w-[95%] border-gray-300 my-4 m-auto" />
-            <div className="flex justify-between items-center px-4">
-              <img
-                src="http://jaimadaan.com/images/content/jicon.png"
-                className="w-8"
-                alt=""
-              />
+            <div className="flex justify-evenly items-center px-2 ">
+              <MdEmojiEvents size={36} />
               <div className=" pl-5">
                 <h3>
                   <strong>Sign01 January, 2017 </strong>
@@ -124,12 +90,8 @@ const Awards = () => {
             </div>
 
             <hr className="border border-s-violet-400 w-[95%] border-gray-300 my-4 m-auto" />
-            <div className="flex justify-between items-center px-4">
-              <img
-                src="http://jaimadaan.com/images/content/jicon.png"
-                className="w-8"
-                alt=""
-              />
+            <div className="flex justify-evenly items-center px-2 ">
+              <GiAchievement size={36} />
               <div className=" pl-5">
                 <h3>
                   <strong>Sign01 January, 2017 </strong>
@@ -144,12 +106,24 @@ const Awards = () => {
             </div>
 
             <hr className="border border-s-violet-400 w-[95%] border-gray-300 my-4 m-auto" />
-            <div className="flex justify-between items-center px-4">
-              <img
-                src="http://jaimadaan.com/images/content/jicon.png"
-                className="w-8"
-                alt=""
-              />
+            <div className="flex justify-evenly items-center px-2 ">
+              <GiAchievement size={36} />
+              <div className=" pl-5">
+                <h3>
+                  <strong>Sign01 January, 2017 </strong>
+                </h3>{" "}
+                <p>
+                  <span className="font-bold">
+                    Most Prominent Wedding Astrologer
+                  </span>{" "}
+                  by Ravishing (2014){" "}
+                </p>
+              </div>
+            </div>
+
+            <hr className="border border-s-violet-400 w-[95%] border-gray-300 my-4 m-auto" />
+            <div className="flex justify-evenly items-center px-2 ">
+              <GiAchievement size={36} />
               <div className=" pl-5">
                 <h3>
                   <strong>Sign01 January, 2017 </strong>

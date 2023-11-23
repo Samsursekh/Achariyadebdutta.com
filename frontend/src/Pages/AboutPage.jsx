@@ -78,7 +78,8 @@ const AboutPage = () => {
             predicting personalities and glimpses into the future. The pursuit
             of knowledge led me to focus on astrology, a discipline that
             continues to be a guiding light in my life.
-          </p> <br />
+          </p>{" "}
+          <br />
           <p>
             In addition to my spiritual pursuits, I pursued Honours in
             Philosophy, enriching my understanding of life's philosophical
@@ -88,7 +89,8 @@ const AboutPage = () => {
             give tuition at a coaching academy. This effortless exchange of
             knowledge laid the groundwork for what brings you and me here—a
             shared quest for bliss.
-          </p> <br />
+          </p>{" "}
+          <br />
           <p>
             In the grand tapestry of existence, I acknowledge God as my eternal
             teacher, and the Universe as my guiding force. Insights, courage,
@@ -97,10 +99,31 @@ const AboutPage = () => {
             in humanity, offering the keys to solving life's puzzles through
             astrology, Vastu, and palmistry. These ancient sciences, when
             understood and applied, unlock abundance for all.
-          </p> <br />
+          </p>{" "}
+          <br />
           <h3 className="font-sans italic font-bold text-xl">
-          -	Astro Achariya Debdutta
+            - Astro Achariya Debdutta
           </h3>
+        </div>
+        {/* Mission and vision starts here  */}
+        <div className="grid md:flex lg:flex m-auto mb-7  border-2 font-sans w-[70%] gap-4">
+          <div className="border-2 m-auto bg-purple-600 text-center p-4 w-full rounded-br-3xl rounded-tl-3xl">
+            <h1 className="text-2xl md:text-3xl lg:text-4xl font-semibold mb-4 font-philosopher text-center">
+              Mission
+            </h1>
+            <p className="text-white font-poppains">
+              Empower All Through Astrology & Palmistry Wisdom.
+            </p>
+          </div>
+
+          <div className="border-2 m-auto bg-purple-600 text-center p-4 w-full rounded-bl-3xl rounded-tr-3xl">
+            <h1 className="text-2xl md:text-3xl lg:text-4xl font-semibold mb-4 font-philosopher text-center">
+              Vision
+            </h1>
+            <p className="text-white font-poppins">
+              Crafting Better Lives with Astrological Solutions.
+            </p>
+          </div>
         </div>
         <div className="">
           <Footer />
