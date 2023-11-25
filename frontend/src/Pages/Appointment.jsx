@@ -31,10 +31,11 @@ const Appointment = () => {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
+    const emailRegex = /^[^\s@]+@[^\s@]+\[^\s@]+$/;
+
     if (name === "mobileNumber" && !/^\d{0,10}$/.test(value)) {
       return;
     }
-    const emailRegex = /^[^\s@]+@[^\s@]+\[^\s@]+$/;
 
     if (name === "email" && emailRegex.test(value)) {
       return;
@@ -47,60 +48,84 @@ const Appointment = () => {
 
   const checkoutHandler = async (e, formData) => {
     e.preventDefault();
+    const { firstName, lastName, mobileNumber, address } = formData;
+
+    if (
+      !firstName.trim() ||
+      !lastName.trim() ||
+      !mobileNumber.trim() ||
+      !address.trim()
+    ) {
+      alert("Please fill all the details.");
+      return;
+    }
+    if (mobileNumber.trim().length !== 10) {
+      alert("Please enter 10 digit mobile number ");
+      return;
+    }
+    if (firstName.trim().length < 3) {
+      alert("Please enter your name properly");
+      return;
+    }
+    if (lastName.trim().length < 3) {
+      alert("Please enter your last name properly ");
+      return;
+    }
     console.log("Form data submitted:", formData);
     let price = formData.priceOfAppointment;
     console.log(price, "This is the price");
-
-    //************************   After completion of the validation process this below code would be uncommented   ************************
-
-    // const {
-    //   data: { key },
-    // } = await axios.get("http://localhost:5000/api/getkey");
-
-    // try {
-    //   const {
-    //     data: { order },
-    //   } = await axios.post(
-    //     "http://localhost:5000/api/checkout",
-    //     { price: price },
-    //     {
-    //       headers: {
-    //         "Content-Type": "application/json",
-    //       },
-    //     }
-    //   );
-
-    //   const options = {
-    //     key, // Enter the Key ID generated from the Dashboard
-    //     amount: order.price,
-    //     currency: "INR",
-    //     name: "Pablo Import Export",
-    //     description: "Test Transaction",
-    //     image:
-    //       "https://png.pngtree.com/png-clipart/20200224/original/pngtree-cartoon-color-simple-male-avatar-png-image_5230557.jpg",
-    //     order_id: order.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
-    //     callback_url: "http://localhost:5000/api/paymentverification",
-    //     prefill: {
-    //       name: `${formData.firstName + formData.lastName}`,
-    //       email: `${formData.email}`,
-    //       contact: `${formData.mobileNumber}`,
-    //     },
-    //     notes: {
-    //       address: "Saggifo Infrastructure pvt. ltd.",
-    //     },
-    //     theme: {
-    //       color: "#003CF0",
-    //     },
-    //   };
-    //   var razor = new window.Razorpay(options);
-    //   razor.open();
-    //   // console.log(data, "Data is there or not...");
-    // } catch (error) {
-    //   console.error("Error during checkout:", error.message);
-    // }
-
-    //************************   After completion of the validation process this above code would be uncommented   ************************
   };
+
+  //************************   After completion of the validation process this below code would be uncommented   ************************
+
+  // const {
+  //   data: { key },
+  // } = await axios.get("http://localhost:5000/api/getkey");
+
+  // try {
+  //   const {
+  //     data: { order },
+  //   } = await axios.post(
+  //     "http://localhost:5000/api/checkout",
+  //     { price: price },
+  //     {
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //     }
+  //   );
+
+  //   const options = {
+  //     key, // Enter the Key ID generated from the Dashboard
+  //     amount: order.price,
+  //     currency: "INR",
+  //     name: "Pablo Import Export",
+  //     description: "Test Transaction",
+  //     image:
+  //       "https://png.pngtree.com/png-clipart/20200224/original/pngtree-cartoon-color-simple-male-avatar-png-image_5230557.jpg",
+  //     order_id: order.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+  //     callback_url: "http://localhost:5000/api/paymentverification",
+  //     prefill: {
+  //       name: `${formData.firstName + formData.lastName}`,
+  //       email: `${formData.email}`,
+  //       contact: `${formData.mobileNumber}`,
+  //     },
+  //     notes: {
+  //       address: "Saggifo Infrastructure pvt. ltd.",
+  //     },
+  //     theme: {
+  //       color: "#003CF0",
+  //     },
+  //   };
+  //   var razor = new window.Razorpay(options);
+  //   razor.open();
+  //   // console.log(data, "Data is there or not...");
+  // } catch (error) {
+  //   console.error("Error during checkout:", error.message);
+  // }
+
+  //************************   After completion of the validation process this above code would be uncommented   ************************
+  //};
 
   return (
     <>
@@ -153,7 +178,7 @@ const Appointment = () => {
                 type="text"
                 placeholder={`First Name*`}
                 name="firstName"
-                required
+                // required
                 value={formData.firstName}
                 onChange={handleInputChange}
                 autoComplete="off"
@@ -163,7 +188,6 @@ const Appointment = () => {
                 type="text"
                 placeholder="Last Name*"
                 name="lastName"
-                required
                 value={formData.lastName}
                 onChange={handleInputChange}
                 autoComplete="off"
@@ -173,7 +197,6 @@ const Appointment = () => {
                 type="number"
                 placeholder="Mobile Number*"
                 name="mobileNumber"
-                required
                 value={formData.mobileNumber}
                 onChange={handleInputChange}
                 autoComplete="off"
@@ -190,9 +213,8 @@ const Appointment = () => {
               />
               <textarea
                 type="text"
-                placeholder="Address*"
+                placeholder="Full Address*"
                 name="address"
-                required
                 rows={4}
                 value={formData.address}
                 onChange={handleInputChange}
