@@ -9,7 +9,9 @@ import { AiOutlineTwitter } from "react-icons/ai";
 
 const Footer = () => {
   return (
-    <div className="m-auto w-full bg-[#0047AB] pt-4">
+
+    // #0047AB
+    <div className="m-auto w-full bg-[#4267B2] pt-4">
       <div className="flex justify-between w-[250px] m-auto mb-8 mt-3">
         <div className="bg-indigo-700 rounded-full p-1 cursor-pointer">
           <BiLogoFacebook className="text-2xl text-white" />
@@ -27,7 +29,7 @@ const Footer = () => {
           <AiOutlineTwitter className="text-2xl text-white" />
         </div>
       </div>
-      <div className="text-[#777777] bg-[#0047AB] grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div className="text-white bg-[#4267B2] grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         <div>
           <h2 className="text-xl font-bold mb-3 ml-2 font-poppins">
             Services
@@ -76,7 +78,7 @@ const Footer = () => {
             Get In Touch
           </h2>
           <p>New Delhi, India</p>
-          <p>Email: helpdeskjaimadan@gmail.com</p>
+          <p>Email: kaaushik.kar@gmail.com</p>
           <p>Phone: +91 98705 91555</p>
           <p>Phone: +91 98107 01006</p>
         </div>
@@ -84,7 +86,7 @@ const Footer = () => {
       <div>
         <hr className=" w-[90%] border-s-violet-400 border-gray-300 my-10 mb-2 m-auto" />
       </div>
-      <div className="m-auto text-center text-[#777777] pb-2">© Copyright 2023, All Rights Reserved,❤️ by Samsur </div>
+      <div className="m-auto text-center text-white pb-2">© Copyright 2023, All Rights Reserved,❤️ by Samsur </div>
     </div>
   );
 };

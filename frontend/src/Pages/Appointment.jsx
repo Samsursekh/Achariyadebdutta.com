@@ -4,7 +4,7 @@ import TopNavbar from "../components/TopNavbar";
 import BottomNavbar from "../components/BottomNavbar";
 import Footer from "../components/Footer";
 import banner3 from "../images/sliderImages/slide2.jpg";
-import InputElement from "react-input-placeholder";
+import * as Yup from "yup";
 
 const Appointment = () => {
   const getCurrentTime = () => {
@@ -28,8 +28,17 @@ const Appointment = () => {
   });
 
   // Handle input changes and update the corresponding state
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
+    if (name === "mobileNumber" && !/^\d{0,10}$/.test(value)) {
+      return;
+    }
+    const emailRegex = /^[^\s@]+@[^\s@]+\[^\s@]+$/;
+
+    if (name === "email" && emailRegex.test(value)) {
+      return;
+    }
     setFormData((prevData) => ({
       ...prevData,
       [name]: value,
@@ -42,54 +51,56 @@ const Appointment = () => {
     let price = formData.priceOfAppointment;
     console.log(price, "This is the price");
 
-    const {
-      data: { key },
-    } = await axios.get("http://localhost:5000/api/getkey");
+    //************************   After completion of the validation process this below code would be uncommented   ************************
 
-    try {
-      const {
-        data: { order },
-      } = await axios.post(
-        "http://localhost:5000/api/checkout",
-        { price: price },
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
+    // const {
+    //   data: { key },
+    // } = await axios.get("http://localhost:5000/api/getkey");
 
-      const options = {
-        key, // Enter the Key ID generated from the Dashboard
-        amount: order.price,
-        currency: "INR",
-        name: "Pablo Import Export",
-        description: "Test Transaction",
-        image:
-          "https://png.pngtree.com/png-clipart/20200224/original/pngtree-cartoon-color-simple-male-avatar-png-image_5230557.jpg",
-        order_id: order.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
-        callback_url: "http://localhost:5000/api/paymentverification",
-        prefill: {
-          name: `${formData.firstName + formData.lastName}`,
-          email: `${formData.email}`,
-          contact: `${formData.mobileNumber}`,
-        },
-        notes: {
-          address: "Saggifo Infrastructure pvt. ltd.",
-        },
-        theme: {
-          color: "#003CF0",
-        },
-      };
-      var razor = new window.Razorpay(options);
-      razor.open();
-      // console.log(data, "Data is there or not...");
-    } catch (error) {
-      console.error("Error during checkout:", error.message);
-    }
+    // try {
+    //   const {
+    //     data: { order },
+    //   } = await axios.post(
+    //     "http://localhost:5000/api/checkout",
+    //     { price: price },
+    //     {
+    //       headers: {
+    //         "Content-Type": "application/json",
+    //       },
+    //     }
+    //   );
+
+    //   const options = {
+    //     key, // Enter the Key ID generated from the Dashboard
+    //     amount: order.price,
+    //     currency: "INR",
+    //     name: "Pablo Import Export",
+    //     description: "Test Transaction",
+    //     image:
+    //       "https://png.pngtree.com/png-clipart/20200224/original/pngtree-cartoon-color-simple-male-avatar-png-image_5230557.jpg",
+    //     order_id: order.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+    //     callback_url: "http://localhost:5000/api/paymentverification",
+    //     prefill: {
+    //       name: `${formData.firstName + formData.lastName}`,
+    //       email: `${formData.email}`,
+    //       contact: `${formData.mobileNumber}`,
+    //     },
+    //     notes: {
+    //       address: "Saggifo Infrastructure pvt. ltd.",
+    //     },
+    //     theme: {
+    //       color: "#003CF0",
+    //     },
+    //   };
+    //   var razor = new window.Razorpay(options);
+    //   razor.open();
+    //   // console.log(data, "Data is there or not...");
+    // } catch (error) {
+    //   console.error("Error during checkout:", error.message);
+    // }
+
+    //************************   After completion of the validation process this above code would be uncommented   ************************
   };
-
-  let mandetoryStar = "*";
 
   return (
     <>
@@ -159,7 +170,7 @@ const Appointment = () => {
                 className="shadow appearance-none border border-blue-200 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               />
               <input
-                type="text"
+                type="number"
                 placeholder="Mobile Number*"
                 name="mobileNumber"
                 required

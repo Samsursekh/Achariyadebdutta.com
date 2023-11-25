@@ -18,7 +18,7 @@ const TopNavbar = () => {
         </div>
         <div className="flex items-center text-[15px] justify-around ml-2">
           <AiOutlineMail className="mr-1" />
-          <p>helpdeskjaimadan@gmail.com</p>
+          <p>kaaushik.kar@gmail.com</p>
         </div>
       </div>
       <div className="flex justify-between w-[250px] ">

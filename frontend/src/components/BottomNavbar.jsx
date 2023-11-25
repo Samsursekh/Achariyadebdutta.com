@@ -10,6 +10,7 @@ import mobilelogo2 from "../images/logo/mobile-logo2.png";
 const BottomNavbar = () => {
   const [navbar, setNavbar] = useState(false);
   const [sticky, setSticky] = useState(false);
+  const [stickyLogo, setStickyLogo] = useState(false);
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -30,23 +31,52 @@ const BottomNavbar = () => {
     };
   }, []);
 
+  useEffect(() => {
+    const handleNavScroll = () => {
+      if (window.scrollY > 50) {
+        setStickyLogo(true);
+      } else {
+        setStickyLogo(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleNavScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleNavScroll);
+    };
+  }, []);
+
   return (
     <div className="relative font-poppins">
       {/* navbar for mobile and tab sizes */}
       <div
-        className={`flex text-2xl justify-between z-10 m-auto w-full h-[65px] items-center px-10 ${
+        className={`flex text-2xl justify-between z-10 m-auto w-full h-[65px] items-center px-6  ${
           sticky
-            ? "fixed top-0 bg-[#0047AB] transition-all duration-700"
+            ? "fixed top-0 bg-[#4267B2] transition-all duration-700"
             : "absolute top-0 transition-all duration-700"
         }`}
       >
         {/* some color code of navbar  #1AA7EC  #1E2F97  #00468B #00588b*/}
         <div className="cursor-pointer" onClick={() => navigate("/")}>
-          <div className=" w-[200px] text-center mt-10 md:flex lg:flex lg:w-full">
-            <img src={mobilelogo} className="w-[70px] ml-16 -mb-6 md:w-[120px] lg:w-[120px]" alt="" />
-            <img src={mobilelogo2} className="w-[200px]" alt="" />
-          </div>
-          {/* <img src={logo} className="w-[200px] " alt="" /> */}
+          {stickyLogo ? (
+            <div className="flex justify-between items-center">
+              <img src={mobilelogo} alt="logo" className="w-14" />
+              <img
+                src={mobilelogo2}
+                className="w-[100px] md:w-[130px] lg:w-[200px]"
+                alt="logo"
+              />
+            </div>
+          ) : (
+            <div className="">
+              <img
+                src={logo}
+                className="w-[100px] mt-[20%] md:w-[200px] lg:w-[200px]"
+                alt=""
+              />
+            </div>
+          )}
         </div>
         <button
           className="md:hidden cursor-pointer px-1 py-1"
