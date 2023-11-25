@@ -106,8 +106,8 @@ const AboutPage = () => {
           </h3>
         </div>
         {/* Mission and vision starts here  */}
-        <div className="grid md:flex lg:flex m-auto mb-7  border-2 font-sans w-[70%] gap-4">
-          <div className="border-2 m-auto bg-purple-600 text-center p-4 w-full rounded-br-3xl rounded-tl-3xl">
+        <div className="grid md:flex lg:flex m-auto mb-7 font-sans w-[70%] gap-4">
+          <div className=" m-auto bg-purple-600 text-center p-4 w-full rounded-br-3xl rounded-tl-3xl">
             <h1 className="text-2xl md:text-3xl lg:text-4xl font-semibold mb-4 font-philosopher text-center">
               Mission
             </h1>
@@ -116,7 +116,7 @@ const AboutPage = () => {
             </p>
           </div>
 
-          <div className="border-2 m-auto bg-purple-600 text-center p-4 w-full rounded-bl-3xl rounded-tr-3xl">
+          <div className=" m-auto bg-purple-600 text-center p-4 w-full rounded-bl-3xl rounded-tr-3xl">
             <h1 className="text-2xl md:text-3xl lg:text-4xl font-semibold mb-4 font-philosopher text-center">
               Vision
             </h1>
