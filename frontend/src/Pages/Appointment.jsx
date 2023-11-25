@@ -74,58 +74,57 @@ const Appointment = () => {
     console.log("Form data submitted:", formData);
     let price = formData.priceOfAppointment;
     console.log(price, "This is the price");
+    // };
+
+    //************************   After completion of the validation process this below code would be uncommented   ************************
+
+    const {
+      data: { key },
+    } = await axios.get("http://localhost:5000/api/getkey");
+
+    try {
+      const {
+        data: { order },
+      } = await axios.post(
+        "http://localhost:5000/api/checkout",
+        { price: price },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      const options = {
+        key, // Enter the Key ID generated from the Dashboard
+        amount: order.price,
+        currency: "INR",
+        name: "Pablo Import Export",
+        description: "Test Transaction",
+        image:
+          "https://png.pngtree.com/png-clipart/20200224/original/pngtree-cartoon-color-simple-male-avatar-png-image_5230557.jpg",
+        order_id: order.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+        callback_url: "http://localhost:5000/api/paymentverification",
+        prefill: {
+          name: `${formData.firstName + formData.lastName}`,
+          email: `${formData.email}`,
+          contact: `${formData.mobileNumber}`,
+        },
+        notes: {
+          address: "Saggifo Infrastructure pvt. ltd.",
+        },
+        theme: {
+          color: "#003CF0",
+        },
+      };
+      var razor = new window.Razorpay(options);
+      razor.open();
+      // console.log(data, "Data is there or not...");
+    } catch (error) {
+      console.error("Error during checkout:", error.message);
+    }
   };
-
-  //************************   After completion of the validation process this below code would be uncommented   ************************
-
-  // const {
-  //   data: { key },
-  // } = await axios.get("http://localhost:5000/api/getkey");
-
-  // try {
-  //   const {
-  //     data: { order },
-  //   } = await axios.post(
-  //     "http://localhost:5000/api/checkout",
-  //     { price: price },
-  //     {
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //     }
-  //   );
-
-  //   const options = {
-  //     key, // Enter the Key ID generated from the Dashboard
-  //     amount: order.price,
-  //     currency: "INR",
-  //     name: "Pablo Import Export",
-  //     description: "Test Transaction",
-  //     image:
-  //       "https://png.pngtree.com/png-clipart/20200224/original/pngtree-cartoon-color-simple-male-avatar-png-image_5230557.jpg",
-  //     order_id: order.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
-  //     callback_url: "http://localhost:5000/api/paymentverification",
-  //     prefill: {
-  //       name: `${formData.firstName + formData.lastName}`,
-  //       email: `${formData.email}`,
-  //       contact: `${formData.mobileNumber}`,
-  //     },
-  //     notes: {
-  //       address: "Saggifo Infrastructure pvt. ltd.",
-  //     },
-  //     theme: {
-  //       color: "#003CF0",
-  //     },
-  //   };
-  //   var razor = new window.Razorpay(options);
-  //   razor.open();
-  //   // console.log(data, "Data is there or not...");
-  // } catch (error) {
-  //   console.error("Error during checkout:", error.message);
-  // }
-
   //************************   After completion of the validation process this above code would be uncommented   ************************
-  //};
 
   return (
     <>
