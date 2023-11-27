@@ -97,7 +97,7 @@ const BottomNavbar = () => {
         <div className="hidden md:flex">
           <h3
             onClick={() => navigate("/")}
-            className={`cursor-pointer mt-2 mx-2 text-xl transition duration-300 ${
+            className={`cursor-pointer mt-2 mx-2 text-[16px] transition duration-300 ${
               location.pathname === "/" ? "font-bold text-white" : "text-white"
             }`}
           >
@@ -108,7 +108,7 @@ const BottomNavbar = () => {
           </h3>
           <h3
             onClick={() => navigate("/about-page")}
-            className={`cursor-pointer mt-2 mx-2 text-xl transition duration-300 ${
+            className={`cursor-pointer mt-2 mx-2 text-[16px] transition duration-300 ${
               location.pathname === "/about-page"
                 ? "font-bold text-white"
                 : "text-white"
@@ -121,7 +121,7 @@ const BottomNavbar = () => {
           </h3>
           <h3
             onClick={() => navigate("/awards")}
-            className={`cursor-pointer mt-2 mx-2 text-xl transition duration-300 ${
+            className={`cursor-pointer mt-2 mx-2 text-[16px] transition duration-300 ${
               location.pathname === "/awards"
                 ? "font-bold text-white"
                 : "text-white"
@@ -134,19 +134,19 @@ const BottomNavbar = () => {
           </h3>
           {/* <h3
             onClick={() => navigate("/services")}
-            className="cursor-pointer mt-2 text-white mx-2 text-xl transition duration-300"
+            className="cursor-pointer mt-2 text-white mx-2 text-[16px] transition duration-300"
           >
             Services
           </h3>
           <h3
             onClick={() => navigate("/events")}
-            className="cursor-pointer mt-2 text-white  mx-2 text-xl transition duration-300"
+            className="cursor-pointer mt-2 text-white  mx-2 text-[16px] transition duration-300"
           >
             Events
           </h3> */}
           <h3
             onClick={() => navigate("/services")}
-            className={`cursor-pointer mt-2 mx-2 text-xl transition duration-300 ${
+            className={`cursor-pointer mt-2 mx-2 text-[16px] transition duration-300 ${
               location.pathname === "/services"
                 ? "font-bold text-white"
                 : "text-white"
@@ -159,7 +159,7 @@ const BottomNavbar = () => {
           </h3>
           <h3
             onClick={() => navigate("/events")}
-            className={`cursor-pointer mt-2 mx-2 text-xl transition duration-300 ${
+            className={`cursor-pointer mt-2 mx-2 text-[16px] transition duration-300 ${
               location.pathname === "/events"
                 ? "font-bold text-white"
                 : "text-white"
@@ -172,7 +172,7 @@ const BottomNavbar = () => {
           </h3>
           <h3
             onClick={() => navigate("/appointment")}
-            className={`cursor-pointer mt-2 mx-2 text-xl transition duration-300 ${
+            className={`cursor-pointer mt-2 mx-2 text-[16px] transition duration-300 ${
               location.pathname === "/appointment"
                 ? "font-bold text-white"
                 : "text-white"
@@ -185,7 +185,7 @@ const BottomNavbar = () => {
           </h3>
           <h3
             onClick={() => navigate("/contact")}
-            className={`cursor-pointer mt-2 mx-2 text-xl transition duration-300 ${
+            className={`cursor-pointer mt-2 mx-2 text-[16px] transition duration-300 ${
               location.pathname === "/contact"
                 ? "font-bold text-white"
                 : "text-white"
@@ -199,7 +199,7 @@ const BottomNavbar = () => {
 
           <Link to={"https://blogs.achariyadebdutta.com"}>
             <h3
-              className={`cursor-pointer mt-2 mx-2 text-xl transition duration-300 ${
+              className={`cursor-pointer mt-2 mx-2 text-[16px] transition duration-300 ${
                 location.pathname === "/blogs"
                   ? "font-bold text-white"
                   : "text-white"
@@ -238,7 +238,7 @@ const BottomNavbar = () => {
             className="absolute right-4 top-4 cursor-pointer"
           />
 
-          <div className="text-xl mt-12 text-center">
+          <div className="text-[16px] mt-12 text-center">
             <h3
               onClick={() => navigate("/")}
               className="cursor-pointer hover:bg-blue-500 mt-2 hover:text-white transition duration-300"
