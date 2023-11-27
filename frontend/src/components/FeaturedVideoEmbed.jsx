@@ -4,13 +4,23 @@ import thumb1 from "../images/youtube-thumbnails/8 birth day _October 12.10.2023
 import thumb2 from "../images/youtube-thumbnails/brisho Rashi thamble November.jpg";
 import thumb3 from "../images/youtube-thumbnails/dhantarous Thumnail _02.jpg";
 import thumb4 from "../images/youtube-thumbnails/mesh thamble _November.jpg";
-import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+
+import thumb5 from "../images/youtube-thumbnails/mohini basikan Thumnail.jpg";
+import thumb6 from "../images/youtube-thumbnails/tula rashi thamble _December.jpg";
+import thumb7 from "../images/youtube-thumbnails/Najar katanor thamnail _Aug 012.08.2023.jpg";
+import thumb8 from "../images/youtube-thumbnails/shotru domon_02.jpg";
+
+import { FaChevronLeft, FaChevronRight, FaYoutube } from "react-icons/fa";
 
 const videoUrls = [
-  "https://www.youtube.com/watch?v=VIDEO_ID_1",
-  "https://www.youtube.com/watch?v=VIDEO_ID_2",
-  "https://www.youtube.com/watch?v=VIDEO_ID_3",
-  "https://www.youtube.com/watch?v=VIDEO_ID_4",
+  "https://youtu.be/siINm8m8hfk?si=nQaEGS50JjX5pJLX",
+  "https://youtu.be/ij7QMVdcK80?si=27qDCZl6pWlRUcYk",
+  "https://youtu.be/Qxe8KjKLSu0?si=tBX5IGKLFcRKLZ51",
+  "https://youtu.be/XOkwYYnKd7E?si=D5qe_OQ4ksOdbjtg",
+  "https://youtu.be/S8BV7pYv_d0?si=5XwMmKjFKkuRvBkV",
+  "https://youtu.be/Arh3aFmjTA8?si=PrjoMZJW6WFZYdvJ",
+  "https://youtu.be/ilL_uj-vi8M?si=BKmprkIfURUCKAmT",
+  "https://youtu.be/I_eqQTUQ8AA?si=dQgVXoyG3anqTWAv",
 ];
 
 const FeaturedVideoEmbed = () => {
@@ -19,10 +29,10 @@ const FeaturedVideoEmbed = () => {
     thumb2,
     thumb3,
     thumb4,
-    thumb2,
-    thumb1,
-    thumb4,
-    thumb3,
+    thumb5,
+    thumb6,
+    thumb7,
+    thumb8,
   ];
 
   const [startIndex, setStartIndex] = useState(0);
@@ -79,6 +89,9 @@ const FeaturedVideoEmbed = () => {
             />
           </div>
         ))}
+
+        {/* add youtube icons */}
+
         <div
           className="text-white absolute top-[35%] left-0 text-2xl p-2 group-hover:bg-black/20 cursor-pointer "
           onClick={handlePrev}
