@@ -9,7 +9,6 @@ import { AiOutlineTwitter } from "react-icons/ai";
 
 const Footer = () => {
   return (
-
     // #0047AB
     <div className="m-auto w-full bg-[#4267B2] pt-4">
       <div className="flex justify-between w-[250px] m-auto mb-8 mt-3">
@@ -31,11 +30,9 @@ const Footer = () => {
       </div>
       <div className="text-white bg-[#4267B2] grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         <div>
-          <h2 className="text-xl font-bold mb-3 ml-2 font-poppins">
-            Services
-          </h2>
-          <ul className="ml-2">
-            <li>Birth Journal</li>
+          <h2 className="text-xl font-bold mb-3 ml-2 font-poppins">Services</h2>
+          <ul className="ml-2 text-[16px]">
+            <li className="">Birth Journal</li>
             <hr className="border border-s-violet-400 border-gray-300 my-2 m-auto" />
 
             <li>Vastu Consultancy</li>
@@ -57,7 +54,7 @@ const Footer = () => {
           <h2 className="text-xl font-bold mb-3 ml-2 font-poppins">
             Quick Links
           </h2>
-          <ul className="ml-2">
+          <ul className="ml-2 text-[16px]">
             <li>About Me</li>
             <hr className="border border-s-violet-400 border-gray-300 my-2 m-auto" />
 
@@ -74,19 +71,21 @@ const Footer = () => {
           </ul>
         </div>
         <div>
-          <h2 className="text-xl font-bold mb-3 font-poppins">
-            Get In Touch
-          </h2>
-          <p>New Delhi, India</p>
-          <p>Email: kaaushik.kar@gmail.com</p>
-          <p>Phone: +91 98705 91555</p>
-          <p>Phone: +91 98107 01006</p>
+          <h2 className="text-xl font-bold mb-3 font-poppins">Get In Touch</h2>
+          <div className="text-[16px]">
+            <p>New Delhi, India</p>
+            <p>Email: kaaushik.kar@gmail.com</p>
+            <p>Phone: +91 98705 91555</p>
+            <p>Phone: +91 98107 01006</p>
+          </div>
         </div>
       </div>
       <div>
         <hr className=" w-[90%] border-s-violet-400 border-gray-300 my-10 mb-2 m-auto" />
       </div>
-      <div className="m-auto text-center text-white pb-2">© Copyright 2023, All Rights Reserved,❤️ by Samsur </div>
+      <div className="m-auto text-center text-white pb-2">
+        © Copyright 2023, All Rights Reserved,❤️ by Samsur{" "}
+      </div>
     </div>
   );
 };
