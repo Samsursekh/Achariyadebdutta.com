@@ -5,8 +5,6 @@ import banner1 from "../images/banner1.jpg";
 import BottomNavbar from "./BottomNavbar";
 import TopNavbar from "./TopNavbar";
 import FeaturedServices from "./FeaturedServices";
-import About from "../Pages/About";
-import Achievement from "./Achievement";
 import { Link } from "react-router-dom";
 
 const HeroSection = () => {

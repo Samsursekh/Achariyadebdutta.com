@@ -132,7 +132,7 @@ const Appointment = () => {
         <div className="hidden md:block">
           <TopNavbar />
         </div>
-        <div className="bg-black/30 h-[70px]">
+        <div className="bg-blue-900 h-[70px]">
           <BottomNavbar className="text-black" />
         </div>
         <div className="w-full">

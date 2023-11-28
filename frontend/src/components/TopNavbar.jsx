@@ -5,8 +5,11 @@ import {
   BiLogoLinkedin,
 } from "react-icons/bi";
 import { TfiYoutube } from "react-icons/tfi";
-import { AiOutlineMail, AiOutlineTwitter } from "react-icons/ai";
-import { BsTelephoneFill } from "react-icons/bs";
+import { AiOutlineMail } from "react-icons/ai";
+import { BsTelephoneFill, BsYoutube } from "react-icons/bs";
+
+import { ImTwitter } from "react-icons/im";
+import { FaXTwitter } from "react-icons/fa6";
 
 const TopNavbar = () => {
   return (
@@ -22,20 +25,20 @@ const TopNavbar = () => {
         </div>
       </div>
       <div className="flex justify-between w-[250px] ">
-        <div className="bg-indigo-700 rounded-full p-1 cursor-pointer">
+        <div className="bg-[#1877F2] rounded-full p-1 cursor-pointer">
           <BiLogoFacebook className="text-2xl text-white" />
         </div>
         <div className="bg-[#d63384] rounded-full p-1 cursor-pointer">
           <BiLogoInstagram className="text-2xl text-white" />
         </div>
         <div className="bg-[#dc3545] rounded-full p-1 cursor-pointer">
-          <TfiYoutube className="leading-3 text-[22px] text-white" />
+          <BsYoutube className="leading-3 text-[25px] text-white" />
         </div>
-        <div className="bg-indigo-700 rounded-full p-1 cursor-pointer">
-          <BiLogoLinkedin className="leading-3 text-[22px] text-white" />
+        <div className="bg-[#0072b1] rounded-full p-1 cursor-pointer">
+          <BiLogoLinkedin className="leading-3 text-[24px] text-white" />
         </div>
-        <div className="bg-[#0dcaf0] rounded-full p-1 cursor-pointer">
-          <AiOutlineTwitter className="text-2xl text-white" />
+        <div className="bg-[#000000] rounded-full p-1 cursor-pointer">
+          <FaXTwitter className="text-2xl text-white" />
         </div>
       </div>
     </div>

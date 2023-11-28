@@ -24,7 +24,7 @@ const Services = () => {
       <div className="hidden md:block">
         <TopNavbar />
       </div>
-      <div className="bg-black/30 h-[70px]">
+      <div className="bg-blue-900 h-[70px]">
         <BottomNavbar className="text-black" />
       </div>
       <div className="grid gap-3 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 text-center w-full m-auto mt-4 relative">

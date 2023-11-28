@@ -62,7 +62,7 @@ const ClientStories = () => {
               <span className="text-yellow-400">CUSTOMER</span>
             </h1>
           </div>
-          <div className="border-2 m-auto h-[300px] border-yellow-500" />
+          <div className="border-2 m-auto h-[300px]  border-yellow-500" />
         </div>
         <div className="m-auto h-full w-full p-3 ">
           <div className="flex justify-evenly items-center bg-slate-800 pb-1 mt-1">
