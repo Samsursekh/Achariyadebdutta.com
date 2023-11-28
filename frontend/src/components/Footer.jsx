@@ -6,29 +6,32 @@ import {
 } from "react-icons/bi";
 import { TfiYoutube } from "react-icons/tfi";
 import { AiOutlineTwitter } from "react-icons/ai";
+import { FaXTwitter } from "react-icons/fa6";
+import { BsYoutube } from "react-icons/bs";
 
 const Footer = () => {
   return (
-    // #0047AB
-    <div className="m-auto w-full bg-[#4267B2] pt-4">
+    // #0047AB #4267B2
+
+    <div className="m-auto w-full bg-black pt-4">
       <div className="flex justify-between w-[250px] m-auto mb-8 mt-3">
-        <div className="bg-indigo-700 rounded-full p-1 cursor-pointer">
+        <div className="bg-[#1877F2] rounded-full p-1 cursor-pointer">
           <BiLogoFacebook className="text-2xl text-white" />
         </div>
         <div className="bg-[#d63384] rounded-full p-1 cursor-pointer">
           <BiLogoInstagram className="text-2xl text-white" />
         </div>
         <div className="bg-[#dc3545] rounded-full p-1 cursor-pointer">
-          <TfiYoutube className="leading-3 text-[22px] text-white" />
+          <BsYoutube className="leading-3 text-[25px] text-white" />
         </div>
-        <div className="bg-indigo-700 rounded-full p-1 cursor-pointer">
-          <BiLogoLinkedin className="leading-3 text-[22px] text-white" />
+        <div className="bg-[#0072b1] rounded-full p-1 cursor-pointer">
+          <BiLogoLinkedin className="leading-3 text-[24px] text-white" />
         </div>
-        <div className="bg-[#0dcaf0] rounded-full p-1 cursor-pointer">
-          <AiOutlineTwitter className="text-2xl text-white" />
+        <div className="bg-[#000000] border rounded-full p-1 cursor-pointer">
+          <FaXTwitter className="text-2xl text-white" />
         </div>
       </div>
-      <div className="text-white bg-[#4267B2] grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div className="text-white bg-black grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         <div>
           <h2 className="text-xl font-bold mb-3 ml-2 font-poppins">Services</h2>
           <ul className="ml-2 text-[16px]">
@@ -71,8 +74,10 @@ const Footer = () => {
           </ul>
         </div>
         <div>
-          <h2 className="text-xl font-bold mb-3 font-poppins">Get In Touch</h2>
-          <div className="text-[16px]">
+          <h2 className="text-xl font-bold mb-3 font-poppins ml-2">
+            Get In Touch
+          </h2>
+          <div className="text-[16px] ml-2">
             <p>New Delhi, India</p>
             <p>Email: kaaushik.kar@gmail.com</p>
             <p>Phone: +91 98705 91555</p>

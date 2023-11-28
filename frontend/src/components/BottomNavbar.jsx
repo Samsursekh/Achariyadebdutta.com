@@ -47,17 +47,21 @@ const BottomNavbar = () => {
     };
   }, []);
 
+  const handleLinkClickToGoToBlogPage = () => {
+    window.open("https://blogs.achariyadebdutta.com", "_blank");
+  };
+
   return (
     <div className="relative font-poppins">
       {/* navbar for mobile and tab sizes */}
       <div
         className={`flex text-2xl justify-between z-10 m-auto w-full h-[65px] items-center px-6  ${
           sticky
-            ? "fixed top-0 bg-[#4267B2] transition-all duration-700"
-            : "absolute top-0 transition-all duration-700"
+            ? "fixed top-0 bg-black transition-all duration-700"
+            : " absolute top-0 transition-all duration-700"
         }`}
       >
-        {/* some color code of navbar  #1AA7EC  #1E2F97  #00468B #00588b*/}
+        {/* some color code of navbar  #1AA7EC  #1E2F97  #00468B #00588b #4267B2*/}
         <div className="cursor-pointer" onClick={() => navigate("/")}>
           {stickyLogo ? (
             <div className="flex justify-between items-center">
@@ -72,7 +76,7 @@ const BottomNavbar = () => {
             <div className="">
               <img
                 src={logo}
-                className="w-[100px] mt-[20%] md:w-[200px] lg:w-[200px]"
+                className="w-[100px] mt-[6%] lg:mt-[15%] md:w-[200px] lg:w-[180px]"
                 alt=""
               />
             </div>
@@ -132,18 +136,7 @@ const BottomNavbar = () => {
               <hr className="border-b-2 border-white mt-[1px]" />
             )}
           </h3>
-          {/* <h3
-            onClick={() => navigate("/services")}
-            className="cursor-pointer mt-2 text-white mx-2 text-[16px] transition duration-300"
-          >
-            Services
-          </h3>
-          <h3
-            onClick={() => navigate("/events")}
-            className="cursor-pointer mt-2 text-white  mx-2 text-[16px] transition duration-300"
-          >
-            Events
-          </h3> */}
+
           <h3
             onClick={() => navigate("/services")}
             className={`cursor-pointer mt-2 mx-2 text-[16px] transition duration-300 ${
@@ -197,39 +190,23 @@ const BottomNavbar = () => {
             )}
           </h3>
 
-          <Link to={"https://blogs.achariyadebdutta.com"}>
+          <div>
             <h3
-              className={`cursor-pointer mt-2 mx-2 text-[16px] transition duration-300 ${
-                location.pathname === "/blogs"
-                  ? "font-bold text-white"
-                  : "text-white"
-              }`}
+              className={`cursor-pointer mt-2 mx-2 text-[16px] transition duration-300 text-white`}
+              onClick={handleLinkClickToGoToBlogPage}
             >
               Blogs
-              {location.pathname === "/blogs" && (
-                <hr className="border-b-2 border-white mt-[1px]" />
-              )}
             </h3>
-          </Link>
+          </div>
         </div>
 
         {/* Mobile responsive navbar for medium and small screens */}
 
         <div
           className={
-            //   navbar
-            //     ? "fixed top-0 right-0 w-full h-340px] md:h-[400px] lg:h-[320px] bg-white z-10 transition-transform transform translate-y-0 duration-300 ease-in"
-            //     : "fixed top-[-100%] right-0 w-full h-[340px] md:h-[400px] lg:h-[320px] bg-white z-10 transition-transform transform translate-y-full duration-300 ease-in-out"
-            // }
-
-            //   navbar
-            //     ? "fixed top-0 right-0 w-full h-[340px] md:h-[400px] lg:h-[320px] bg-white z-10 transition-transform transform translate-y-0 duration-300 ease-in"
-            //     : "fixed top-[100%] right-0 w-full h-[340px] md:h-[400px] lg:h-[320px] bg-white z-10 transition-transform transform translate-y-full duration-300 ease-in"
-            // }
-
             navbar
-              ? "fixed top-0 right-0 w-full h-[340px] md:h-[400px] lg:h-[320px] bg-white z-10 transition-transform transform translate-y-0 duration-300 ease-in"
-              : "fixed bottom-0 right-0 w-full h-[340px] md:h-[400px] lg:h-[320px] bg-white z-10 transition-transform transform translate-y-full duration-300 ease-in"
+              ? "fixed top-0 right-0 w-full h-auto md:h-[400px] lg:h-[320px] bg-white z-10 transition-transform transform translate-y-0 duration-300 ease-in"
+              : "fixed bottom-0 right-0 w-full h-auto md:h-[400px] lg:h-[320px] bg-white z-10 transition-transform transform translate-y-full duration-300 ease-in"
           }
         >
           <AiOutlineClose
@@ -281,14 +258,14 @@ const BottomNavbar = () => {
             >
               Contact
             </h3>
-            <Link to={`https://blogs.achariyadebdutta.com/`}>
+            <div>
               <h3
-                // onClick={() => navigate("/blogs")}
+                onClick={handleLinkClickToGoToBlogPage}
                 className="cursor-pointer hover:bg-blue-500 mt-2 hover:text-white transition duration-300"
               >
                 Blogs
               </h3>
-            </Link>
+            </div>
           </div>
         </div>
       </div>

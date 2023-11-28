@@ -15,10 +15,11 @@ import {
   BiLogoLinkedin,
   BiSupport,
 } from "react-icons/bi";
-import { FaPhone } from "react-icons/fa6";
+import { FaPhone, FaXTwitter } from "react-icons/fa6";
 import GoogleMaps from "./GoogleMaps";
 import { TfiYoutube } from "react-icons/tfi";
 import { AiOutlineTwitter } from "react-icons/ai";
+import { BsYoutube } from "react-icons/bs";
 
 const Contact = () => {
   const form = useRef();
@@ -50,7 +51,7 @@ const Contact = () => {
       <div className="hidden md:block">
         <TopNavbar />
       </div>
-      <div className="bg-black/30 h-[70px]">
+      <div className="bg-blue-900 h-[70px]">
         <BottomNavbar className="text-black" />
       </div>
       <div className=" bg-gray-100 py-6 flex flex-col sm:py-12 ">
@@ -100,20 +101,20 @@ const Contact = () => {
               </div>
             </div>
             <div className="flex justify-evenly ml-1 my-4 w-1/2  ">
-              <div className="bg-indigo-700 rounded-full p-1 cursor-pointer">
+              <div className="bg-[#1877F2] rounded-full p-1 cursor-pointer">
                 <BiLogoFacebook className="text-2xl text-white" />
               </div>
               <div className="bg-[#d63384] rounded-full p-1 cursor-pointer">
                 <BiLogoInstagram className="text-2xl text-white" />
               </div>
               <div className="bg-[#dc3545] rounded-full p-1 cursor-pointer">
-                <TfiYoutube className="leading-3 text-[22px] text-white" />
+                <BsYoutube className="leading-3 text-[25px] text-white" />
               </div>
-              <div className="bg-indigo-700 rounded-full p-1 cursor-pointer">
-                <BiLogoLinkedin className="leading-3 text-[22px] text-white" />
+              <div className="bg-[#0072b1] rounded-full p-1 cursor-pointer">
+                <BiLogoLinkedin className="leading-3 text-[24px] text-white" />
               </div>
-              <div className="bg-[#0dcaf0] rounded-full p-1 cursor-pointer">
-                <AiOutlineTwitter className="text-2xl text-white" />
+              <div className="bg-[#000000] rounded-full p-1 cursor-pointer">
+                <FaXTwitter className="text-2xl text-white" />
               </div>
             </div>
           </div>
