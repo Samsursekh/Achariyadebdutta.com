@@ -15,11 +15,11 @@ const Appointment = () => {
   };
 
   const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
-    mobileNumber: "",
-    email: "",
-    address: "",
+    firstName: "Pablo",
+    lastName: "Rolex",
+    mobileNumber: "9339316583",
+    email: "pablo@site.dev",
+    address: "US",
     date: new Date().toISOString().substr(0, 10),
     time: getCurrentTime(),
     preferredSlot: "morning",
@@ -27,6 +27,10 @@ const Appointment = () => {
     priceOfAppointment: 3000,
   });
 
+  const [userDataFromPayment, setUserDataFromPayment] = useState({
+    userCredentials: null,
+    orderID: null,
+  });
   // Handle input changes and update the corresponding state
 
   const handleInputChange = (e) => {
@@ -106,7 +110,7 @@ const Appointment = () => {
         order_id: order.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
         callback_url: "http://localhost:5000/api/paymentverification",
         prefill: {
-          name: `${formData.firstName + formData.lastName}`,
+          name: `${formData.firstName} ${formData.lastName}`,
           email: `${formData.email}`,
           contact: `${formData.mobileNumber}`,
         },
@@ -118,6 +122,7 @@ const Appointment = () => {
         },
       };
       var razor = new window.Razorpay(options);
+      gettingDataFromPlacingOrder(options, order);
       razor.open();
       // console.log(data, "Data is there or not...");
     } catch (error) {
@@ -126,13 +131,24 @@ const Appointment = () => {
   };
   //************************   After completion of the validation process this above code would be uncommented   ************************
 
+  const gettingDataFromPlacingOrder = (allTheData, order) => {
+    const userCredentials = allTheData.prefill;
+    const orderID = order.id;
+    setUserDataFromPayment({
+      userCredentials: userCredentials,
+      orderID: orderID,
+    });
+  };
+
+  console.log(userDataFromPayment, "Getting All data from USER");
+
   return (
     <>
       <section className="bg-gray-100 min-h-screen">
         <div className="hidden md:block">
           <TopNavbar />
         </div>
-        <div className="bg-blue-900 h-[70px]">
+        <div className="bg-black/30 h-[70px]">
           <BottomNavbar className="text-black" />
         </div>
         <div className="w-full">
