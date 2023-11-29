@@ -84,7 +84,7 @@ const Appointment = () => {
       const {
         data: { order },
       } = await axios.post(
-        "http://localhost:5000/api/checkout",
+        `${import.meta.env.VITE_HOST_URL_ENDPOINT}/api/checkout`,
         { price: price },
         {
           headers: {
@@ -101,7 +101,9 @@ const Appointment = () => {
         description: "Test Transaction",
         image: logo,
         order_id: order.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
-        callback_url: "http://localhost:5000/api/paymentverification",
+        callback_url: `${
+          import.meta.env.VITE_HOST_URL_ENDPOINT
+        }/api/paymentverification`,
         prefill: {
           name: `${formData.firstName} ${formData.lastName}`,
           email: `${formData.email}`,
@@ -146,15 +148,14 @@ const Appointment = () => {
         preferredSlot: formData.preferredSlot,
         modeOfConsultation: formData.modeOfConsultation,
         orderID: orderID,
-        currentDate: new Date(), 
+        currentDate: new Date(),
         currentTime: getCurrentTime(),
       };
 
       const response = await axios.post(
-        "http://localhost:5000/api/appointment",
+        `${import.meta.env.VITE_HOST_URL_ENDPOINT}/api/appointment`,
         dataToSend
       );
-
     } catch (error) {
       console.error("Error while adding data to the database:", error);
     }
