@@ -5,6 +5,7 @@ import BottomNavbar from "../components/BottomNavbar";
 import Footer from "../components/Footer";
 import banner3 from "../images/sliderImages/slide2.jpg";
 import * as Yup from "yup";
+import logo from "../images/logo/llogo icon-01.png";
 
 const Appointment = () => {
   const getCurrentTime = () => {
@@ -15,11 +16,11 @@ const Appointment = () => {
   };
 
   const [formData, setFormData] = useState({
-    firstName: "Pablo",
-    lastName: "Rolex",
-    mobileNumber: "9339316583",
-    email: "pablo@site.dev",
-    address: "US",
+    firstName: "",
+    lastName: "",
+    mobileNumber: "",
+    email: "",
+    address: "",
     date: new Date().toISOString().substr(0, 10),
     time: getCurrentTime(),
     preferredSlot: "morning",
@@ -27,11 +28,7 @@ const Appointment = () => {
     priceOfAppointment: 3000,
   });
 
-  const [userDataFromPayment, setUserDataFromPayment] = useState({
-    userCredentials: null,
-    orderID: null,
-  });
-  // Handle input changes and update the corresponding state
+  const [userDataFromPayment, setUserDataFromPayment] = useState(null);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -75,16 +72,13 @@ const Appointment = () => {
       alert("Please enter your last name properly ");
       return;
     }
-    console.log("Form data submitted:", formData);
     let price = formData.priceOfAppointment;
-    console.log(price, "This is the price");
-    // };
 
     //************************   After completion of the validation process this below code would be uncommented   ************************
 
     const {
       data: { key },
-    } = await axios.get("http://localhost:5000/api/getkey");
+    } = await axios.get(`${import.meta.env.VITE_HOST_URL_ENDPOINT}/api/getkey`);
 
     try {
       const {
@@ -100,19 +94,19 @@ const Appointment = () => {
       );
 
       const options = {
-        key, // Enter the Key ID generated from the Dashboard
+        key,
         amount: order.price,
         currency: "INR",
         name: "Pablo Import Export",
         description: "Test Transaction",
-        image:
-          "https://png.pngtree.com/png-clipart/20200224/original/pngtree-cartoon-color-simple-male-avatar-png-image_5230557.jpg",
+        image: logo,
         order_id: order.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
         callback_url: "http://localhost:5000/api/paymentverification",
         prefill: {
           name: `${formData.firstName} ${formData.lastName}`,
           email: `${formData.email}`,
           contact: `${formData.mobileNumber}`,
+          address: `${formData.address}`,
         },
         notes: {
           address: "Saggifo Infrastructure pvt. ltd.",
@@ -124,23 +118,47 @@ const Appointment = () => {
       var razor = new window.Razorpay(options);
       gettingDataFromPlacingOrder(options, order);
       razor.open();
-      // console.log(data, "Data is there or not...");
     } catch (error) {
       console.error("Error during checkout:", error.message);
     }
   };
   //************************   After completion of the validation process this above code would be uncommented   ************************
 
-  const gettingDataFromPlacingOrder = (allTheData, order) => {
-    const userCredentials = allTheData.prefill;
-    const orderID = order.id;
-    setUserDataFromPayment({
-      userCredentials: userCredentials,
-      orderID: orderID,
-    });
-  };
+  // const gettingDataFromPlacingOrder = (allTheData, order) => {
+  //   const orderID = order.id;
+  //   setUserDataFromPayment(orderID);
+  // };
 
-  console.log(userDataFromPayment, "Getting All data from USER");
+  const gettingDataFromPlacingOrder = async (allTheData, order) => {
+    try {
+      const orderID = order.id;
+      setUserDataFromPayment(orderID);
+
+      // Prepare the data payload to be sent to the server
+      const dataToSend = {
+        firstName: allTheData.prefill.name.split(" ")[0],
+        lastName: allTheData.prefill.name.split(" ")[1],
+        mobileNumber: allTheData.prefill.contact,
+        email: allTheData.prefill.email,
+        address: allTheData.prefill.address,
+        date: formData.date,
+        time: formData.time,
+        preferredSlot: formData.preferredSlot,
+        modeOfConsultation: formData.modeOfConsultation,
+        orderID: orderID,
+        currentDate: new Date(), 
+        currentTime: getCurrentTime(),
+      };
+
+      const response = await axios.post(
+        "http://localhost:5000/api/appointment",
+        dataToSend
+      );
+
+    } catch (error) {
+      console.error("Error while adding data to the database:", error);
+    }
+  };
 
   return (
     <>
@@ -148,7 +166,7 @@ const Appointment = () => {
         <div className="hidden md:block">
           <TopNavbar />
         </div>
-        <div className="bg-black/30 h-[70px]">
+        <div className="bg-blue-900 h-[70px]">
           <BottomNavbar className="text-black" />
         </div>
         <div className="w-full">
