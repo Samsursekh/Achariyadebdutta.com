@@ -76,7 +76,7 @@ const BottomNavbar = () => {
             <div className="">
               <img
                 src={logo}
-                className="w-[100px] mt-[6%] lg:mt-[15%] md:w-[200px] lg:w-[180px]"
+                className="w-[100px] mt-[6%] lg:mt-[20%] md:w-[200px] lg:w-[180px]"
                 alt=""
               />
             </div>

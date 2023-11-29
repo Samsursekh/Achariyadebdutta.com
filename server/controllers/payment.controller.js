@@ -1,6 +1,7 @@
 import { instance } from "../server.js";
 import crypto from "crypto";
 import { Payment } from "../models/payment.model.js";
+import { Appointment } from "../models/appointment.model.js";
 
 export const checkout = async (req, res) => {
   try {
@@ -10,10 +11,7 @@ export const checkout = async (req, res) => {
       receipt: "order_rcptid_11",
     };
 
-    console.log(req.body, "Req dot body is there or not ");
-    console.log(options, "OPTIONS is present ??");
     const order = await instance.orders.create(options);
-    console.log("Order is here  ==> ", order);
 
     res.status(200).json({
       success: true,
@@ -28,9 +26,44 @@ export const checkout = async (req, res) => {
   }
 };
 
-export const paymentVerification = async (req, res) => {
-  console.log(req.body, "REQ body is there");
+export const appointment = async (req, res) => {
+  try {
+    const {
+      firstName,
+      lastName,
+      mobileNumber,
+      email,
+      address,
+      date,
+      time,
+      preferredSlot,
+      modeOfConsultation,
+      orderID,
+    } = req.body;
 
+    const newAppointment = new Appointment({
+      firstName,
+      lastName,
+      mobileNumber,
+      email,
+      address,
+      date,
+      time,
+      preferredSlot,
+      modeOfConsultation,
+      orderID,
+    });
+    await newAppointment.save();
+
+    res.status(201).json({ message: "Appointment booked successfully!" });
+  } catch (err) {
+    res
+      .status(500)
+      .json({ message: "Error while booking appointment", error: err });
+  }
+};
+
+export const paymentVerification = async (req, res) => {
   try {
     const { razorpay_payment_id, razorpay_order_id, razorpay_signature } =
       req.body;
@@ -42,9 +75,7 @@ export const paymentVerification = async (req, res) => {
       .digest("hex");
 
     const isAuthentic = expectedSignature === razorpay_signature;
-    console.log(isAuthentic, "Authentic or not ...");
     if (isAuthentic) {
-      //  it should be add into data base
       await Payment.create({
         razorpay_payment_id,
         razorpay_order_id,
@@ -52,7 +83,7 @@ export const paymentVerification = async (req, res) => {
       });
 
       return res.redirect(
-        `http://localhost:5173/paymentsuccess?reference=${razorpay_payment_id}`
+        `${process.env.VITE_HOST_URL_ENDPOINT_FOR_FRONTEND}/paymentsuccess?reference=${razorpay_payment_id}`
       );
     } else {
       // If not authentic, send a failure JSON response like below
@@ -62,7 +93,6 @@ export const paymentVerification = async (req, res) => {
     }
   } catch (error) {
     console.log(error);
-    // Handle other errors as needed
     res.status(500).json({
       success: false,
       error: "Internal Server Error",
