@@ -2,15 +2,19 @@ import { instance } from "../server.js";
 import crypto from "crypto";
 import { Payment } from "../models/payment.model.js";
 import { Appointment } from "../models/appointment.model.js";
+import { nanoid } from "nanoid";
 
 export const checkout = async (req, res) => {
+  console.log(req.body, "Req dot body while checkout ...");
+  // res.send(req.body, "Req dot body while checkout...");
   try {
     const options = {
       amount: Number(req.body.price) * 100,
       currency: "INR",
-      receipt: "order_rcptid_11",
+      receipt: `RECEIPT_ID_${nanoid()}`,
     };
 
+    console.log(options, "Options is there ..");
     const order = await instance.orders.create(options);
 
     res.status(200).json({

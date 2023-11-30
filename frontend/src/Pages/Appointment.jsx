@@ -25,7 +25,7 @@ const Appointment = () => {
     time: getCurrentTime(),
     preferredSlot: "morning",
     modeOfConsultation: "online",
-    priceOfAppointment: 3000,
+    price: 3000,
   });
 
   const [userDataFromPayment, setUserDataFromPayment] = useState(null);
@@ -49,7 +49,7 @@ const Appointment = () => {
 
   const checkoutHandler = async (e, formData) => {
     e.preventDefault();
-    const { firstName, lastName, mobileNumber, address } = formData;
+    const { firstName, lastName, mobileNumber, address, price } = formData;
 
     if (
       !firstName.trim() ||
@@ -72,7 +72,6 @@ const Appointment = () => {
       alert("Please enter your last name properly ");
       return;
     }
-    let price = formData.priceOfAppointment;
 
     //************************   After completion of the validation process this below code would be uncommented   ************************
 
@@ -85,7 +84,7 @@ const Appointment = () => {
         data: { order },
       } = await axios.post(
         `${import.meta.env.VITE_HOST_URL_ENDPOINT}/api/checkout`,
-        { price: price },
+        { price },
         {
           headers: {
             "Content-Type": "application/json",
