@@ -42,7 +42,7 @@ export const appointment = async (req, res) => {
       time,
       preferredSlot,
       modeOfConsultation,
-      orderID,
+      razorpay_order_id,
     } = req.body;
 
     const newAppointment = new Appointment({
@@ -55,7 +55,7 @@ export const appointment = async (req, res) => {
       time,
       preferredSlot,
       modeOfConsultation,
-      orderID,
+      razorpay_order_id,
     });
     await newAppointment.save();
 
@@ -80,26 +80,87 @@ export const paymentVerification = async (req, res) => {
 
     const isAuthentic = expectedSignature === razorpay_signature;
     if (isAuthentic) {
-      await Payment.create({
-        razorpay_payment_id,
-        razorpay_order_id,
-        razorpay_signature,
+      // Retrieve appointment data based on the razorpay_order_id
+      const paymentByUser = await Appointment.findOne({
+        razorpay_order_id: razorpay_order_id,
       });
-
-      return res.redirect(
-        `${process.env.VITE_HOST_URL_ENDPOINT_FOR_FRONTEND}/paymentsuccess?reference=${razorpay_payment_id}`
+      console.log(
+        paymentByUser,
+        "Appontment is getting successfully or not ..."
       );
+      if (paymentByUser) {
+        // If appointment data is found, create and save payment details along with appointment data
+        await Payment.create({
+          razorpay_payment_id,
+          razorpay_order_id,
+          razorpay_signature,
+          firstName: paymentByUser.firstName,
+          lastName: paymentByUser.lastName,
+          mobileNumber: paymentByUser.mobileNumber,
+          email: paymentByUser.email,
+          address: paymentByUser.address,
+          date: paymentByUser.date,
+          time: paymentByUser.time,
+          preferredSlot: paymentByUser.preferredSlot,
+          modeOfConsultation: paymentByUser.modeOfConsultation,
+          currentDate: paymentByUser.currentDate,
+          currentTime: paymentByUser.currentTime,
+        });
+
+        return res.redirect(
+          `${process.env.VITE_HOST_URL_ENDPOINT_FOR_FRONTEND}/paymentsuccess?reference=${razorpay_payment_id}`
+        );
+      } else {
+        return res
+          .status(404)
+          .json({ success: false, message: "Appointment data not found" });
+      }
     } else {
-      // If not authentic, send a failure JSON response like below
-      res.status(400).json({
-        success: false,
-      });
+      return res
+        .status(400)
+        .json({ success: false, message: "Request not authentic" });
     }
   } catch (error) {
-    console.log(error);
-    res.status(500).json({
-      success: false,
-      error: "Internal Server Error",
-    });
+    console.error(error);
+    return res
+      .status(500)
+      .json({ success: false, error: "Internal Server Error" });
   }
 };
+
+// export const paymentVerification = async (req, res) => {
+//   try {
+//     const { razorpay_payment_id, razorpay_order_id, razorpay_signature } =
+//       req.body;
+//     const body = razorpay_order_id + "|" + razorpay_payment_id;
+
+//     const expectedSignature = crypto
+//       .createHmac("sha256", process.env.VITE_APP_RAZORPAY_KEY_SECRET)
+//       .update(body.toString())
+//       .digest("hex");
+
+//     const isAuthentic = expectedSignature === razorpay_signature;
+//     if (isAuthentic) {
+//       await Payment.create({
+//         razorpay_payment_id,
+//         razorpay_order_id,
+//         razorpay_signature,
+//       });
+
+//       return res.redirect(
+//         `${process.env.VITE_HOST_URL_ENDPOINT_FOR_FRONTEND}/paymentsuccess?reference=${razorpay_payment_id}`
+//       );
+//     } else {
+//       // If not authentic, send a failure JSON response like below
+//       res.status(400).json({
+//         success: false,
+//       });
+//     }
+//   } catch (error) {
+//     console.log(error);
+//     res.status(500).json({
+//       success: false,
+//       error: "Internal Server Error",
+//     });
+//   }
+// };
