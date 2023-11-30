@@ -15,7 +15,7 @@ const Appointment = () => {
     return `${hours}:${minutes}`;
   };
 
-  const [formData, setFormData] = useState({
+  const initialFormValue = {
     firstName: "",
     lastName: "",
     mobileNumber: "",
@@ -26,7 +26,10 @@ const Appointment = () => {
     preferredSlot: "morning",
     modeOfConsultation: "online",
     price: 3000,
-  });
+  };
+  const [formData, setFormData] = useState(initialFormValue);
+
+  const [loading, setLoading] = useState(false);
 
   const [userDataFromPayment, setUserDataFromPayment] = useState(null);
 
@@ -49,6 +52,7 @@ const Appointment = () => {
 
   const checkoutHandler = async (e, formData) => {
     e.preventDefault();
+    setLoading(true);
     const { firstName, lastName, mobileNumber, address, price } = formData;
 
     if (
@@ -118,9 +122,12 @@ const Appointment = () => {
       };
       var razor = new window.Razorpay(options);
       gettingDataFromPlacingOrder(options, order);
+      setFormData(initialFormValue);
       razor.open();
     } catch (error) {
       console.error("Error during checkout:", error.message);
+    } finally {
+      setLoading(false);
     }
   };
   //************************   After completion of the validation process this above code would be uncommented   ************************
@@ -150,7 +157,7 @@ const Appointment = () => {
         `${import.meta.env.VITE_HOST_URL_ENDPOINT}/api/appointment`,
         dataToSend
       );
-      console.log(response, "Response getting or not ...")
+      console.log(response, "Response getting or not ...");
     } catch (error) {
       console.error("Error while adding data to the database:", error);
     }
@@ -301,7 +308,7 @@ const Appointment = () => {
                   className="bg-blue-500 hover:bg-blue-700 w-full text-white font-bold py-2 px-4 rounded"
                   type="submit"
                 >
-                  Book Appointment
+                  {loading ? "Loading..." : "Book Appointment"}
                 </button>
               </div>
             </form>

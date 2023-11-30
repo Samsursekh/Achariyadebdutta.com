@@ -5,8 +5,6 @@ import { Appointment } from "../models/appointment.model.js";
 import { nanoid } from "nanoid";
 
 export const checkout = async (req, res) => {
-  console.log(req.body, "Req dot body while checkout ...");
-  // res.send(req.body, "Req dot body while checkout...");
   try {
     const options = {
       amount: Number(req.body.price) * 100,
@@ -80,16 +78,11 @@ export const paymentVerification = async (req, res) => {
 
     const isAuthentic = expectedSignature === razorpay_signature;
     if (isAuthentic) {
-      // Retrieve appointment data based on the razorpay_order_id
       const paymentByUser = await Appointment.findOne({
         razorpay_order_id: razorpay_order_id,
       });
-      console.log(
-        paymentByUser,
-        "Appontment is getting successfully or not ..."
-      );
+      
       if (paymentByUser) {
-        // If appointment data is found, create and save payment details along with appointment data
         await Payment.create({
           razorpay_payment_id,
           razorpay_order_id,
