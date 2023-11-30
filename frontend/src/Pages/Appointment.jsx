@@ -125,15 +125,10 @@ const Appointment = () => {
   };
   //************************   After completion of the validation process this above code would be uncommented   ************************
 
-  // const gettingDataFromPlacingOrder = (allTheData, order) => {
-  //   const orderID = order.id;
-  //   setUserDataFromPayment(orderID);
-  // };
-
   const gettingDataFromPlacingOrder = async (allTheData, order) => {
     try {
-      const orderID = order.id;
-      setUserDataFromPayment(orderID);
+      const razorpay_order_id = order.id;
+      setUserDataFromPayment(razorpay_order_id);
 
       // Prepare the data payload to be sent to the server
       const dataToSend = {
@@ -146,7 +141,7 @@ const Appointment = () => {
         time: formData.time,
         preferredSlot: formData.preferredSlot,
         modeOfConsultation: formData.modeOfConsultation,
-        orderID: orderID,
+        razorpay_order_id: razorpay_order_id,
         currentDate: new Date(),
         currentTime: getCurrentTime(),
       };
@@ -155,6 +150,7 @@ const Appointment = () => {
         `${import.meta.env.VITE_HOST_URL_ENDPOINT}/api/appointment`,
         dataToSend
       );
+      console.log(response, "Response getting or not ...")
     } catch (error) {
       console.error("Error while adding data to the database:", error);
     }

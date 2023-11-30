@@ -39,7 +39,7 @@ const appointmentSchema = new mongoose.Schema(
       enum: ["online", "offline"],
       required: true,
     },
-    orderID: {
+    razorpay_order_id: {
       type: String,
       // required: true,
     },
