@@ -52,7 +52,6 @@ const Appointment = () => {
 
   const checkoutHandler = async (e, formData) => {
     e.preventDefault();
-    setLoading(true);
     const { firstName, lastName, mobileNumber, address, price } = formData;
 
     if (
@@ -77,6 +76,7 @@ const Appointment = () => {
       return;
     }
 
+    setLoading(true);
     //************************   After completion of the validation process this below code would be uncommented   ************************
 
     const {
