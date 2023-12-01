@@ -3,6 +3,7 @@ import {
   appointment,
   checkout,
   paymentVerification,
+  sendEmailToAdmin,
 } from "../controllers/payment.controller.js";
 
 const router = express.Router();
@@ -15,5 +16,6 @@ router.get("/appointment", (req, res) => {
 });
 router.route("/appointment").post(appointment);
 router.route("/paymentverification").post(paymentVerification);
+router.route("/sendEmailToAdmin").post(sendEmailToAdmin);
 
 export default router;

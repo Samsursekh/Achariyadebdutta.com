@@ -6,6 +6,7 @@ import Footer from "../components/Footer";
 import banner3 from "../images/sliderImages/slide2.jpg";
 import * as Yup from "yup";
 import logo from "../images/logo/llogo icon-01.png";
+import emailjs from "@emailjs/browser";
 
 const Appointment = () => {
   const getCurrentTime = () => {
@@ -28,6 +29,56 @@ const Appointment = () => {
     price: 3000,
   };
   const [formData, setFormData] = useState(initialFormValue);
+
+  // const sendEmailToAdmin = () => {
+  //   const templateParams = {
+  //     firstName: formData.firstName,
+  //     lastName: formData.lastName,
+  //     mobileNumber: formData.mobileNumber,
+  //     email: formData.email,
+  //     address: formData.address,
+  //     date: formData.date,
+  //     time: formData.time,
+  //     preferredSlot: formData.preferredSlot,
+  //     modeOfConsultation: formData.modeOfConsultation,
+  //   };
+
+  //   emailjs.send(
+  //     import.meta.env.VITE_APP_EMAIL_JS_SERVICE_ID_OF_PABLO_AC,
+  //     import.meta.env.VITE_APP_EMAIL_JS_TEMPLATE_ID_OF_PABLO_AC,
+  //     templateParams,
+  //     import.meta.env.VITE_APP_EMAIL_JS_PUBLIC_KEY_ID_OF_PABLO_AC
+  //   )
+  //   .then((response) => {
+  //     console.log('Email sent!', response);
+  //   })
+  //   .catch((error) => {
+  //     console.error('Error sending email:', error);
+  //   });
+  // };
+
+  const sendEmailWhilePaymentSuccess = () => {
+    fetch(`${import.meta.env.VITE_HOST_URL_ENDPOINT}/api/sendEmailToAdmin`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ formData }),
+    })
+      .then((response) => {
+        if (response.ok) {
+          console.log("Email sent successfully!");
+          // Handle success if needed
+        } else {
+          console.error("Error sending email:", response.statusText);
+          // Handle error if needed
+        }
+      })
+      .catch((error) => {
+        console.error("Error sending email:", error);
+        // Handle error if needed
+      });
+  };
 
   const [loading, setLoading] = useState(false);
 
@@ -124,6 +175,8 @@ const Appointment = () => {
       gettingDataFromPlacingOrder(options, order);
       setFormData(initialFormValue);
       razor.open();
+      // sendEmailToAdmin()
+      sendEmailWhilePaymentSuccess()
     } catch (error) {
       console.error("Error during checkout:", error.message);
     } finally {
@@ -137,7 +190,6 @@ const Appointment = () => {
       const razorpay_order_id = order.id;
       setUserDataFromPayment(razorpay_order_id);
 
-      // Prepare the data payload to be sent to the server
       const dataToSend = {
         firstName: allTheData.prefill.name.split(" ")[0],
         lastName: allTheData.prefill.name.split(" ")[1],
@@ -158,11 +210,14 @@ const Appointment = () => {
         dataToSend
       );
       console.log(response, "Response getting or not ...");
+      // sendEmailToAdmin()
     } catch (error) {
       console.error("Error while adding data to the database:", error);
     }
   };
 
+  const currentDate = new Date().toISOString().split("T")[0];
+  //  console.log(currentDate)
   return (
     <>
       <section className="bg-gray-100 min-h-screen">
@@ -266,6 +321,7 @@ const Appointment = () => {
                   required
                   value={formData.date}
                   onChange={handleInputChange}
+                  min={currentDate}
                   className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 />
                 <input
