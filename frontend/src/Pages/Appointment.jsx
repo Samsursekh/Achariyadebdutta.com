@@ -6,6 +6,7 @@ import Footer from "../components/Footer";
 import banner3 from "../images/sliderImages/slide2.jpg";
 import * as Yup from "yup";
 import logo from "../images/logo/llogo icon-01.png";
+import emailjs from "@emailjs/browser";
 
 const Appointment = () => {
   const getCurrentTime = () => {
@@ -15,18 +16,43 @@ const Appointment = () => {
     return `${hours}:${minutes}`;
   };
 
-  const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
-    mobileNumber: "",
-    email: "",
-    address: "",
+  const initialFormValue = {
+    firstName: "test",
+    lastName: "email",
+    mobileNumber: "1234567890",
+    email: "test@gmail.com",
+    address: "IN",
     date: new Date().toISOString().substr(0, 10),
     time: getCurrentTime(),
     preferredSlot: "morning",
     modeOfConsultation: "online",
     price: 3000,
-  });
+  };
+  const [formData, setFormData] = useState(initialFormValue);
+
+
+  // const sendEmailWhilePaymentSuccess = () => {
+  //   axios.post(`${import.meta.env.VITE_HOST_URL_ENDPOINT}/api/sendemailtoadmin`, {
+  //     formData: formData,
+  //   }, {
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //     },
+  //   })
+  //   .then((response) => {
+  //     if (response.status === 200) {
+  //       console.log(response, "Response is there or not")
+  //       console.log('Email sent successfully!');
+  //     } else {
+  //       console.error('Error sending email:', response.statusText);
+  //     }
+  //   })
+  //   .catch((error) => {
+  //     console.error('Error sending email:', error);
+  //   });
+  // };
+
+  const [loading, setLoading] = useState(false);
 
   const [userDataFromPayment, setUserDataFromPayment] = useState(null);
 
@@ -73,6 +99,7 @@ const Appointment = () => {
       return;
     }
 
+    setLoading(true);
     //************************   After completion of the validation process this below code would be uncommented   ************************
 
     const {
@@ -117,10 +144,16 @@ const Appointment = () => {
         },
       };
       var razor = new window.Razorpay(options);
+      
       gettingDataFromPlacingOrder(options, order);
+      // setFormData(initialFormValue);
       razor.open();
+      // sendEmailToAdmin()
+      // sendEmailWhilePaymentSuccess()
     } catch (error) {
       console.error("Error during checkout:", error.message);
+    } finally {
+      setLoading(false);
     }
   };
   //************************   After completion of the validation process this above code would be uncommented   ************************
@@ -130,7 +163,6 @@ const Appointment = () => {
       const razorpay_order_id = order.id;
       setUserDataFromPayment(razorpay_order_id);
 
-      // Prepare the data payload to be sent to the server
       const dataToSend = {
         firstName: allTheData.prefill.name.split(" ")[0],
         lastName: allTheData.prefill.name.split(" ")[1],
@@ -150,12 +182,15 @@ const Appointment = () => {
         `${import.meta.env.VITE_HOST_URL_ENDPOINT}/api/appointment`,
         dataToSend
       );
-      console.log(response, "Response getting or not ...")
+      console.log(response, "Response getting or not ...");
+      // sendEmailToAdmin()
     } catch (error) {
       console.error("Error while adding data to the database:", error);
     }
   };
 
+  const currentDate = new Date().toISOString().split("T")[0];
+  //  console.log(currentDate)
   return (
     <>
       <section className="bg-gray-100 min-h-screen">
@@ -259,6 +294,7 @@ const Appointment = () => {
                   required
                   value={formData.date}
                   onChange={handleInputChange}
+                  min={currentDate}
                   className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 />
                 <input
@@ -301,7 +337,7 @@ const Appointment = () => {
                   className="bg-blue-500 hover:bg-blue-700 w-full text-white font-bold py-2 px-4 rounded"
                   type="submit"
                 >
-                  Book Appointment
+                  {loading ? "Loading..." : "Book Appointment"}
                 </button>
               </div>
             </form>

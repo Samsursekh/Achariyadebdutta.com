@@ -6,6 +6,7 @@ import bodyParser from 'body-parser';
 
 // config({ path: "./config/config.env" });
 config({ path: ".env" });
+// require('dotenv').config()
 
 export const app = express();
 

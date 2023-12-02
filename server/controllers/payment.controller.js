@@ -3,10 +3,10 @@ import crypto from "crypto";
 import { Payment } from "../models/payment.model.js";
 import { Appointment } from "../models/appointment.model.js";
 import { nanoid } from "nanoid";
+import emailjs from "@emailjs/browser";
+import nodemailer from "nodemailer";
 
 export const checkout = async (req, res) => {
-  console.log(req.body, "Req dot body while checkout ...");
-  // res.send(req.body, "Req dot body while checkout...");
   try {
     const options = {
       amount: Number(req.body.price) * 100,
@@ -31,6 +31,7 @@ export const checkout = async (req, res) => {
 };
 
 export const appointment = async (req, res) => {
+  console.log(req.body, "REQUEST BODY...");
   try {
     const {
       firstName,
@@ -80,16 +81,11 @@ export const paymentVerification = async (req, res) => {
 
     const isAuthentic = expectedSignature === razorpay_signature;
     if (isAuthentic) {
-      // Retrieve appointment data based on the razorpay_order_id
       const paymentByUser = await Appointment.findOne({
         razorpay_order_id: razorpay_order_id,
       });
-      console.log(
-        paymentByUser,
-        "Appontment is getting successfully or not ..."
-      );
+
       if (paymentByUser) {
-        // If appointment data is found, create and save payment details along with appointment data
         await Payment.create({
           razorpay_payment_id,
           razorpay_order_id,
@@ -106,6 +102,8 @@ export const paymentVerification = async (req, res) => {
           currentDate: paymentByUser.currentDate,
           currentTime: paymentByUser.currentTime,
         });
+
+        sendEmailToAdmin(req.body.formData);
 
         return res.redirect(
           `${process.env.VITE_HOST_URL_ENDPOINT_FOR_FRONTEND}/paymentsuccess?reference=${razorpay_payment_id}`
@@ -128,39 +126,71 @@ export const paymentVerification = async (req, res) => {
   }
 };
 
-// export const paymentVerification = async (req, res) => {
-//   try {
-//     const { razorpay_payment_id, razorpay_order_id, razorpay_signature } =
-//       req.body;
-//     const body = razorpay_order_id + "|" + razorpay_payment_id;
+export const sendEmailToAdmin = async (req, res) => {
+  // console.log(req.body, "REQUEST BODY...")
+  try {
+    const {
+      firstName,
+      lastName,
+      mobileNumber,
+      email,
+      address,
+      date,
+      time,
+      preferredSlot,
+      modeOfConsultation,
+    } = req.body.formData;
 
-//     const expectedSignature = crypto
-//       .createHmac("sha256", process.env.VITE_APP_RAZORPAY_KEY_SECRET)
-//       .update(body.toString())
-//       .digest("hex");
+    const transporter = nodemailer.createTransport({
+      service: "gmail",
+      auth: {
+        user: process.env.VITE_APP_USER_EMAIL_TO_SEND_EMAIL,
+        pass: process.env.VITE_APP_GOOGLE_APP_PASSWORD,
+      },
+    });
 
-//     const isAuthentic = expectedSignature === razorpay_signature;
-//     if (isAuthentic) {
-//       await Payment.create({
-//         razorpay_payment_id,
-//         razorpay_order_id,
-//         razorpay_signature,
-//       });
+    const mailOptions = {
+      from: `${firstName} <${email}>`,
+      to: process.env.VITE_APP_USER_EMAIL_TO_SEND_EMAIL,
+      subject: `Appointment Information send by ${firstName}`,
+      text: `
+        First Name: ${firstName}
+        Last Name: ${lastName}
+        Mobile Number: ${mobileNumber}
+        Email: ${email}
+        Address: ${address}
+        Date: ${date}
+        Time: ${time}
+        Preferred Slot: ${preferredSlot}
+        Mode of Consultation: ${modeOfConsultation}
+      `,
+      html: `
+        <h1>Appointment Information</h1>
+        <p><strong>First Name:</strong> ${firstName}</p>
+        <p><strong>Last Name:</strong> ${lastName}</p>
+        <p><strong>Mobile Number:</strong> ${mobileNumber}</p>
+        <p><strong>Email:</strong> ${email}</p>
+        <p><strong>Address:</strong> ${address}</p>
+        <p><strong>Date:</strong> ${date}</p>
+        <p><strong>Time:</strong> ${time}</p>
+        <p><strong>Preferred Slot:</strong> ${preferredSlot}</p>
+        <p><strong>Mode of Consultation:</strong> ${modeOfConsultation}</p>
+      `,
+    };
+    // console.log(mailOptions, "IS MAIL option is configure properly")
 
-//       return res.redirect(
-//         `${process.env.VITE_HOST_URL_ENDPOINT_FOR_FRONTEND}/paymentsuccess?reference=${razorpay_payment_id}`
-//       );
-//     } else {
-//       // If not authentic, send a failure JSON response like below
-//       res.status(400).json({
-//         success: false,
-//       });
-//     }
-//   } catch (error) {
-//     console.log(error);
-//     res.status(500).json({
-//       success: false,
-//       error: "Internal Server Error",
-//     });
-//   }
-// };
+    transporter.sendMail(mailOptions, (error, info) => {
+      // console.log(info, "INFO is printing succssfully")
+      if (error) {
+        console.error("Error sending email:", error);
+        res.status(500).json({ error: "Internal Server Error" });
+      } else {
+        console.log("Email sent:", info.response);
+        res.status(200).json({ message: "Email sent successfully!" });
+      }
+    });
+  } catch (error) {
+    console.error("Something went wrong while sending email:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
