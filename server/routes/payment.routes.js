@@ -16,6 +16,6 @@ router.get("/appointment", (req, res) => {
 });
 router.route("/appointment").post(appointment);
 router.route("/paymentverification").post(paymentVerification);
-router.route("/sendEmailToAdmin").post(sendEmailToAdmin);
+router.route("/sendemailtoadmin").post(sendEmailToAdmin);
 
 export default router;

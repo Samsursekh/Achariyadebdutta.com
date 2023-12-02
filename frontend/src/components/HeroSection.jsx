@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import banner from "../images/banner.jpg";
-import mbanner from "../images/alldebdatta-images/mbanner.jpg";
+import mbanner from "../images/mob-banner.jpg";
 import banner1 from "../images/banner1.jpg";
 import BottomNavbar from "./BottomNavbar";
 import TopNavbar from "./TopNavbar";
@@ -12,7 +12,7 @@ const HeroSection = () => {
 
   useEffect(() => {
     const handleResize = () => {
-      setIsSmallScreen(window.innerWidth <= 768);
+      setIsSmallScreen(window.innerWidth <= 912);
     };
 
     window.addEventListener("resize", handleResize);
@@ -39,7 +39,7 @@ const HeroSection = () => {
         <BottomNavbar />
         {/* <About /> */}
         <div className=" flex justify-center items-center w-full absolute m-auto h-screen">
-          <div className="absolute text-center top-48 lg:left-32 md:left-14 p-4">
+          <div className="absolute text-center top-[60%] md:top-[40%] lg:top-[30%]  lg:left-32 md:left-14 p-4">
             <h1 className="text-5xl font-philosopher text-white font-semibold">
               Astro Achariya Debdutta
             </h1>
@@ -51,11 +51,9 @@ const HeroSection = () => {
                 <strong>Vastu</strong> Influencer
               </p>
               <p className="text-white">
-                Author, <strong>Success Guru</strong>
+                Author, <strong>Life Coach</strong>, <strong>Success Guru</strong>
               </p>
-              <p className="text-white">
-                <strong>Life Coach</strong>
-              </p>
+             
             </div>
             <Link to={"/appointment"}>
               <button className="text-white bg-black hover:bg-transparent border border-black rounded-sm px-3 py-2 hover:border hover:border-black transition duration-700 ease-in-out">

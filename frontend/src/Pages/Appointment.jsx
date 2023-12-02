@@ -17,11 +17,11 @@ const Appointment = () => {
   };
 
   const initialFormValue = {
-    firstName: "",
-    lastName: "",
-    mobileNumber: "",
-    email: "",
-    address: "",
+    firstName: "test",
+    lastName: "email",
+    mobileNumber: "1234567890",
+    email: "test@gmail.com",
+    address: "IN",
     date: new Date().toISOString().substr(0, 10),
     time: getCurrentTime(),
     preferredSlot: "morning",
@@ -30,55 +30,27 @@ const Appointment = () => {
   };
   const [formData, setFormData] = useState(initialFormValue);
 
-  // const sendEmailToAdmin = () => {
-  //   const templateParams = {
-  //     firstName: formData.firstName,
-  //     lastName: formData.lastName,
-  //     mobileNumber: formData.mobileNumber,
-  //     email: formData.email,
-  //     address: formData.address,
-  //     date: formData.date,
-  //     time: formData.time,
-  //     preferredSlot: formData.preferredSlot,
-  //     modeOfConsultation: formData.modeOfConsultation,
-  //   };
 
-  //   emailjs.send(
-  //     import.meta.env.VITE_APP_EMAIL_JS_SERVICE_ID_OF_PABLO_AC,
-  //     import.meta.env.VITE_APP_EMAIL_JS_TEMPLATE_ID_OF_PABLO_AC,
-  //     templateParams,
-  //     import.meta.env.VITE_APP_EMAIL_JS_PUBLIC_KEY_ID_OF_PABLO_AC
-  //   )
+  // const sendEmailWhilePaymentSuccess = () => {
+  //   axios.post(`${import.meta.env.VITE_HOST_URL_ENDPOINT}/api/sendemailtoadmin`, {
+  //     formData: formData,
+  //   }, {
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //     },
+  //   })
   //   .then((response) => {
-  //     console.log('Email sent!', response);
+  //     if (response.status === 200) {
+  //       console.log(response, "Response is there or not")
+  //       console.log('Email sent successfully!');
+  //     } else {
+  //       console.error('Error sending email:', response.statusText);
+  //     }
   //   })
   //   .catch((error) => {
   //     console.error('Error sending email:', error);
   //   });
   // };
-
-  const sendEmailWhilePaymentSuccess = () => {
-    fetch(`${import.meta.env.VITE_HOST_URL_ENDPOINT}/api/sendEmailToAdmin`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ formData }),
-    })
-      .then((response) => {
-        if (response.ok) {
-          console.log("Email sent successfully!");
-          // Handle success if needed
-        } else {
-          console.error("Error sending email:", response.statusText);
-          // Handle error if needed
-        }
-      })
-      .catch((error) => {
-        console.error("Error sending email:", error);
-        // Handle error if needed
-      });
-  };
 
   const [loading, setLoading] = useState(false);
 
@@ -172,11 +144,12 @@ const Appointment = () => {
         },
       };
       var razor = new window.Razorpay(options);
+      
       gettingDataFromPlacingOrder(options, order);
-      setFormData(initialFormValue);
+      // setFormData(initialFormValue);
       razor.open();
       // sendEmailToAdmin()
-      sendEmailWhilePaymentSuccess()
+      // sendEmailWhilePaymentSuccess()
     } catch (error) {
       console.error("Error during checkout:", error.message);
     } finally {

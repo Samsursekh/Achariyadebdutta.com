@@ -4,6 +4,7 @@ import { Payment } from "../models/payment.model.js";
 import { Appointment } from "../models/appointment.model.js";
 import { nanoid } from "nanoid";
 import emailjs from "@emailjs/browser";
+import nodemailer from "nodemailer";
 
 export const checkout = async (req, res) => {
   try {
@@ -30,6 +31,7 @@ export const checkout = async (req, res) => {
 };
 
 export const appointment = async (req, res) => {
+  console.log(req.body, "REQUEST BODY...");
   try {
     const {
       firstName,
@@ -101,6 +103,8 @@ export const paymentVerification = async (req, res) => {
           currentTime: paymentByUser.currentTime,
         });
 
+        sendEmailToAdmin(req.body.formData);
+
         return res.redirect(
           `${process.env.VITE_HOST_URL_ENDPOINT_FOR_FRONTEND}/paymentsuccess?reference=${razorpay_payment_id}`
         );
@@ -122,44 +126,71 @@ export const paymentVerification = async (req, res) => {
   }
 };
 
-// Import necessary modules and dependencies
-
 export const sendEmailToAdmin = async (req, res) => {
-  console.log(req.body , "REQ DOT BODY IS THERE OR NOT")
+  // console.log(req.body, "REQUEST BODY...")
   try {
-    const { formData } = req.body;
+    const {
+      firstName,
+      lastName,
+      mobileNumber,
+      email,
+      address,
+      date,
+      time,
+      preferredSlot,
+      modeOfConsultation,
+    } = req.body.formData;
 
-    const templateParams = {
-      firstName: formData.firstName,
-      lastName: formData.lastName,
-      mobileNumber: formData.mobileNumber,
-      email: formData.email,
-      address: formData.address,
-      date: formData.date,
-      time: formData.time,
-      preferredSlot: formData.preferredSlot,
-      modeOfConsultation: formData.modeOfConsultation,
+    const transporter = nodemailer.createTransport({
+      service: "gmail",
+      auth: {
+        user: process.env.VITE_APP_USER_EMAIL_TO_SEND_EMAIL,
+        pass: process.env.VITE_APP_GOOGLE_APP_PASSWORD,
+      },
+    });
+
+    const mailOptions = {
+      from: `${firstName} <${email}>`,
+      to: process.env.VITE_APP_USER_EMAIL_TO_SEND_EMAIL,
+      subject: `Appointment Information send by ${firstName}`,
+      text: `
+        First Name: ${firstName}
+        Last Name: ${lastName}
+        Mobile Number: ${mobileNumber}
+        Email: ${email}
+        Address: ${address}
+        Date: ${date}
+        Time: ${time}
+        Preferred Slot: ${preferredSlot}
+        Mode of Consultation: ${modeOfConsultation}
+      `,
+      html: `
+        <h1>Appointment Information</h1>
+        <p><strong>First Name:</strong> ${firstName}</p>
+        <p><strong>Last Name:</strong> ${lastName}</p>
+        <p><strong>Mobile Number:</strong> ${mobileNumber}</p>
+        <p><strong>Email:</strong> ${email}</p>
+        <p><strong>Address:</strong> ${address}</p>
+        <p><strong>Date:</strong> ${date}</p>
+        <p><strong>Time:</strong> ${time}</p>
+        <p><strong>Preferred Slot:</strong> ${preferredSlot}</p>
+        <p><strong>Mode of Consultation:</strong> ${modeOfConsultation}</p>
+      `,
     };
+    // console.log(mailOptions, "IS MAIL option is configure properly")
 
-    emailjs
-      .send(
-        process.env.VITE_APP_EMAIL_JS_SERVICE_ID_OF_PABLO_AC,
-        process.env.VITE_APP_EMAIL_JS_TEMPLATE_ID_OF_PABLO_AC,
-        templateParams,
-        process.env.VITE_APP_EMAIL_JS_PUBLIC_KEY_ID_OF_PABLO_AC
-      )
-      .then((response) => {
-        console.log("Email sent!", response);
-        res.status(200).json({ message: "Email sent successfully!" });
-      })
-      .catch((error) => {
+    transporter.sendMail(mailOptions, (error, info) => {
+      // console.log(info, "INFO is printing succssfully")
+      if (error) {
         console.error("Error sending email:", error);
         res.status(500).json({ error: "Internal Server Error" });
-      });
-
-    // res.status(200).json({ message: "Email sent successfully!" });
+      } else {
+        console.log("Email sent:", info.response);
+        res.status(200).json({ message: "Email sent successfully!" });
+      }
+    });
   } catch (error) {
     console.error("Something went wrong while sending email:", error);
-    // res.status(500).json({ error: "Internal Server Error" });
+    res.status(500).json({ error: "Internal Server Error" });
   }
 };
