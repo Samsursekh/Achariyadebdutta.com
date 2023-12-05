@@ -10,6 +10,12 @@ import AboutPage from "../Pages/AboutPage";
 import Appointment from "../Pages/Appointment";
 import Blogs from "../Pages/Blogs";
 import PaymentSuccess from "../components/PaymentSuccess";
+import AstroBirthChartReformation from "../Pages/FeaturedPageItems/AstroBirthChartReformation";
+import AstroVastuConsultancy from "../Pages/FeaturedPageItems/AstroVastuConsultancy";
+import LifeCoachAndSuccessGuru from "../Pages/FeaturedPageItems/LifeCoachAndSuccessGuru";
+import Palmistry from "../Pages/FeaturedPageItems/Palmistry";
+import Numerology from "../Pages/FeaturedPageItems/Numerology";
+import FaceReading from "../Pages/FeaturedPageItems/FaceReading";
 
 const AllRoute = () => {
   return (
@@ -23,6 +29,22 @@ const AllRoute = () => {
       <Route path="/contact" element={<Contact />} />
       <Route path="/appointment" element={<Appointment />} />
       <Route path="/blogs" element={<Blogs />} />
+
+      <Route
+        path="/astro-birth-chart-reformation"
+        element={<AstroBirthChartReformation />}
+      />
+      <Route
+        path="/astro-vastu-consultancy"
+        element={<AstroVastuConsultancy />}
+      />
+      <Route
+        path="/life-coach-and-success-guru"
+        element={<LifeCoachAndSuccessGuru />}
+      />
+      <Route path="/palmistry" element={<Palmistry />} />
+      <Route path="/numerology" element={<Numerology />} />
+      <Route path="/face-reading" element={<FaceReading />} />
     </Routes>
   );
 };

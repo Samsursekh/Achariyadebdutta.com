@@ -65,7 +65,7 @@ const BottomNavbar = () => {
         <div className="cursor-pointer" onClick={() => navigate("/")}>
           {stickyLogo ? (
             <div className="flex justify-between items-center">
-              <img src={mobilelogo} alt="logo" className="w-14" />
+              <img src={mobilelogo} alt="logo" className="w-[50px] md:w-[70px] lg:w-[70px]" />
               <img
                 src={mobilelogo2}
                 className="w-[100px] md:w-[130px] lg:w-[200px]"
@@ -123,7 +123,7 @@ const BottomNavbar = () => {
               <hr className="border-b-2 border-white mt-[1px]" />
             )}
           </h3>
-          <h3
+          {/* <h3
             onClick={() => navigate("/awards")}
             className={`cursor-pointer mt-2 mx-2 text-[16px] transition duration-300 ${
               location.pathname === "/awards"
@@ -135,7 +135,7 @@ const BottomNavbar = () => {
             {location.pathname === "/awards" && (
               <hr className="border-b-2 border-white mt-[1px]" />
             )}
-          </h3>
+          </h3> */}
 
           <h3
             onClick={() => navigate("/services")}
@@ -150,7 +150,7 @@ const BottomNavbar = () => {
               <hr className="border-b-2 border-white mt-[1px]" />
             )}
           </h3>
-          <h3
+          {/* <h3
             onClick={() => navigate("/events")}
             className={`cursor-pointer mt-2 mx-2 text-[16px] transition duration-300 ${
               location.pathname === "/events"
@@ -162,7 +162,7 @@ const BottomNavbar = () => {
             {location.pathname === "/events" && (
               <hr className="border-b-2 border-white mt-[1px]" />
             )}
-          </h3>
+          </h3> */}
           <h3
             onClick={() => navigate("/appointment")}
             className={`cursor-pointer mt-2 mx-2 text-[16px] transition duration-300 ${
@@ -228,24 +228,24 @@ const BottomNavbar = () => {
             >
               About
             </h3>
-            <h3
+            {/* <h3
               onClick={() => navigate("/awards")}
               className="cursor-pointer hover:bg-blue-500 mt-2 hover:text-white transition duration-300"
             >
               Awards
-            </h3>
+            </h3> */}
             <h3
               onClick={() => navigate("/services")}
               className="cursor-pointer hover:bg-blue-500 mt-2 hover:text-white transition duration-300"
             >
               Services
             </h3>
-            <h3
+            {/* <h3
               onClick={() => navigate("/events")}
               className="cursor-pointer hover:bg-blue-500 mt-2 hover:text-white transition duration-300"
             >
               Events
-            </h3>
+            </h3> */}
             <h3
               onClick={() => navigate("/appointment")}
               className="cursor-pointer hover:bg-blue-500 mt-2 hover:text-white transition duration-300"
