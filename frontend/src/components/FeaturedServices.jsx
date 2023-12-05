@@ -122,7 +122,7 @@ const FeaturedServices = () => {
           </h1>
           <p className="text-center">
             Explore the inspiring success stories of individuals whose lives
-            have been positively impacted by Dr. Jai Madaan's guidance and
+            have been positively impacted by Achariya Debtauua guidance and
             expertise.
           </p>
         </div>
