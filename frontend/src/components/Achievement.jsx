@@ -9,10 +9,10 @@ const Achievement = () => {
         <h1 className=" text-2xl md:text-3xl lg:text-4xl m-3 font-philosopher">
           MY JOURNEY
         </h1>
-        <h3 className="font-dancing text-xl text-slate-500">
+        <h3 className="font-dancing text-xl text-slate-800">
           ...what you seek, seeks you
         </h3>
-        <div className="m-auto px-3 text-slate-400 font-sans w-[90%] md:w-[70%] lg:w-[50%] mt-3">
+        <div className="m-auto px-3 text-slate-600 font-sans w-[90%] md:w-[70%] lg:w-[50%] mt-3">
           <p>Embarking on a spiritual odyssey in childhood, </p>
           <p>
             I cultivated a deep passion for astrology and palm reading. Rigorous
@@ -27,7 +27,9 @@ const Achievement = () => {
         </div>
       </div>
 
-      <div className="grid md:flex lg:flex mt-10 m-auto mb-7 font-sans w-[90%] gap-4">
+{/************************* / Events section has commented below  ***********************/}
+
+      {/* <div className="grid md:flex lg:flex mt-10 m-auto mb-7 font-sans w-[90%] gap-4">
         <div className="border w-[90%] px-3 py-4 m-auto">
           <hr className="border border-s-violet-400 w-[95%] border-gray-300 my-4 m-auto" />
           <div className="flex justify-evenly items-center px-2 ">
@@ -127,7 +129,7 @@ const Achievement = () => {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
     </>
   );
 };
