@@ -14,7 +14,6 @@ export const checkout = async (req, res) => {
       receipt: `RECEIPT_ID_${nanoid()}`,
     };
 
-    console.log(options, "Options is there ..");
     const order = await instance.orders.create(options);
 
     res.status(200).json({
@@ -31,7 +30,6 @@ export const checkout = async (req, res) => {
 };
 
 export const appointment = async (req, res) => {
-  console.log(req.body, "REQUEST BODY...");
   try {
     const {
       firstName,
@@ -59,12 +57,79 @@ export const appointment = async (req, res) => {
       razorpay_order_id,
     });
     await newAppointment.save();
-
+  //  const emailData = await sendEmailToAdminWhenMakeAnAppointmnet(req.body);
+  await sendEmailToAdminWhenMakeAnAppointmnet(req.body);
     res.status(201).json({ message: "Appointment booked successfully!" });
   } catch (err) {
     res
       .status(500)
       .json({ message: "Error while booking appointment", error: err });
+  }
+};
+
+
+export const sendEmailToAdminWhenMakeAnAppointmnet = async (appointmentDetails) => {
+  try {
+    const {
+      firstName,
+      lastName,
+      mobileNumber,
+      email,
+      address,
+      date,
+      time,
+      preferredSlot,
+      modeOfConsultation,
+    } = appointmentDetails;
+
+    const transporter = nodemailer.createTransport({
+      service: "gmail",
+      auth: {
+        user: process.env.VITE_APP_USER_EMAIL_TO_SEND_EMAIL,
+        pass: process.env.VITE_APP_GOOGLE_APP_PASSWORD,
+      },
+    });
+
+    const mailOptions = {
+      from: `${firstName} <${email}>`,
+      to: process.env.VITE_APP_USER_EMAIL_TO_SEND_EMAIL,
+      subject: `Appointment Information send by ${firstName}`,
+      text: `
+        First Name: ${firstName}
+        Last Name: ${lastName}
+        Mobile Number: ${mobileNumber}
+        Email: ${email}
+        Address: ${address}
+        Date: ${date}
+        Time: ${time}
+        Preferred Slot: ${preferredSlot}
+        Mode of Consultation: ${modeOfConsultation}
+      `,
+      html: `
+        <h1>Appointment Information</h1>
+        <p><strong>First Name:</strong> ${firstName}</p>
+        <p><strong>Last Name:</strong> ${lastName}</p>
+        <p><strong>Mobile Number:</strong> ${mobileNumber}</p>
+        <p><strong>Email:</strong> ${email}</p>
+        <p><strong>Address:</strong> ${address}</p>
+        <p><strong>Date:</strong> ${date}</p>
+        <p><strong>Time:</strong> ${time}</p>
+        <p><strong>Preferred Slot:</strong> ${preferredSlot}</p>
+        <p><strong>Mode of Consultation:</strong> ${modeOfConsultation}</p>
+      `,
+    };
+    transporter.sendMail(mailOptions, (error, info) => {
+
+      if (error) {
+        console.error("Error sending email:", error);
+        res.status(500).json({ error: "Internal Server Error" });
+      } else {
+        res.status(200).json({ message: "Email sent successfully!" });
+      }
+    });
+  } catch (error) {
+    console.error("Something went wrong while sending email:", error);
+    res.status(500).json({ error: "Internal Server Error" });
   }
 };
 
@@ -127,7 +192,6 @@ export const paymentVerification = async (req, res) => {
 };
 
 export const sendEmailToAdmin = async (req, res) => {
-  // console.log(req.body, "REQUEST BODY...")
   try {
     const {
       firstName,
@@ -177,15 +241,12 @@ export const sendEmailToAdmin = async (req, res) => {
         <p><strong>Mode of Consultation:</strong> ${modeOfConsultation}</p>
       `,
     };
-    // console.log(mailOptions, "IS MAIL option is configure properly")
 
     transporter.sendMail(mailOptions, (error, info) => {
-      // console.log(info, "INFO is printing succssfully")
       if (error) {
         console.error("Error sending email:", error);
         res.status(500).json({ error: "Internal Server Error" });
       } else {
-        console.log("Email sent:", info.response);
         res.status(200).json({ message: "Email sent successfully!" });
       }
     });
