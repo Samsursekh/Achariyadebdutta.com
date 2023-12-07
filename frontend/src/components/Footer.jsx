@@ -41,22 +41,35 @@ const Footer = () => {
         <div>
           <h2 className="text-xl font-bold mb-3 ml-2 font-poppins">Services</h2>
           <ul className="ml-2 text-[16px]">
-            <li className="">Birth Journal</li>
+            <Link to="/astro-birth-chart-reformation">
+              <li className="">Astro Birth Chart Reformation</li>
+            </Link>
+
             <hr className="border border-s-violet-400 border-gray-300 my-2 m-auto" />
 
-            <li>Vastu Consultancy</li>
+            <Link to="/astro-vastu-consultancy">
+              <li className="">Astro Vastu Consultancy</li>
+            </Link>
             <hr className="border border-s-violet-400 border-gray-300 my-2 m-auto" />
 
-            <li>Face Reading</li>
+            <Link to="/life-coach-and-success-guru">
+              <li className="">Life Coach and Success Guru</li>
+            </Link>
             <hr className="border border-s-violet-400 border-gray-300 my-2 m-auto" />
 
-            <li>Tarot Card Reading</li>
+            <Link to="/palmistry">
+              <li className="">Palmistry</li>
+            </Link>
             <hr className="border border-s-violet-400 border-gray-300 my-2 m-auto" />
 
-            <li>Life Style Coaching</li>
+            <Link to="/numerology">
+              <li className="">Numerology</li>
+            </Link>
             <hr className="border border-s-violet-400 border-gray-300 my-2 m-auto" />
 
-            <li>Palmistry</li>
+            <Link to="/face-reading">
+              <li className="">Face Reading</li>
+            </Link>
           </ul>
         </div>
         <div>
@@ -102,10 +115,10 @@ const Footer = () => {
             Get In Touch
           </h2>
           <div className="text-[16px] ml-2">
-            <p>New Delhi, India</p>
+            <p>Kolkata, India</p>
             <p>Email: kaaushik.kar@gmail.com</p>
-            <p>Phone: +91 98705 91555</p>
-            <p>Phone: +91 98107 01006</p>
+            <p>Phone: +91 XXXXX XXXXX</p>
+            <p>Phone: +91 XXXXX XXXXX</p>
           </div>
           {/* Social icons div here */}
           <div className="flex justify-between md:ml-2 lg:ml-2 w-[250px] m-auto mt-[70px]">
@@ -131,7 +144,7 @@ const Footer = () => {
         <hr className=" w-[90%] border-s-violet-400 border-gray-300 my-10 mb-2 m-auto" />
       </div>
       <div className="m-auto text-center text-white pb-2">
-        © Copyright 2023, All Rights Reserved,❤️ by Samsur{" "}
+        © Copyright 2023, All Rights Reserved,❤️ by Samsur
       </div>
     </div>
   );

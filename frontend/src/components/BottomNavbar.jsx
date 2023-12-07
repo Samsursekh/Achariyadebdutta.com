@@ -62,13 +62,19 @@ const BottomNavbar = () => {
         }`}
       >
         {/* some color code of navbar  #1AA7EC  #1E2F97  #00468B #00588b #4267B2*/}
-        <div className="cursor-pointer" onClick={() => navigate("/")}>
+        <div className="">
           {stickyLogo ? (
             <div className="flex justify-between items-center">
-              <img src={mobilelogo} alt="logo" className="w-[50px] md:w-[70px] lg:w-[70px]" />
+              <img
+                src={mobilelogo}
+                alt="logo"
+                onClick={() => navigate("/")}
+                className="w-[50px] md:w-[70px] lg:w-[70px] cursor-pointer"
+              />
               <img
                 src={mobilelogo2}
-                className="w-[100px] md:w-[130px] lg:w-[200px]"
+                onClick={() => navigate("/")}
+                className="w-[100px] md:w-[130px] lg:w-[200px] cursor-pointer"
                 alt="logo"
               />
             </div>
@@ -76,7 +82,8 @@ const BottomNavbar = () => {
             <div className="">
               <img
                 src={logo}
-                className="w-[100px] mt-[6%] lg:mt-[20%] md:w-[200px] lg:w-[180px]"
+                onClick={() => navigate("/")}
+                className="w-[100px] mt-[6%] lg:mt-[20%] md:w-[200px] lg:w-[180px] cursor-pointer"
                 alt=""
               />
             </div>

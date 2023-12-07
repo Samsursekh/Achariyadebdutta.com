@@ -17,11 +17,11 @@ const Appointment = () => {
   };
 
   const initialFormValue = {
-    firstName: "test",
-    lastName: "email",
-    mobileNumber: "1234567890",
-    email: "test@gmail.com",
-    address: "IN",
+    firstName: "",
+    lastName: "",
+    mobileNumber: "",
+    email: "",
+    address: "",
     date: new Date().toISOString().substr(0, 10),
     time: getCurrentTime(),
     preferredSlot: "morning",
@@ -29,7 +29,6 @@ const Appointment = () => {
     price: 3000,
   };
   const [formData, setFormData] = useState(initialFormValue);
-
 
   // const sendEmailWhilePaymentSuccess = () => {
   //   axios.post(`${import.meta.env.VITE_HOST_URL_ENDPOINT}/api/sendemailtoadmin`, {
@@ -41,7 +40,6 @@ const Appointment = () => {
   //   })
   //   .then((response) => {
   //     if (response.status === 200) {
-  //       console.log(response, "Response is there or not")
   //       console.log('Email sent successfully!');
   //     } else {
   //       console.error('Error sending email:', response.statusText);
@@ -100,6 +98,19 @@ const Appointment = () => {
     }
 
     setLoading(true);
+
+    // const options = {
+    //   order_id: order.id,
+    //   prefill: {
+    //     name: `${formData.firstName} ${formData.lastName}`,
+    //     email: `${formData.email}`,
+    //     contact: `${formData.mobileNumber}`,
+    //     address: `${formData.address}`,
+    //   },
+    // };
+
+    // gettingDataFromPlacingOrder(options, order);
+
     //************************   After completion of the validation process this below code would be uncommented   ************************
 
     const {
@@ -118,7 +129,6 @@ const Appointment = () => {
           },
         }
       );
-
       const options = {
         key,
         amount: order.price,
@@ -126,7 +136,7 @@ const Appointment = () => {
         name: "Pablo Import Export",
         description: "Test Transaction",
         image: logo,
-        order_id: order.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+        order_id: order.id,
         callback_url: `${
           import.meta.env.VITE_HOST_URL_ENDPOINT
         }/api/paymentverification`,
@@ -144,12 +154,12 @@ const Appointment = () => {
         },
       };
       var razor = new window.Razorpay(options);
-      
       gettingDataFromPlacingOrder(options, order);
-      // setFormData(initialFormValue);
-      razor.open();
-      // sendEmailToAdmin()
-      // sendEmailWhilePaymentSuccess()
+      // ************************** ONCE I WANT TO ADD RAZORPAY IN APPONEMENT LETS UNCOMMENT THIS BELOW ************************
+
+      // razor.open();
+
+      // ************************** ONCE I WANT TO ADD RAZORPAY IN APPONEMENT LETS UNCOMMENT THIS ABOVE ************************
     } catch (error) {
       console.error("Error during checkout:", error.message);
     } finally {
@@ -183,7 +193,7 @@ const Appointment = () => {
         dataToSend
       );
       console.log(response, "Response getting or not ...");
-      // sendEmailToAdmin()
+      alert(response.data.message);
     } catch (error) {
       console.error("Error while adding data to the database:", error);
     }

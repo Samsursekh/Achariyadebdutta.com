@@ -8,7 +8,6 @@ const PaymentSuccess = () => {
 
   const searchQuery = useSearchParams()[0];
   const referenceNumber = searchQuery.get("reference");
-  console.log(searchQuery, "Search query...");
 
   useEffect(() => {
     const verifyPayment = async () => {
@@ -21,10 +20,10 @@ const PaymentSuccess = () => {
 
         console.log(response, "Response is getting or not")
 
-        if (response.data.success) {
-          setAuthenticPayment(true);
-          sendEmailWhilePaymentSuccess();
-        }
+        // if (response.data.success) {
+        //   setAuthenticPayment(true);
+        //   sendEmailWhilePaymentSuccess();
+        // }
       } catch (error) {
         console.error("Error verifying payment:", error);
       }
@@ -50,7 +49,6 @@ const PaymentSuccess = () => {
       )
       .then((response) => {
         if (response.status === 200) {
-          console.log(response, "Response is there or not");
           console.log("Email sent successfully!");
         } else {
           console.error("Error sending email:", response.statusText);
