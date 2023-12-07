@@ -115,10 +115,10 @@ const Footer = () => {
             Get In Touch
           </h2>
           <div className="text-[16px] ml-2">
-            <p>New Delhi, India</p>
+            <p>Kolkata, India</p>
             <p>Email: kaaushik.kar@gmail.com</p>
-            <p>Phone: +91 98705 91555</p>
-            <p>Phone: +91 98107 01006</p>
+            <p>Phone: +91 XXXXX XXXXX</p>
+            <p>Phone: +91 XXXXX XXXXX</p>
           </div>
           {/* Social icons div here */}
           <div className="flex justify-between md:ml-2 lg:ml-2 w-[250px] m-auto mt-[70px]">

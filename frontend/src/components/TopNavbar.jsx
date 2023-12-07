@@ -17,7 +17,7 @@ const TopNavbar = () => {
       <div className="flex justify-between items-center">
         <div className="flex items-center text-[15px] justify-around mr-2">
           <BsTelephoneFill className="mr-1" />
-          <p>+91 91 98705 91555 / 98107 01006</p>
+          <p>+91 XXXXX XXXXX / XXXXX XXXXX</p>
         </div>
         <div className="flex items-center text-[15px] justify-around ml-2">
           <AiOutlineMail className="mr-1" />
