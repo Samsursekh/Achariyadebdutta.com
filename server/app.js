@@ -2,7 +2,7 @@ import express from "express";
 import { config } from "dotenv";
 import paymentRoute from "./routes/payment.routes.js";
 import cors from "cors";
-const bodyParser = require('body-parser');
+import bodyParser from 'body-parser';
 
 // config({ path: "./config/config.env" });
 config({ path: ".env" });
