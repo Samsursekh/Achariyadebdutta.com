@@ -10,5 +10,5 @@ export const instance = new Razorpay({
 });
 
 app.listen(process.env.VITE_APP_PORT, () => {
-  // console.log(`App is running on port ${process.env.VITE_APP_PORT}`);
+  console.log(`App is running on port ${process.env.VITE_APP_PORT}`);
 });
