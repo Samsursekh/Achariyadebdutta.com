@@ -157,7 +157,7 @@ const Appointment = () => {
       gettingDataFromPlacingOrder(options, order);
       // ************************** ONCE I WANT TO ADD RAZORPAY IN APPONEMENT LETS UNCOMMENT THIS BELOW ************************
 
-      // razor.open();
+      razor.open();
 
       // ************************** ONCE I WANT TO ADD RAZORPAY IN APPONEMENT LETS UNCOMMENT THIS ABOVE ************************
     } catch (error) {
