@@ -1,38 +1,74 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { MdOutlineDone } from "react-icons/md";
 import { Link, useSearchParams } from "react-router-dom";
 import axios from "axios";
 
 const PaymentSuccess = () => {
   const [authenticPayment, setAuthenticPayment] = useState(false);
-
+  const [allTheData, setAllTheData] = useState([]);
+  // console.log("All the data", allTheData)
   const searchQuery = useSearchParams()[0];
   const referenceNumber = searchQuery.get("reference");
+  // console.log(referenceNumber, "referecen number ...")
+
+  // const verifyPayment = async () => {
+  //   try {
+  //     const response = await axios.get("http://localhost:8000/api/get-all-payments-of-users/"
+  //       // `${
+  //       //   import.meta.env.VITE_HOST_URL_ENDPOINT
+  //       // }/api/get-all-payments-of-users/`
+  //     );
+
+  //     console.log(response?.data?.data, "Response is getting or not")
+  //     setAllTheData(response?.data?.data);
+
+  //     // if (response.data.success) {
+  //     //   setAuthenticPayment(true);
+  //     //   sendEmailWhilePaymentSuccess();
+  //     // }
+
+  //     // if (referenceNumber === allTheData.razorpay_payment_id) {
+  //     //   console.log("Its Authentic")
+  //     //   verifyPayment();
+  //     // }
+
+  //     allTheData?.map((item) => {
+  //       console.log(item, "All the user here with payment ID")
+  //     })
+
+
+  //   } catch (error) {
+  //     console.error("Error verifying payment:", error);
+  //   }
+  // };
+
+  // useEffect(() => {
+  // verifyPayment();
+  // }, []);
+
+
+  const verifyPayment = useCallback(async () => {
+    try {
+      const response = await axios.get(`${import.meta.env.VITE_HOST_URL_ENDPOINT}/api/get-all-payments-of-users/`);
+      setAllTheData(response?.data?.data);
+    } catch (error) {
+      console.error("Error verifying payment:", error);
+    }
+  }, []);
 
   useEffect(() => {
-    const verifyPayment = async () => {
-      try {
-        const response = await axios.get(
-          `${
-            import.meta.env.VITE_HOST_URL_ENDPOINT
-          }/api/paymentverification/${referenceNumber}`
-        );
+    verifyPayment();
+  }, [verifyPayment]);
 
-        console.log(response, "Response is getting or not")
-
-        // if (response.data.success) {
-        //   setAuthenticPayment(true);
-        //   sendEmailWhilePaymentSuccess();
-        // }
-      } catch (error) {
-        console.error("Error verifying payment:", error);
+  useEffect(() => {
+    allTheData?.forEach((item) => {
+      if (item?.razorpay_payment_id === referenceNumber) {
+        setAuthenticPayment(true);
+        return;
       }
-    };
+    });
+  }, [allTheData, referenceNumber]);
 
-    if (referenceNumber) {
-      verifyPayment();
-    }
-  }, [referenceNumber]);
 
   const sendEmailWhilePaymentSuccess = () => {
     axios
@@ -49,7 +85,8 @@ const PaymentSuccess = () => {
       )
       .then((response) => {
         if (response.status === 200) {
-          console.log("Email sent successfully!");
+          console.log("Email sent successfully! and Payment Done as well");
+          alert("Email sent successfully! and Payment Done as well")
         } else {
           console.error("Error sending email:", response.statusText);
         }
