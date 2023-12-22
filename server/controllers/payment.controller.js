@@ -57,8 +57,7 @@ export const appointment = async (req, res) => {
       razorpay_order_id,
     });
     await newAppointment.save();
-  //  const emailData = await sendEmailToAdminWhenMakeAnAppointmnet(req.body);
-  await sendEmailToAdminWhenMakeAnAppointmnet(req.body);
+    await sendEmailToAdminWhenMakeAnAppointmnet(req.body);
     res.status(201).json({ message: "Appointment booked successfully!" });
   } catch (err) {
     res
@@ -67,8 +66,9 @@ export const appointment = async (req, res) => {
   }
 };
 
-
-export const sendEmailToAdminWhenMakeAnAppointmnet = async (appointmentDetails) => {
+export const sendEmailToAdminWhenMakeAnAppointmnet = async (
+  appointmentDetails
+) => {
   try {
     const {
       firstName,
@@ -119,7 +119,6 @@ export const sendEmailToAdminWhenMakeAnAppointmnet = async (appointmentDetails) 
       `,
     };
     transporter.sendMail(mailOptions, (error, info) => {
-
       if (error) {
         console.error("Error sending email:", error);
         res.status(500).json({ error: "Internal Server Error" });
@@ -134,6 +133,7 @@ export const sendEmailToAdminWhenMakeAnAppointmnet = async (appointmentDetails) 
 };
 
 export const paymentVerification = async (req, res) => {
+  // console.log("REQ DOT BODY WHILE CHECK FOR PAYMENT", req.body);
   try {
     const { razorpay_payment_id, razorpay_order_id, razorpay_signature } =
       req.body;
@@ -167,8 +167,6 @@ export const paymentVerification = async (req, res) => {
           currentDate: paymentByUser.currentDate,
           currentTime: paymentByUser.currentTime,
         });
-
-        sendEmailToAdmin(req.body.formData);
 
         return res.redirect(
           `${process.env.VITE_HOST_URL_ENDPOINT_FOR_FRONTEND}/paymentsuccess?reference=${razorpay_payment_id}`
@@ -253,5 +251,29 @@ export const sendEmailToAdmin = async (req, res) => {
   } catch (error) {
     console.error("Something went wrong while sending email:", error);
     res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+
+export const getAppointments = async (req, res) => {
+  try {
+    const appointments = await Appointment.find();
+    return res.status(200).json({ success: true, data: appointments });
+  } catch (error) {
+    console.error(error);
+    return res
+      .status(500)
+      .json({ success: false, error: "Internal Server Error" });
+  }
+};
+
+export const getAllPaymentsOfUser = async (req, res) => {
+  try {
+    const payments = await Payment.find();
+    return res.status(200).json({ success: true, data: payments });
+  } catch (error) {
+    console.error(error);
+    return res
+      .status(500)
+      .json({ success: false, error: "Internal Server Error" });
   }
 };
