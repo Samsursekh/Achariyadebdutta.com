@@ -26,29 +26,9 @@ const Appointment = () => {
     time: getCurrentTime(),
     preferredSlot: "morning",
     modeOfConsultation: "online",
-    price: 3000,
   };
-  const [formData, setFormData] = useState(initialFormValue);
 
-  // const sendEmailWhilePaymentSuccess = () => {
-  //   axios.post(`${import.meta.env.VITE_HOST_URL_ENDPOINT}/api/sendemailtoadmin`, {
-  //     formData: formData,
-  //   }, {
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //     },
-  //   })
-  //   .then((response) => {
-  //     if (response.status === 200) {
-  //       console.log('Email sent successfully!');
-  //     } else {
-  //       console.error('Error sending email:', response.statusText);
-  //     }
-  //   })
-  //   .catch((error) => {
-  //     console.error('Error sending email:', error);
-  //   });
-  // };
+  const [formData, setFormData] = useState(initialFormValue);
 
   const [loading, setLoading] = useState(false);
 
@@ -73,7 +53,7 @@ const Appointment = () => {
 
   const checkoutHandler = async (e, formData) => {
     e.preventDefault();
-    const { firstName, lastName, mobileNumber, address, price } = formData;
+    const { firstName, lastName, mobileNumber, address } = formData;
 
     if (
       !firstName.trim() ||
@@ -122,7 +102,7 @@ const Appointment = () => {
         data: { order },
       } = await axios.post(
         `${import.meta.env.VITE_HOST_URL_ENDPOINT}/api/checkout`,
-        { price },
+        // { price },
         {
           headers: {
             "Content-Type": "application/json",
@@ -131,7 +111,7 @@ const Appointment = () => {
       );
       const options = {
         key,
-        amount: order.price,
+        // amount: order.price,
         currency: "INR",
         name: "Pablo Import Export",
         description: "Test Transaction",
