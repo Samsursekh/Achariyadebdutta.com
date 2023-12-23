@@ -70,32 +70,6 @@ const PaymentSuccess = () => {
   }, [allTheData, referenceNumber]);
 
 
-  const sendEmailWhilePaymentSuccess = () => {
-    axios
-      .post(
-        `${import.meta.env.VITE_HOST_URL_ENDPOINT}/api/sendemailtoadmin`,
-        {
-          formData: formData,
-        },
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      )
-      .then((response) => {
-        if (response.status === 200) {
-          console.log("Email sent successfully! and Payment Done as well");
-          alert("Email sent successfully! and Payment Done as well")
-        } else {
-          console.error("Error sending email:", response.statusText);
-        }
-      })
-      .catch((error) => {
-        console.error("Error sending email:", error);
-      });
-  };
-
   return (
     <div className=" h-screen flex items-center justify-center">
       {authenticPayment ? (
@@ -126,7 +100,7 @@ const PaymentSuccess = () => {
       ) : (
         // If payment is not authentic, display error message
         <div className=" h-screen flex items-center justify-center">
-          <div className="border shadow-xl m-auto w-[90%] md:w-[50%] lg:w-[30%] h-auto p-5">
+          <div className="border shadow-xl m-auto w-[90%] md:w-auto lg:w-auto h-auto p-5">
             <h1 className="text-3xl font-poppins text-center m-3 text-red-500 font-extrabold">
               Payment ID is not authentic
             </h1>

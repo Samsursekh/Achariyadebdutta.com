@@ -30,25 +30,25 @@ const Appointment = () => {
   };
   const [formData, setFormData] = useState(initialFormValue);
 
-  const sendEmailWhilePaymentSuccess = () => {
-    axios.post(`${import.meta.env.VITE_HOST_URL_ENDPOINT}/api/sendemailtoadmin`, {
-      formData: formData,
-    }, {
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
-    .then((response) => {
-      if (response.status === 200) {
-        console.log('Email sent successfully!');
-      } else {
-        console.error('Error sending email:', response.statusText);
-      }
-    })
-    .catch((error) => {
-      console.error('Error sending email:', error);
-    });
-  };
+  // const sendEmailWhilePaymentSuccess = () => {
+  //   axios.post(`${import.meta.env.VITE_HOST_URL_ENDPOINT}/api/sendemailtoadmin`, {
+  //     formData: formData,
+  //   }, {
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //     },
+  //   })
+  //   .then((response) => {
+  //     if (response.status === 200) {
+  //       console.log('Email sent successfully!');
+  //     } else {
+  //       console.error('Error sending email:', response.statusText);
+  //     }
+  //   })
+  //   .catch((error) => {
+  //     console.error('Error sending email:', error);
+  //   });
+  // };
 
   const [loading, setLoading] = useState(false);
 
