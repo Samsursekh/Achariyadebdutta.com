@@ -57,7 +57,7 @@ export const appointment = async (req, res) => {
       razorpay_order_id,
     });
     await newAppointment.save();
-    await sendEmailToAdminWhenMakeAnAppointmnet(req.body);
+    await sendEmailToAdminWhenMakeAnAppointment(req.body);
     res.status(201).json({ message: "Appointment booked successfully!" });
   } catch (err) {
     res
@@ -66,7 +66,7 @@ export const appointment = async (req, res) => {
   }
 };
 
-export const sendEmailToAdminWhenMakeAnAppointmnet = async (
+export const sendEmailToAdminWhenMakeAnAppointment = async (
   appointmentDetails
 ) => {
   try {
@@ -133,7 +133,6 @@ export const sendEmailToAdminWhenMakeAnAppointmnet = async (
 };
 
 export const paymentVerification = async (req, res) => {
-  // console.log("REQ DOT BODY WHILE CHECK FOR PAYMENT", req.body);
   try {
     const { razorpay_payment_id, razorpay_order_id, razorpay_signature } =
       req.body;
@@ -168,6 +167,10 @@ export const paymentVerification = async (req, res) => {
           currentTime: paymentByUser.currentTime,
         });
 
+        await sendEmailToAdminAfterSuccessfullPayment(
+          paymentByUser,
+          razorpay_payment_id
+        );
         return res.redirect(
           `${process.env.VITE_HOST_URL_ENDPOINT_FOR_FRONTEND}/paymentsuccess?reference=${razorpay_payment_id}`
         );
@@ -189,7 +192,14 @@ export const paymentVerification = async (req, res) => {
   }
 };
 
-export const sendEmailToAdmin = async (req, res) => {
+export const sendEmailToAdminAfterSuccessfullPayment = async (
+  paymentByUser,
+  razorpay_payment_id,
+  res
+) => {
+  console.log("paymentByUser PRINTING AFTER PAYMENT", paymentByUser);
+  console.log("razorpay_payment_id", razorpay_payment_id);
+
   try {
     const {
       firstName,
@@ -201,7 +211,7 @@ export const sendEmailToAdmin = async (req, res) => {
       time,
       preferredSlot,
       modeOfConsultation,
-    } = req.body.formData;
+    } = paymentByUser;
 
     const transporter = nodemailer.createTransport({
       service: "gmail",
@@ -211,10 +221,41 @@ export const sendEmailToAdmin = async (req, res) => {
       },
     });
 
+    // const mailOptions = {
+    //   from: `${firstName} <${email}>`,
+    //   to: process.env.VITE_APP_USER_EMAIL_TO_SEND_EMAIL,
+    //   subject: `Successfull payment done by ${firstName}`,
+    //   text: `
+    //     First Name: ${firstName}
+    //     Last Name: ${lastName}
+    //     Mobile Number: ${mobileNumber}
+    //     Email: ${email}
+    //     Address: ${address}
+    //     Date: ${date}
+    //     Time: ${time}
+    //     Preferred Slot: ${preferredSlot}
+    //     Mode of Consultation: ${modeOfConsultation}
+    //     Payment of rupees: 3000
+    //   `,
+    //   html: `
+    //     <h1>Successfull payment Information</h1>
+    //     <p><strong>First Name:</strong> ${firstName}</p>
+    //     <p><strong>Last Name:</strong> ${lastName}</p>
+    //     <p><strong>Mobile Number:</strong> ${mobileNumber}</p>
+    //     <p><strong>Email:</strong> ${email}</p>
+    //     <p><strong>Address:</strong> ${address}</p>
+    //     <p><strong>Date:</strong> ${date}</p>
+    //     <p><strong>Time:</strong> ${time}</p>
+    //     <p><strong>Preferred Slot:</strong> ${preferredSlot}</p>
+    //     <p><strong>Mode of Consultation:</strong> ${modeOfConsultation}</p>
+    //     <p><strong>Payment of rupees: 3000 </strong></p>
+    //   `,
+    // };
+
     const mailOptions = {
       from: `${firstName} <${email}>`,
       to: process.env.VITE_APP_USER_EMAIL_TO_SEND_EMAIL,
-      subject: `Appointment Information send by ${firstName}`,
+      subject: `Successful Payment Confirmation - Astrology Consultation`,
       text: `
         First Name: ${firstName}
         Last Name: ${lastName}
@@ -225,18 +266,89 @@ export const sendEmailToAdmin = async (req, res) => {
         Time: ${time}
         Preferred Slot: ${preferredSlot}
         Mode of Consultation: ${modeOfConsultation}
+        Payment Amount: Rs. 3000
+        Payment ID : ${razorpay_payment_id}
       `,
       html: `
-        <h1>Appointment Information</h1>
-        <p><strong>First Name:</strong> ${firstName}</p>
-        <p><strong>Last Name:</strong> ${lastName}</p>
-        <p><strong>Mobile Number:</strong> ${mobileNumber}</p>
-        <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Address:</strong> ${address}</p>
-        <p><strong>Date:</strong> ${date}</p>
-        <p><strong>Time:</strong> ${time}</p>
-        <p><strong>Preferred Slot:</strong> ${preferredSlot}</p>
-        <p><strong>Mode of Consultation:</strong> ${modeOfConsultation}</p>
+      <!DOCTYPE html>
+      <html lang="en">
+        <head>
+          <meta charset="UTF-8" />
+          <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+          <title>Document</title>
+          <style>
+            body {
+              font-family: "Arial", sans-serif;
+              background-color: #f8f8f8;
+              margin: 0;
+              padding: 0;
+            }
+            .container {
+              max-width: 600px;
+              margin: 0 auto;
+              background-color: #fff;
+              padding: 20px;
+              border-radius: 10px;
+              box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            }
+            h1 {
+              color: #333;
+            }
+            p {
+              margin-bottom: 10px;
+              color: #555;
+            }
+            .logo {
+              max-width: 50px;
+              height: auto;
+            }
+            .social-icons {
+              margin-top: 20px;
+            }
+            .social-icons a {
+              display: inline-block;
+              margin-right: 10px;
+            }
+            .social-icons-img {
+              width: 160px;
+            }
+          </style>
+        </head>
+        <body>
+          <div class="container">
+            <img
+              src="https://cdn.pixabay.com/photo/2015/12/09/13/44/vector-1084755_1280.png"
+              alt="Your Logo"
+              class="logo"
+            />
+            <h1>Successful Payment Information</h1>
+            <p><strong>First Name:</strong> ${firstName}</p>
+            <p><strong>Last Name:</strong> ${lastName}</p>
+            <p><strong>Mobile Number:</strong> ${mobileNumber}</p>
+            <p><strong>Email:</strong> ${email}</p>
+            <p><strong>Address:</strong> ${address}</p>
+            <p><strong>Date:</strong> ${date}</p>
+            <p><strong>Time:</strong> ${time}</p>
+            <p><strong>Preferred Slot:</strong> ${preferredSlot}</p>
+            <p><strong>Mode of Consultation:</strong> ${modeOfConsultation}</p>
+            <p><strong>Payment Amount:</strong> Rs. 3000</p>
+           
+            <p><strong> Payment ID :</strong> ${razorpay_payment_id}</p>
+      
+            <div class="social-icons">
+              <a
+                href="https://cdn.pixabay.com/photo/2021/02/08/15/34/social-media-5995251_1280.png"
+                target="_blank"
+                ><img
+                  src="https://cdn.pixabay.com/photo/2021/02/08/15/34/social-media-5995251_1280.png"
+                  alt="Facebook"
+                  class="social-icons-img"
+              /></a>
+            </div>
+          </div>
+        </body>
+      </html>
+      
       `,
     };
 
