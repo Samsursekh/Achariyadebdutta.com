@@ -48,7 +48,7 @@ const ImageSlider = () => {
       const newIndex =
         currentIndex === slides.length - 1 ? 0 : currentIndex + 1;
       setCurrentIndex(newIndex);
-    }, 3000);
+    }, 4000);
 
     return () => clearInterval(interval);
   }, [currentIndex, slides.length]);

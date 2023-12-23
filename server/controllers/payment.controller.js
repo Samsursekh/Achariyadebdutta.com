@@ -10,7 +10,8 @@ import nodemailer from "nodemailer";
 export const checkout = async (req, res) => {
   try {
     const options = {
-      amount: Number(req.body.price) * 100,
+      // amount: Number(req.body.price) * 100,
+      amount: Number(3000) * 100,
       currency: "INR",
       receipt: `RECEIPT_ID_${nanoid()}`,
     };
@@ -228,37 +229,6 @@ export const sendEmailToAdminAfterSuccessfullPayment = async (
         pass: process.env.VITE_APP_GOOGLE_APP_PASSWORD,
       },
     });
-
-    // const mailOptions = {
-    //   from: `${firstName} <${email}>`,
-    //   to: process.env.VITE_APP_USER_EMAIL_TO_SEND_EMAIL,
-    //   subject: `Successfull payment done by ${firstName}`,
-    //   text: `
-    //     First Name: ${firstName}
-    //     Last Name: ${lastName}
-    //     Mobile Number: ${mobileNumber}
-    //     Email: ${email}
-    //     Address: ${address}
-    //     Date: ${date}
-    //     Time: ${time}
-    //     Preferred Slot: ${preferredSlot}
-    //     Mode of Consultation: ${modeOfConsultation}
-    //     Payment of rupees: 3000
-    //   `,
-    //   html: `
-    //     <h1>Successfull payment Information</h1>
-    //     <p><strong>First Name:</strong> ${firstName}</p>
-    //     <p><strong>Last Name:</strong> ${lastName}</p>
-    //     <p><strong>Mobile Number:</strong> ${mobileNumber}</p>
-    //     <p><strong>Email:</strong> ${email}</p>
-    //     <p><strong>Address:</strong> ${address}</p>
-    //     <p><strong>Date:</strong> ${date}</p>
-    //     <p><strong>Time:</strong> ${time}</p>
-    //     <p><strong>Preferred Slot:</strong> ${preferredSlot}</p>
-    //     <p><strong>Mode of Consultation:</strong> ${modeOfConsultation}</p>
-    //     <p><strong>Payment of rupees: 3000 </strong></p>
-    //   `,
-    // };
 
     const mailOptions = {
       from: `${firstName} ${email}`,
