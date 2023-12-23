@@ -6,7 +6,6 @@ import Footer from "../components/Footer";
 import banner3 from "../images/sliderImages/slide2.jpg";
 import * as Yup from "yup";
 import logo from "../images/logo/llogo icon-01.png";
-import emailjs from "@emailjs/browser";
 
 const Appointment = () => {
   const getCurrentTime = () => {
