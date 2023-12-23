@@ -186,6 +186,15 @@ export const paymentVerification = async (req, res) => {
         return res.redirect(
           `${process.env.VITE_HOST_URL_ENDPOINT_FOR_FRONTEND}/paymentsuccess?reference=${razorpay_payment_id}`
         );
+
+   
+
+        // return res.send(`
+        //   <script>
+        //     window.open("${process.env.VITE_HOST_URL_ENDPOINT_FOR_FRONTEND}/paymentsuccess?reference=${razorpay_payment_id}", "_blank");
+        //   </script>
+        // `);
+        
       } else {
         return res
           .status(404)
