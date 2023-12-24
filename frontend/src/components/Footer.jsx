@@ -116,7 +116,7 @@ const Footer = () => {
           </h2>
           <div className="text-[16px] ml-2">
             <p>Kolkata, India</p>
-            <p>Email: kaaushik.kar@gmail.com</p>
+            <p>Email: support@astro.com</p>
             <p>Phone: +91 XXXXX XXXXX</p>
             <p>Phone: +91 XXXXX XXXXX</p>
           </div>

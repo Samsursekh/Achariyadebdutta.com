@@ -3,9 +3,7 @@ import crypto from "crypto";
 import { Payment } from "../models/payment.model.js";
 import { Appointment } from "../models/appointment.model.js";
 import { nanoid } from "nanoid";
-import emailjs from "@emailjs/browser";
 import nodemailer from "nodemailer";
-// import logo from "../../frontend/src/images/logo/llogo icon-01.png";
 
 export const checkout = async (req, res) => {
   try {
@@ -194,7 +192,7 @@ export const paymentVerification = async (req, res) => {
         //     window.open("${process.env.VITE_HOST_URL_ENDPOINT_FOR_FRONTEND}/paymentsuccess?reference=${razorpay_payment_id}", "_blank");
         //   </script>
         // `);
-        
+
       } else {
         return res
           .status(404)
