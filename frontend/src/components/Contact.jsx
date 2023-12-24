@@ -25,6 +25,22 @@ const Contact = () => {
   const form = useRef();
   const [loading, setLoading] = useState(false);
 
+  const initialFormValue = {
+    fullName: "",
+    email: "",
+    message: "",
+  };
+
+  const [formData, setFormData] = useState(initialFormValue);
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  }
+
   const sendEmail = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -36,9 +52,11 @@ const Contact = () => {
         form.current,
         import.meta.env.VITE_APP_EMAIL_JS_PUBLIC_KEY_ID_OF_PABLO_AC
       );
+      console.log("Form Data", formData)
+      console.log("Result after sending email to contact", result)
+      setFormData(initialFormValue)
       alert("Message sent successfully!");
 
-      form.current.reset();
     } catch (error) {
       alert("Failed to send message. Please try again.");
     } finally {
@@ -76,7 +94,7 @@ const Contact = () => {
                 </div>
                 <div className="">
                   <h3 className="text-xl font-bold">Email Address : </h3>
-                  <p>contact@pablotalk.com</p>
+                  <p>contact@astro.com</p>
                 </div>
               </div>
               <div className="flex p-3 gap-4 ">
@@ -133,7 +151,9 @@ const Contact = () => {
                       <input
                         type="text"
                         placeholder="Full Name*"
-                        name="from_name"
+                        value={formData.fullName}
+                        onChange={handleInputChange}
+                        name="fullName"
                         id="from_name"
                         required
                         autoComplete="off"
@@ -146,7 +166,9 @@ const Contact = () => {
                     <div className="my-3 relative">
                       <input
                         type="email"
-                        name="from_email"
+                        name="email"
+                        value={formData.email}
+                        onChange={handleInputChange}
                         placeholder=" Email Address*"
                         id="from_email"
                         autoComplete="off"
@@ -161,6 +183,8 @@ const Contact = () => {
                       <textarea
                         name="message"
                         id="message"
+                        value={formData.message}
+                        onChange={handleInputChange}
                         rows=""
                         required
                         placeholder=" Type a message*"
