@@ -31,10 +31,10 @@ const Contact = () => {
 
     try {
       const result = await emailjs.sendForm(
-        import.meta.env.VITE_APP_EMAIL_JS_SERVICE_ID,
-        import.meta.env.VITE_APP_EMAIL_JS_TEMPLATE_ID,
+        import.meta.env.VITE_APP_EMAIL_JS_SERVICE_ID_OF_PABLO_AC,
+        import.meta.env.VITE_APP_EMAIL_JS_TEMPLATE_ID_OF_PABLO_AC,
         form.current,
-        import.meta.env.VITE_APP_EMAIL_JS_PUBLIC_KEY
+        import.meta.env.VITE_APP_EMAIL_JS_PUBLIC_KEY_ID_OF_PABLO_AC
       );
       alert("Message sent successfully!");
 
