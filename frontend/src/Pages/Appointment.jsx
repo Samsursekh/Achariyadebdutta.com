@@ -328,7 +328,7 @@ const Appointment = () => {
                   disabled={loading}
                 >
                   {loading ? (
-                    <span className="flex items-center justify-center w-[100px] m-auto">
+                    <span className="flex items-center justify-center w-[130px] m-auto">
                       <LuLoader2 className="animate-spin mr-2" /> Loading...
                     </span>
                   ) : (
