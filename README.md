@@ -1,3 +1,13 @@
+
+# Astrology Website
+
+This is the Astrology Web App. Where any user can take an appointment with the astrologer. and make payment for online and offline 
+
+
+
+
+
+
 ![1](https://github.com/Samsursekh/dev-astro-website-MERN/assets/101379073/db63dded-7976-4daf-8205-8593cf30254b)
 
 ![2](https://github.com/Samsursekh/dev-astro-website-MERN/assets/101379073/f2571bcf-a7b7-4263-8871-27560a525c7e)
@@ -23,3 +33,77 @@
 ![8](https://github.com/Samsursekh/dev-astro-website-MERN/assets/101379073/8bf4e819-7832-4582-8d21-c80210c90371)
 
 ![9](https://github.com/Samsursekh/dev-astro-website-MERN/assets/101379073/18a10479-220b-43ab-8e48-08173826743f)
+
+
+![Logo](https://dev-astro-website-mern.vercel.app/assets/astro%20achariya%20logo-01-42d8b8ef.png)
+
+
+# Hi, I'm Samsur! 👋
+
+
+## 🚀 About Me
+I'm a full stack developer...
+
+https://github.com/Samsursekh/
+
+
+
+## Other Common Github Profile Sections
+👩‍💻 I'm currently working on...  MERN Stack
+
+🧠 I'm currently learning...  NextJs, TypeScript
+👯‍♀️ I'm looking to collaborate with other developer
+
+💬 Ask me about...   React, Javascript
+
+📫 How to reach me...  https://www.linkedin.com/in/samsur-sekh-b6961a22b/   My linkedin profile
+
+😄 Pronouns...   He/Him
+
+
+
+
+
+## Features
+
+- User can contact to admin
+- Live previews
+- Fullscreen mode
+- Responsiveness
+- Real-life payment getway added like Razorpay
+- Book appointment
+- Read blogs
+- After successfully booking the appointment data will be save to the actual database
+
+
+
+
+## Tech Stack
+
+**Client:** React, TailwindCSS, Javascript, Emailjs, Axios.
+
+**Server:** Node, Express, Nodemailer.
+
+**Database:**  MongoDB
+
+
+
+
+
+## Demo
+Deploy live link :  https://dev-astro-website-mern.vercel.app/
+
+## Deployment
+
+To deploy this project run
+
+```bash
+  npm run deploy
+```
+
+## Support
+
+For support, email samsur.sekh.masai@gmail.com  or join our call me on +91 9339316583
+
+
+
