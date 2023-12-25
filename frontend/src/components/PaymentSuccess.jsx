@@ -1,78 +1,63 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { MdOutlineDone } from "react-icons/md";
 import { Link, useSearchParams } from "react-router-dom";
 import axios from "axios";
+import { LuLoader2 } from "react-icons/lu";
 
 const PaymentSuccess = () => {
-  const [authenticPayment, setAuthenticPayment] = useState(false);
+  const [authenticPayment, setAuthenticPayment] = useState();
   const [allTheData, setAllTheData] = useState([]);
-  // console.log("All the data", allTheData)
+  const [loading, setLoading] = useState(true);
   const searchQuery = useSearchParams()[0];
   const referenceNumber = searchQuery.get("reference");
-  // console.log(referenceNumber, "referecen number ...")
 
-  // const verifyPayment = async () => {
-  //   try {
-  //     const response = await axios.get("http://localhost:8000/api/get-all-payments-of-users/"
-  //       // `${
-  //       //   import.meta.env.VITE_HOST_URL_ENDPOINT
-  //       // }/api/get-all-payments-of-users/`
-  //     );
-
-  //     console.log(response?.data?.data, "Response is getting or not")
-  //     setAllTheData(response?.data?.data);
-
-  //     // if (response.data.success) {
-  //     //   setAuthenticPayment(true);
-  //     //   sendEmailWhilePaymentSuccess();
-  //     // }
-
-  //     // if (referenceNumber === allTheData.razorpay_payment_id) {
-  //     //   console.log("Its Authentic")
-  //     //   verifyPayment();
-  //     // }
-
-  //     allTheData?.map((item) => {
-  //       console.log(item, "All the user here with payment ID")
-  //     })
-
-
-  //   } catch (error) {
-  //     console.error("Error verifying payment:", error);
-  //   }
-  // };
-
-  // useEffect(() => {
-  // verifyPayment();
-  // }, []);
-
-
-  const verifyPayment = useCallback(async () => {
+  const verifyPayment = async () => {
     try {
       const response = await axios.get(`${import.meta.env.VITE_HOST_URL_ENDPOINT}/api/get-all-payments-of-users/`);
       setAllTheData(response?.data?.data);
+
+      const paymentIds = response.data.data.map(item => item?.razorpay_payment_id);
+      const isPaymentAuthentic = paymentIds.includes(referenceNumber);
+      setAuthenticPayment(isPaymentAuthentic);
     } catch (error) {
       console.error("Error verifying payment:", error);
+    } finally {
+      setLoading(false);
     }
+  };
+
+  useEffect(() => {
+    if (referenceNumber) {
+      verifyPayment();
+    }
+  }, [referenceNumber]);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 1000);
+
+    return () => clearTimeout(timer);
   }, []);
 
-  useEffect(() => {
-    verifyPayment();
-  }, [verifyPayment]);
-
-  useEffect(() => {
-    allTheData?.forEach((item) => {
-      if (item?.razorpay_payment_id === referenceNumber) {
-        setAuthenticPayment(true);
-        return;
-      }
-    });
-  }, [allTheData, referenceNumber]);
-
+  if (loading) {
+    return <Loader />;
+  }
 
   return (
-    <div className=" h-screen flex items-center justify-center">
-      {authenticPayment ? (
+    <div className="h-screen flex items-center justify-center">
+      {!authenticPayment ? (
+        <div className="h-screen flex items-center justify-center">
+          <div className="border shadow-xl m-auto w-[90%] md:w-auto lg:w-auto h-auto p-5">
+            <h1 className="text-3xl font-poppins text-center m-3 text-red-500 font-extrabold">
+              Payment ID is not authentic
+            </h1>
+            <p className="text-slate-600 font-philosopher mt-4 text-center">
+              The payment ID received is not authentic. Please contact support.
+            </p>
+          </div>
+        </div>
+      ) : (
         <div className="border shadow-xl m-auto w-[90%] md:w-[50%] lg:w-[30%] h-auto p-5 ">
           <div className="border-[4px] border-blue-500 rounded-full w-[100px] h-[100px] flex justify-center items-center m-auto ">
             <MdOutlineDone size={90} className="m-auto text-green-500 " />
@@ -97,19 +82,17 @@ const PaymentSuccess = () => {
             </div>
           </div>
         </div>
-      ) : (
-        // If payment is not authentic, display error message
-        <div className=" h-screen flex items-center justify-center">
-          <div className="border shadow-xl m-auto w-[90%] md:w-auto lg:w-auto h-auto p-5">
-            <h1 className="text-3xl font-poppins text-center m-3 text-red-500 font-extrabold">
-              Payment ID is not authentic
-            </h1>
-            <p className="text-slate-600 font-philosopher mt-4 text-center">
-              The payment ID received is not authentic. Please contact support.
-            </p>
-          </div>
-        </div>
       )}
+    </div>
+  );
+};
+
+const Loader = () => {
+  return (
+    <div className="h-screen flex items-center justify-center m-auto text-blue-600">
+      <div className="loader-container m-auto ">
+        <span className="flex"> <LuLoader2 className="animate-spin" size={40} /> <h3 className="text-4xl">Loading...</h3></span>
+      </div>
     </div>
   );
 };

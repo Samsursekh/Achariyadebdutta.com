@@ -6,6 +6,7 @@ import Footer from "../components/Footer";
 import banner3 from "../images/sliderImages/slide2.jpg";
 import * as Yup from "yup";
 import logo from "../images/logo/llogo icon-01.png";
+import { LuLoader2 } from "react-icons/lu";
 
 const Appointment = () => {
   const getCurrentTime = () => {
@@ -112,13 +113,12 @@ const Appointment = () => {
         key,
         // amount: order.price,
         currency: "INR",
-        name: "Pablo Import Export",
+        name: "Astro website",
         description: "Test Transaction",
         image: logo,
         order_id: order.id,
-        callback_url: `${
-          import.meta.env.VITE_HOST_URL_ENDPOINT
-        }/api/paymentverification`,
+        callback_url: `${import.meta.env.VITE_HOST_URL_ENDPOINT
+          }/api/paymentverification`,
         prefill: {
           name: `${formData.firstName} ${formData.lastName}`,
           email: `${formData.email}`,
@@ -126,7 +126,7 @@ const Appointment = () => {
           address: `${formData.address}`,
         },
         notes: {
-          address: "Saggifo Infrastructure pvt. ltd.",
+          address: "Astro web pvt. ltd.",
         },
         theme: {
           color: "#003CF0",
@@ -325,8 +325,15 @@ const Appointment = () => {
                 <button
                   className="bg-blue-500 hover:bg-blue-700 w-full text-white font-bold py-2 px-4 rounded"
                   type="submit"
+                  disabled={loading}
                 >
-                  {loading ? "Loading..." : "Book Appointment"}
+                  {loading ? (
+                    <span className="flex items-center justify-center w-[100px] m-auto">
+                      <LuLoader2 className="animate-spin" /> Loading...
+                    </span>
+                  ) : (
+                    "Book Appointment"
+                  )}
                 </button>
               </div>
             </form>
