@@ -55,11 +55,10 @@ const BottomNavbar = () => {
     <div className="relative font-poppins">
       {/* navbar for mobile and tab sizes */}
       <div
-        className={`flex text-2xl justify-between z-10 m-auto w-full h-[65px] items-center px-6  ${
-          sticky
+        className={`flex text-2xl justify-between z-10 m-auto w-full h-[65px] items-center px-6  ${sticky
             ? "fixed top-0 bg-black transition-all duration-700"
             : " absolute top-0 transition-all duration-700"
-        }`}
+          }`}
       >
         {/* some color code of navbar  #1AA7EC  #1E2F97  #00468B #00588b #4267B2*/}
         <div className="">
@@ -108,9 +107,8 @@ const BottomNavbar = () => {
         <div className="hidden md:flex">
           <h3
             onClick={() => navigate("/")}
-            className={`cursor-pointer mt-2 mx-2 text-[16px] transition duration-300 ${
-              location.pathname === "/" ? "font-bold text-white" : "text-white"
-            }`}
+            className={`cursor-pointer mt-2 mx-2 text-[16px] transition duration-300 ${location.pathname === "/" ? "font-bold text-white" : "text-white"
+              }`}
           >
             Home
             {location.pathname === "/" && (
@@ -119,11 +117,10 @@ const BottomNavbar = () => {
           </h3>
           <h3
             onClick={() => navigate("/about-page")}
-            className={`cursor-pointer mt-2 mx-2 text-[16px] transition duration-300 ${
-              location.pathname === "/about-page"
+            className={`cursor-pointer mt-2 mx-2 text-[16px] transition duration-300 ${location.pathname === "/about-page"
                 ? "font-bold text-white"
                 : "text-white"
-            }`}
+              }`}
           >
             About
             {location.pathname === "/about-page" && (
@@ -146,11 +143,10 @@ const BottomNavbar = () => {
 
           <h3
             onClick={() => navigate("/services")}
-            className={`cursor-pointer mt-2 mx-2 text-[16px] transition duration-300 ${
-              location.pathname === "/services"
+            className={`cursor-pointer mt-2 mx-2 text-[16px] transition duration-300 ${location.pathname === "/services"
                 ? "font-bold text-white"
                 : "text-white"
-            }`}
+              }`}
           >
             Services
             {location.pathname === "/services" && (
@@ -172,11 +168,10 @@ const BottomNavbar = () => {
           </h3> */}
           <h3
             onClick={() => navigate("/appointment")}
-            className={`cursor-pointer mt-2 mx-2 text-[16px] transition duration-300 ${
-              location.pathname === "/appointment"
+            className={`cursor-pointer mt-2 mx-2 text-[16px] transition duration-300 ${location.pathname === "/appointment"
                 ? "font-bold text-white"
                 : "text-white"
-            }`}
+              }`}
           >
             Appointment
             {location.pathname === "/appointment" && (
@@ -185,11 +180,10 @@ const BottomNavbar = () => {
           </h3>
           <h3
             onClick={() => navigate("/contact")}
-            className={`cursor-pointer mt-2 mx-2 text-[16px] transition duration-300 ${
-              location.pathname === "/contact"
+            className={`cursor-pointer mt-2 mx-2 text-[16px] transition duration-300 ${location.pathname === "/contact"
                 ? "font-bold text-white"
                 : "text-white"
-            }`}
+              }`}
           >
             Contact
             {location.pathname === "/contact" && (
@@ -197,14 +191,14 @@ const BottomNavbar = () => {
             )}
           </h3>
 
-          <div>
+          {/* <div>
             <h3
               className={`cursor-pointer mt-2 mx-2 text-[16px] transition duration-300 text-white`}
               onClick={handleLinkClickToGoToBlogPage}
             >
               Blogs
             </h3>
-          </div>
+          </div> */}
         </div>
 
         {/* Mobile responsive navbar for medium and small screens */}
@@ -265,14 +259,14 @@ const BottomNavbar = () => {
             >
               Contact
             </h3>
-            <div>
+            {/* <div>
               <h3
                 onClick={handleLinkClickToGoToBlogPage}
                 className="cursor-pointer hover:bg-blue-500 mt-2 hover:text-white transition duration-300"
               >
                 Blogs
               </h3>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
