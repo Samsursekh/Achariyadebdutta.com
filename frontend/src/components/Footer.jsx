@@ -97,13 +97,13 @@ const Footer = () => {
             {/* <li>Events</li>
             <hr className="border border-s-violet-400 border-gray-300 my-2 m-auto" /> */}
 
-            <li
+            {/* <li
               onClick={handleLinkClickToGoToBlogPage}
               className="cursor-pointer"
             >
               Blogs
             </li>
-            <hr className="border border-s-violet-400 border-gray-300 my-2 m-auto" />
+            <hr className="border border-s-violet-400 border-gray-300 my-2 m-auto" /> */}
 
             <Link to="/contact">
               <li>Contact Us</li>
