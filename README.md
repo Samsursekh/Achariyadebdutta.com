@@ -59,7 +59,12 @@ https://github.com/Samsursekh/
 
 
 ## Demo
-Deploy live link:  https://dev-astro-website-mern.vercel.app/
+Live link:  https://dev-astro-website-mern.vercel.app/
+
+## Live Project: https://achariyadebdutta.com
+
+## Live Presentation 
+https://drive.google.com/file/d/1sSreijPJBZGXjfX9wpH0WJbTKEUYIflp/view?usp=sharing
 
 ## Deployment
 
